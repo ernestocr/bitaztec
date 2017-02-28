@@ -1,0 +1,37 @@
+<h2>Historial del usuario</h2>
+<p><%= @user.email %> (id: <%= @user.id %>)</p>
+
+<p>
+  Pedidos: <b><%= @user.orders.count %></b>
+  / Transacciones: <b><%= @user.orders.where(completed: true).count %></b>
+  <% if @user.admin? %>
+    / <b>Admin</b>
+  <% end %>
+</p>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Fecha</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Domicilio del wallet</th>
+      <th>Estado</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= link_to order.created_at_formatted, admin_order_path(order) %></td>
+        <td><%= order.amount %></td>
+        <td><%= number_to_currency order.price, precision: 0 %></td>
+        <td><%= order.address %></td>
+        <td><%= order.status %></td>
+        <td><%= render 'admin/orders/message_count', order: order %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

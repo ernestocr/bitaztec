@@ -1,0 +1,32 @@
+<h2>Todos los métodos de pago</h2>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Método</th>
+      <th>Cuenta</th>
+      <th>Detalles</th>
+      <th>Tiempo de expiración</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payment_methods.each do |payment_method| %>
+      <tr>
+        <td><%= link_to payment_method.name, admin_payment_method_path(payment_method) %></td>
+        <td><%= payment_method.method %></td>
+        <td><%= payment_method.account %></td>
+        <td><%= payment_method.details %></td>
+        <td><%= payment_method.time_to_expire %></td>
+        <td><%= link_to 'Editar', edit_admin_payment_method_path(payment_method) %></td>
+        <td><%= link_to 'Borrar', 
+                  admin_payment_method_path(payment_method), 
+                  method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Método de pago nuevo', new_admin_payment_method_path, class: 'ui button' %>

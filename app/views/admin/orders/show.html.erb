@@ -1,0 +1,38 @@
+<h2>Pedido #<%= @order.id %></h2>
+
+<div class="ui two column grid">
+  <div class="column">
+    <div class="ui segments">
+      <div class="ui segment">
+        <p>Estado: <%= @order.status %></p>
+      </div>
+
+      <div class="ui secondary segment">
+        <p>Pedido hecho por <%= link_to @order.user.email, admin_user_path(@order.user) %></p>
+        <p>Pedido creado el: <%= @order.created_at_formatted %> (hace <%= time_ago_in_words @order.created_at %>)</p>
+        <p>Cantidad solicitada: <b><%= @order.amount %> BTC</b> a <b><%= number_to_currency @order.price %></b></p> 
+      </div>
+
+      <% if !@order.completed %>
+        <div class="ui segment">
+          <p>Ya transferiste los Bitcoins?</p>
+          <%= link_to 'Listo', admin_order_path(complete: true), method: :put, class: 'ui small green button' %>
+        </div>
+      <% end %>
+    </div>
+
+    <p>Evidencia presentada:</p>
+  
+    <div class="ui small images">
+      <img src="http://semantic-ui.com/images/wireframe/image.png">
+      <img src="http://semantic-ui.com/images/wireframe/image.png">
+      <img src="http://semantic-ui.com/images/wireframe/image.png">
+    </div>
+  </div>  
+  
+  <div class="column">
+    <%= render 'shared/message_feed' %>
+  </div>    
+</div>
+
+    

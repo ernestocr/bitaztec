@@ -1,0 +1,31 @@
+<h2>All users</h2>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Correo</th>
+      <th>Pedidos activos</th>
+      <th>Transacciones</th>
+      <th>Miembro desde</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= link_to user.email, admin_user_path(user) %></td>
+        <td><%= user.active_orders_count %></td>
+        <td><%= user.transactions_count %></td>
+        <td>Hace <%= time_ago_in_words user.created_at %></td>
+        <td>
+          <% if !user.admin? %>
+            <%= link_to 'Borrar', admin_user_path(user), 
+              method: :delete, data: { confirm: 'Estás seguro? Esta acción no puede ser revocada.' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>

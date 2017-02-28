@@ -1,0 +1,11 @@
+<div class="ui container" style="margin-bottom: 10px;">
+  <% if notice %>
+    <div class="ui message">
+      <%= notice %>
+    </div>
+  <% elsif alert %>
+    <div class="ui warning message">
+      <%= alert %>
+    </div>
+  <% end %>
+</div>

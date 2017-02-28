@@ -1,0 +1,23 @@
+<center>
+  <% if current_user.admin? %>
+    <a href="<%= admin_order_path(order) %>">
+      <% if order.new_message_for_admin? %>
+        <div class="ui red label">
+      <% else %>
+        <div class="ui label">
+      <% end %>
+          <i class="mail icon"></i> <%= order.messages.count %>
+        </div>
+    </a>
+  <% else %>
+    <a href="<%= order_path(order) %>">
+      <% if order.new_message_for_user? %>
+        <div class="ui red label">
+      <% else %>
+        <div class="ui label">
+      <% end %>
+          <i class="mail icon"></i> <%= order.messages.count %>
+        </div>
+    </a>
+  <% end %>
+</center>

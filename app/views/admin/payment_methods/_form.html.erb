@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, payment_method],
+                    defaults: { wrapper_html: { class: 'field' } }, 
+                    html: { class: 'ui form' }) do |f| %>
+                    
+  <%= f.input :name, autofocus: true %>
+  <%= f.input :method, collection: ['Depósito', 'Transferencia'] %>
+  <%= f.input :account %>
+  <%= f.input :details %>
+  <%= f.input :time_to_expire %>
+  <%= f.submit 'Save', class: 'ui button' %>
+
+<% end %>

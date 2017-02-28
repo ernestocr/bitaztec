@@ -1,0 +1,11 @@
+<%= simple_form_for(order, 
+                    defaults: { wrapper_html: { class: 'field' } },
+                    html: { class: 'ui form' }) do |f| %>
+
+  <%= f.input :amount, autofocus: true %>
+  <%= f.input :price, disabled: true %>
+  <%= f.input :address %>
+  <%= f.association :payment_method %>
+
+  <%= f.submit 'Buy!', class: 'ui blue button' %>
+<% end %>

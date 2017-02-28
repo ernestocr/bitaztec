@@ -1,0 +1,31 @@
+<div class="ui two column centered grid">
+  <div class="column">
+    <h2>Configuración</h2>
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Clave</th>
+          <th>Valor</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @settings.each do |setting| %>
+          <tr>
+            <td><%= setting.key %></td>
+            <td><%= setting.value %></td>
+            <td>
+              <center>
+                <%= link_to 'Editar', edit_admin_setting_path(setting), class: 'ui mini button' %>
+              </center>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to 'Nueva configuración', new_admin_setting_path, class: 'ui button' %> 
+  </div>
+</div>
+

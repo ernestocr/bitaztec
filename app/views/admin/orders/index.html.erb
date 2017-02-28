@@ -1,0 +1,81 @@
+<h2>Pedidos pendientes</h2>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Cuando</th>
+      <th>Usuario</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Método de pago</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pending_orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.created_at_formatted %></td>
+        <td><%= order.user.email %></td>
+        <td><%= order.amount %></td>
+        <td><%= order.price %></td>
+        <td><%= order.payment_method.name %></td>
+        <td><%= render 'admin/orders/message_count', order: order %></td>
+        <td>
+          <center>
+            <%= link_to 'Revisar', admin_order_path(order), class: 'ui mini button' %>
+          </center>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if @pending_orders.count == 0 %>
+  <div class="ui warning message">
+    You have no pending orders.
+  </div>
+<% end %>
+
+<!-- NEW ORDERS -->
+
+<h2>Nuevas pedidos</h2>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Cuando</th>
+      <th>Usuario</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Método de pago</th>
+      <th>Se expira</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @new_orders.each do |order| %>
+      <% if !order.expired %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= link_to order.created_at_formatted, admin_order_path(order) %></td>
+          <td><%= order.user.email %></td>
+          <td><%= order.amount %></td>
+          <td><%= order.price %></td>
+          <td><%= order.payment_method.name %></td>
+          <td><%= order.expires_at_formatted %></td>
+          <td><%= render 'admin/orders/message_count', order: order %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @new_orders.map { |order| order if !order.expired } == [nil] %>
+  <div class="ui warning message">
+    No tienes pedidos nuevos.
+  </div>
+<% end %>

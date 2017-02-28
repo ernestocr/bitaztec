@@ -1,0 +1,35 @@
+<h5>Order message history</h5>
+<div class="ui comments">
+  <% @order.messages.each do |msg| %>
+    <div class="comment">
+      <div class="content">
+        <% if current_user == msg.user %>
+          <b>Tú</b>
+        <% else %>
+          <% if current_user.admin? %>
+            <%= link_to msg.user.email, admin_user_path(msg.user), class: 'author' %>
+          <% else %>
+            <b><%= msg.user.email %></b>
+          <% end %>
+        <% end %>  
+        <div class="metadata">
+          <span class="date">Hace <%= time_ago_in_words msg.created_at %></span>
+        </div>
+        <div class="text">
+          <%= msg.body %>
+        </div>
+    </div>
+  <% end %>
+
+  <%= form_for(@order.messages.new, html: { class: 'ui reply form' }) do |f| %>
+    <%= f.hidden_field :order_id %>
+    <div class="field">
+      <%= f.text_area :body %>
+    </div>
+    <button class="ui blue labeled submit icon button">
+      <i class="icon edit"></i> Enviar  
+    </button>
+  <% end %>
+</div>
+
+  
