@@ -1,0 +1,30 @@
+<h2>Lista de cuentas de <%= @bank.name %></h2>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Banco</th>
+      <th>Número</th>
+      <th>Holder</th>
+      <th>Activo</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td><%= account.bank.name %></td>
+        <td><%= account.number %></td>
+        <td><%= account.holder %></td>
+        <td><%= account.active %></td>
+        <td><%= link_to 'Editar', edit_admin_bank_account_path(@bank, account) %></td>
+        <td><%= link_to 'Borrar', 
+                  admin_bank_account_path(@bank, account), 
+                  method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Agregar cuenta', new_admin_bank_account_path, class: 'ui button' %>

@@ -1,0 +1,10 @@
+<div class="ui two column centered grid">
+  <div class="column">
+    <h2>
+      Editar datos de ésta cuenta
+      <small>&middot; <%= link_to 'cancelar', admin_bank_path(@bank) %></small>
+    </h2>
+
+    <%= render 'form', account: @account %>
+  </div>
+</div>

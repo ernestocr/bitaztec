@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :payment_methods
     resources :settings
     resources :orders
-    resources :banks
+    resources :banks do
+      resources :accounts
+    end
   end
   
   root to: 'pages#home'

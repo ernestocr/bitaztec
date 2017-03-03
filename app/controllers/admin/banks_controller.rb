@@ -1,9 +1,12 @@
 class Admin::BanksController < Admin::BaseController
 
-  before_action :set_bank, only: [:edit, :update, :destroy]
+  before_action :set_bank, only: [:show, :edit, :update, :destroy]
 
   def index
     @banks = Bank.all
+  end
+
+  def show
   end
 
   def edit
