@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
       @order = current_user.orders.new(order_params)
       @order.price = @btc_price
       if @order.payment_method
-        @order.expires_in = @order.payment_method.time_to_expire
+        @order.expires_in = @order.payment_method.expires
       end
 
       if @order.save
