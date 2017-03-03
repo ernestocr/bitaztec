@@ -1,0 +1,10 @@
+<div class="ui two column centered grid">
+  <div class="column">
+    <h2>
+      Agregar banco nuevo
+      <small>&middot; <%= link_to 'cancelar', admin_banks_path %></small>
+    </h2>
+
+    <%= render 'form', bank: @bank %>
+  </div>
+</div>

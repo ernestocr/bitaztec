@@ -1,0 +1,26 @@
+<h2>Lista de bancos</h2>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Active</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @banks.each do |bank| %>
+      <tr>
+        <td><%= link_to bank.name, admin_bank_path(bank) %></td>
+        <td><%= bank.active %></td>
+        <td><%= link_to 'Editar', edit_admin_bank_path(bank) %></td>
+        <td><%= link_to 'Borrar', 
+                  admin_bank_path(bank), 
+                  method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Agregar banco', new_admin_bank_path, class: 'ui button' %>

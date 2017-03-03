@@ -1,0 +1,9 @@
+<%= simple_form_for([:admin, bank],
+                    defaults: { wrapper_html: { class: 'field' } }, 
+                    html: { class: 'ui form' }) do |f| %>
+                    
+  <%= f.input :name, autofocus: true %>
+  <%= f.input :active %>
+  <%= f.submit 'Save', class: 'ui button' %>
+
+<% end %>
