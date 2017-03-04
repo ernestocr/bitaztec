@@ -1,6 +1,6 @@
 class Admin::BanksController < Admin::BaseController
 
-  before_action :set_bank, except: [:index, :new]
+  before_action :set_bank, except: [:index, :new, :create]
 
   def index
     @banks = Bank.all

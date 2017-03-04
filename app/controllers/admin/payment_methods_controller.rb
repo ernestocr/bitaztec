@@ -1,5 +1,5 @@
 class Admin::PaymentMethodsController < Admin::BaseController
-  before_action :set_payment_method, except: [:index, :new]
+  before_action :set_payment_method, except: [:index, :new, :create]
 
   def index
     @payment_methods = PaymentMethod.all
