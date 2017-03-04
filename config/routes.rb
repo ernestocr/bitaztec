@@ -9,12 +9,28 @@ Rails.application.routes.draw do
 
   namespace :admin do
     match '/', to: 'dashboard#index', via: :get
+    
     resources :users
-    resources :payment_methods
+    
+    resources :payment_methods do
+      collection do
+        get 'toggle/:id' => :toggle, as: :toggle
+      end
+    end
+    
     resources :settings
     resources :orders
+    
     resources :banks do
-      resources :accounts
+      collection do
+        get 'toggle/:id' => :toggle, as: :toggle
+      end
+      
+      resources :accounts do
+        collection do
+          get 'toggle/:id' => :toggle, as: :toggle
+        end
+      end
     end
   end
   

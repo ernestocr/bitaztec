@@ -1,7 +1,7 @@
 class Admin::AccountsController < Admin::BaseController
 
   before_action :set_bank
-  before_action :set_account, only: [:edit, :update]
+  before_action :set_account, only: [:edit, :update, :toggle]
 
   def index
     @accounts = @bank.accounts.all
@@ -29,6 +29,11 @@ class Admin::AccountsController < Admin::BaseController
     else
       render :edit
     end
+  end
+
+  def toggle
+    @account.toggle!(:active)
+    redirect_to :back
   end
 
   private

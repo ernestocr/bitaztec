@@ -4,20 +4,36 @@
   <thead>
     <tr>
       <th>Nombre</th>
-      <th>Active</th>
-      <th colspan="2"></th>
+      <th>Status</th>
+      <th>Cuentas</th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @banks.each do |bank| %>
       <tr>
-        <td><%= link_to bank.name, admin_bank_path(bank) %></td>
-        <td><%= bank.active %></td>
-        <td><%= link_to 'Editar', edit_admin_bank_path(bank) %></td>
-        <td><%= link_to 'Borrar', 
-                  admin_bank_path(bank), 
-                  method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+        <td><%= link_to bank.name, admin_bank_accounts_path(bank) %></td>
+        <td>
+          <%= 
+            render 'admin/shared/status_toggle', 
+              object: bank, 
+              path: toggle_admin_banks_path(bank) %>
+        </td>
+        <td>
+          <span class='ui label'>
+            Active <%= bank.accounts.where(active: true).count %>
+          </span>
+          <span class='ui label'>
+            Total <%= bank.accounts.count %>
+          </span>
+        </td>
+        <td>
+          <%= link_to 'Editar', edit_admin_bank_path(bank) %>
+          <%= link_to 'Borrar', 
+                    admin_bank_path(bank), 
+                    method: :delete, data: { confirm: 'Estás seguro?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

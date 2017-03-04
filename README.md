@@ -10,6 +10,10 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
+Bugs:
+- Payment Method deletion violates order fk constraint
+  - Delete orders OR hide instead of delete
+
 Important:
 - image upload system (múltiple files)
 - mail system

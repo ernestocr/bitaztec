@@ -1,6 +1,6 @@
 class Admin::BanksController < Admin::BaseController
 
-  before_action :set_bank, only: [:show, :edit, :update, :destroy]
+  before_action :set_bank, except: [:index, :new]
 
   def index
     @banks = Bank.all
@@ -37,6 +37,11 @@ class Admin::BanksController < Admin::BaseController
     if @bank.destroy
       redirect_to admin_banks_path, notice: "El banco '#{@bank.name} fue eliminado.'"
     end
+  end
+
+  def toggle
+    @bank.toggle!(:active)
+    redirect_to :back
   end
 
   private

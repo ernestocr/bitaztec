@@ -1,0 +1,58 @@
+<div class="ui grid">
+  <div class="six wide column">
+    <h2>Método de pago: <%= @payment_method.name %></h2>
+    
+    <div class="ui segments">
+      <div class="ui segment">
+        <p>Listado de cuentas y configuración. <%= link_to 'Editar información', edit_admin_payment_method_path(@payment_method) %></p>  
+      </div>
+      
+      <div class="ui secondary segment"> 
+        <p>
+        <%= 
+          render 'admin/shared/status_toggle', 
+          object: @payment_method, 
+          path: toggle_admin_payment_methods_path(@payment_method)
+        %>
+        </p>
+        <p><b>Instrucciones:</b></p>
+        <p><%= @payment_method.instructions %></p>
+        <p><b>Detalles:</b></p>
+        <p><%= @payment_method.details %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ten wide column">
+    <% @payment_method.banks.each do |bank| %>
+      <div class="ui segment">
+        <p>Banco <b><%= bank.name %></b>
+        - <%= render 'admin/shared/status_toggle', object: bank, path: '#' %>
+        </p>
+        
+        <p>
+          Cuentas <label class="ui tiny label"><%= bank.accounts.count %></label>
+          <%= link_to 'Nueva cuenta', new_admin_bank_account_path(bank), class: 'ui right floated tiny button' %>
+        </p>
+        <table class="ui table">
+          <thead>
+            <tr>
+              <th>Número</th>
+              <th>Holder</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% bank.accounts.each do |account| %>
+            <tr>
+              <td><%= account.number %></td>
+              <td><%= account.holder %></td>
+              <td><%= account.active %></td>
+              <td><%= link_to 'edit', edit_admin_bank_account_path(account) %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %> 
+  </div>
+</div>

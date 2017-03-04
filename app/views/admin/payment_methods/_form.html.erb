@@ -4,10 +4,11 @@
                     
   <%= f.input :name, autofocus: true %>
   <%= f.input :method, collection: ['Depósito', 'Transferencia'] %>
+  <%= f.association :banks, as: :select %>
   <%= f.input :instructions %>
-  <%= f.input :details %>
   <%= f.input :schedule %>
   <%= f.input :expires %>
+  <%= f.input :details %>
   <%= f.submit 'Save', class: 'ui button' %>
 
 <% end %>

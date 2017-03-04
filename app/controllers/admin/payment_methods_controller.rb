@@ -1,5 +1,5 @@
 class Admin::PaymentMethodsController < Admin::BaseController
-  before_action :set_payment_method, only: [:show, :edit, :update, :destroy]
+  before_action :set_payment_method, except: [:index, :new]
 
   def index
     @payment_methods = PaymentMethod.all
@@ -34,8 +34,14 @@ class Admin::PaymentMethodsController < Admin::BaseController
   end
 
   def destroy
-    @payment_method.destroy
+    @payment_method.update_attribute(:deprecated, true)
+    #@payment_method.destroy
     redirect_to admin_payment_methods_path, notice: 'El método de pago fue borrado.'
+  end
+
+  def toggle
+    @payment_method.toggle!(:active)
+    redirect_to :back
   end
 
   private
@@ -45,6 +51,7 @@ class Admin::PaymentMethodsController < Admin::BaseController
     end
 
     def payment_method_params
-      params.require(:payment_method).permit(:name, :method, :schedule, :instructions, :notice, :active, :details, :expires)
+      params.require(:payment_method).permit(:name, :method, :schedule, :instructions, :notice, :active, :details, :expires, bank_ids: [])
     end
+
 end

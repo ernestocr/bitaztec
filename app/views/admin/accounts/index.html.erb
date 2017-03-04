@@ -17,7 +17,12 @@
         <td><%= account.bank.name %></td>
         <td><%= account.number %></td>
         <td><%= account.holder %></td>
-        <td><%= account.active %></td>
+        <td>
+          <%= 
+            render 'admin/shared/status_toggle', 
+              object: account, 
+              path: toggle_admin_bank_accounts_path(bank_id: @bank.id, id: account.id) %>
+        </td>
         <td><%= link_to 'Editar', edit_admin_bank_account_path(@bank, account) %></td>
         <td><%= link_to 'Borrar', 
                   admin_bank_account_path(@bank, account), 
