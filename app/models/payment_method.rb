@@ -12,4 +12,6 @@ class PaymentMethod < ApplicationRecord
   has_many :orders
   has_and_belongs_to_many :banks
 
+  mount_uploader :image, ImageUploader
+
 end

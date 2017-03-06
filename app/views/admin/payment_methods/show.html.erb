@@ -1,6 +1,9 @@
 <div class="ui grid">
   <div class="six wide column">
-    <h2>Método de pago: <%= @payment_method.name %></h2>
+    <p>
+    Método de pago: <b><%= @payment_method.name %></b>
+      <%= image_tag @payment_method.image.thumb %>
+    </p>
     
     <div class="ui segments">
       <div class="ui segment">

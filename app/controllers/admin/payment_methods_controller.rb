@@ -51,7 +51,7 @@ class Admin::PaymentMethodsController < Admin::BaseController
     end
 
     def payment_method_params
-      params.require(:payment_method).permit(:name, :method, :schedule, :instructions, :notice, :active, :details, :expires, bank_ids: [])
+      params.require(:payment_method).permit(:name, :method, :schedule, :instructions, :notice, :active, :details, :expires, :image, bank_ids: [])
     end
 
 end
