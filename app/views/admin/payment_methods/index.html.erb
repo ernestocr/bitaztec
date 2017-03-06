@@ -6,9 +6,7 @@
       <th>Nombre</th>
       <th>Método</th>
       <th>Instrucciones</th>
-      <th>Detalles</th>
-      <th>Tiempo de expiración</th>
-      <th colspan="2"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -18,8 +16,12 @@
         <td><%= link_to payment_method.name, admin_payment_method_path(payment_method) %></td>
         <td><%= payment_method.method %></td>
         <td><%= payment_method.instructions %></td>
-        <td><%= payment_method.details %></td>
-        <td><%= payment_method.expires %></td>
+        <td>
+          <%= 
+            render 'admin/shared/status_toggle', 
+              object: payment_method, 
+              path: toggle_admin_payment_methods_path(payment_method) %>
+        </td>
         <td><%= link_to 'Editar', edit_admin_payment_method_path(payment_method) %></td>
         <td><%= link_to 'Borrar', 
                   admin_payment_method_path(payment_method), 

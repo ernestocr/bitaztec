@@ -27,13 +27,14 @@ Important:
 * implement order expiration mechanism
 * transition to simpleform
 - implement frontend design
-- restructure payment method list
+* restructure payment method list
 
 Details:
 * add date display method
 * change user facing route names to spanish
 - translate to spanish
 * change css framework to semantic
+- use xhr to toggle model status
 
 Javascript:
 - buy page btc/peso calculator

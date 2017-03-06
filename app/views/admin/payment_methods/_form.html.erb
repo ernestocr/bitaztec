@@ -9,6 +9,7 @@
   <%= f.input :schedule %>
   <%= f.input :expires %>
   <%= f.input :details %>
+  <%= f.input :active, input_html: { value: 'true' } %>
   <%= f.submit 'Save', class: 'ui button' %>
 
 <% end %>

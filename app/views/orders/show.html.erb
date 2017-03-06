@@ -35,7 +35,7 @@
 
         <p>
           <strong>Instrucciones:</strong>
-          <br><%= @order.payment_method.details %>
+          <br><%= @order.payment_method.instructions %>
         </p>
 
         <% if !@order.submitted and !@order.expired %>
