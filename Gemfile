@@ -57,3 +57,7 @@ gem 'devise'
 
 # simple form
 gem 'simple_form'
+
+# for image uploading
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'

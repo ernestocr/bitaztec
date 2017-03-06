@@ -7,4 +7,6 @@ class Bank < ApplicationRecord
   has_many :accounts
   has_and_belongs_to_many :payment_methods
 
+  mount_uploader :image, ImageUploader
+
 end

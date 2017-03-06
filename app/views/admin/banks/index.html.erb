@@ -6,6 +6,7 @@
       <th>Nombre</th>
       <th>Status</th>
       <th>Cuentas</th>
+      <th></th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -29,8 +30,11 @@
           </span>
         </td>
         <td>
+          <%= image_tag bank.image.thumb %>
+        </td>
+        <td>
           <%= link_to 'Editar', edit_admin_bank_path(bank) %>
-          <%= link_to 'Borrar', 
+          | <%= link_to 'Borrar', 
                     admin_bank_path(bank), 
                     method: :delete, data: { confirm: 'Estás seguro?' } %>
         </td>

@@ -16,6 +16,9 @@ Bugs:
 
 Important:
 - image upload system (múltiple files)
+  - multiple images?
+  - limit size upload?
+  - should have a revoke option
 - mail system
   - user registration/confirmation [b-u]
   - new order (maybe just on order submit) [b-a]
@@ -35,6 +38,7 @@ Details:
 - translate to spanish
 * change css framework to semantic
 - use xhr to toggle model status
+- add gravatar
 
 Javascript:
 - buy page btc/peso calculator

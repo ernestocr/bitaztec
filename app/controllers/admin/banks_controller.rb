@@ -51,7 +51,7 @@ class Admin::BanksController < Admin::BaseController
     end
 
     def bank_params
-      params.require(:bank).permit(:name, :active)
+      params.require(:bank).permit(:name, :active, :image)
     end
 
 end
