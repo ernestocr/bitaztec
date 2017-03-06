@@ -36,7 +36,7 @@ Details:
 * add date display method
 * change user facing route names to spanish
 - translate to spanish
-* change css framework to semantic
+- change css framework to bootstrap
 - use xhr to toggle model status
 - add gravatar
 
