@@ -1,10 +1,11 @@
-<div class="ui two column centered grid">
-  <div class="column">
-    <h3>
-      Editar método de pago
-      <small>&middot; <%= link_to 'cancelar', admin_payment_methods_path %></small>
-    </h3>
+<p><i class="fa fa-credit-card"></i> Métodos de pago</p>
 
-    <%= render 'form', payment_method: @payment_method %>
-  </div>
-</div>
+<nav class="breadcrumb">
+  <a href="<%= admin_payment_methods_path %>" class="breadcrumb-item">
+    <i class="fa fa-angle-left"></i> Métodos
+  </a>
+  <span class="breadcrumb-item active"><b><%= @payment_method.name %></b></span>
+  <span class="breadcrumb-item active"><%= link_to 'cancelar', admin_payment_method_path %></span>
+</nav>
+
+<%= render 'form', payment_method: @payment_method %>

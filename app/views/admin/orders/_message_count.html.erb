@@ -2,21 +2,21 @@
   <% if current_user.admin? %>
     <a href="<%= admin_order_path(order) %>">
       <% if order.new_message_for_admin? %>
-        <div class="ui red label">
+        <div class="badge badge-danger">
       <% else %>
-        <div class="ui label">
+        <div class="badge badge-default">
       <% end %>
-          <i class="mail icon"></i> <%= order.messages.count %>
+          <i class="fa fa-comments"></i> <%= order.messages.count %>
         </div>
     </a>
   <% else %>
     <a href="<%= order_path(order) %>">
       <% if order.new_message_for_user? %>
-        <div class="ui red label">
+        <div class="badge badge-danger">
       <% else %>
-        <div class="ui label">
+        <div class="badge badge-default">
       <% end %>
-          <i class="mail icon"></i> <%= order.messages.count %>
+          <i class="fa fa-comments"></i> <%= order.messages.count %>
         </div>
     </a>
   <% end %>

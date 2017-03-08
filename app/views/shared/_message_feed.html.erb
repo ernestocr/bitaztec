@@ -1,35 +1,31 @@
-<h5>Order message history</h5>
-<div class="">
-  <% @order.messages.each do |msg| %>
-    <div class="">
-      <div class="">
-        <% if current_user == msg.user %>
-          <b>Tú</b>
-        <% else %>
-          <% if current_user.admin? %>
-            <%= link_to msg.user.email, admin_user_path(msg.user), class: '' %>
-          <% else %>
-            <b><%= msg.user.email %></b>
-          <% end %>
-        <% end %>  
-        <div class="">
-          <span class="">Hace <%= time_ago_in_words msg.created_at %></span>
-        </div>
-        <div class="">
-          <%= msg.body %>
-        </div>
+<% @order.messages.each do |msg| %>
+  <div class="media">
+    <img class="d-flex mr-3" src="...">
+    <div class="media-body">
+      <% if current_user == msg.user %>
+        Tú
+      <% else %>
+        <%= msg.user.email %>
+      <% end %>
+      <span class="small text-muted">Hace <%= time_ago_in_words msg.created_at %></span>
+      <br>
+      <%= msg.body %>
     </div>
-  <% end %>
+  </div>
+  <br>
+  
+<% end %>
 
-  <%= form_for(@order.messages.new, html: { class: 'ui reply form' }) do |f| %>
-    <%= f.hidden_field :order_id %>
-    <div class="">
-      <%= f.text_area :body %>
-    </div>
-    <button class="">
-      <i class=""></i> Enviar  
-    </button>
-  <% end %>
-</div>
+<hr>
+
+<%= form_for(@order.messages.new, html: { class: 'ui reply form' }) do |f| %>
+  <%= f.hidden_field :order_id %>
+  <div class="form-group">
+    <%= f.text_area :body, class: 'form-control' %>
+  </div>
+  <button class="btn btn-primary btn-sm">
+    <i class="fa fa-send"></i> Enviar  
+  </button>
+<% end %>
 
   

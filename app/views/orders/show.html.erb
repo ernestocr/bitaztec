@@ -1,80 +1,75 @@
-<h2>Pedido</h2>
+<p class="alert alert-info">Estado: <b><%= @order.status %></b></p>
 
-<div class="ui two column grid">
-  <div class="column">
-    <p class="ui message">Estado: <b><%= @order.status %></b></p>
-    <div class="ui segments">
-      <div class="ui segment">
-        <h3>Ficha de depósito</h3>
-      </div>
-      <div class="ui secondary segment">
-        <p>
-          <strong>Pedido creado el:</strong>
-          <%= @order.created_at_formatted %>
-        </p>
+<h3>Ficha de depósito</h3>
 
-        <p>
-          <strong>Cantidad:</strong>
-          <%= @order.amount %>
-        </p>
+<div class="row">
+  
+  <div class="col">
+    <p>
+      <strong>Pedido creado el:</strong>
+      <%= @order.created_at_formatted %>
+    </p>
 
-        <p>
-          <strong>Precio:</strong>
-          <%= @order.price %>
-        </p>
+    <p>
+      <strong>Cantidad:</strong>
+      <%= @order.amount %>
+    </p>
 
-        <p>
-          <strong>Se expira el:</strong>
-          <%= @order.expires_at_formatted %>
-        </p>
+    <p>
+      <strong>Precio:</strong>
+      <%= @order.price %>
+    </p>
 
-        <p>
-          <strong>Método de pago:</strong>
-          <%= @order.payment_method.name %>
-        </p>
+    <p>
+      <strong>Se expira el:</strong>
+      <%= @order.expires_at_formatted %>
+    </p>
 
-        <p>
-          <strong>Instrucciones:</strong>
-          <br><%= @order.payment_method.instructions %>
-        </p>
+    <p>
+      <strong>Método de pago:</strong>
+      <%= @order.payment_method.name %>
+    </p>
 
-        <% if !@order.submitted and !@order.expired %>
-          <div class="ui divider"></div>
-          
-          <h5 class="lead">Sube to recibo para comprobar el pago:</h5>
-          <p><button>Subir imágenes</button></p>
+    <p>
+      <strong>Instrucciones:</strong>
+      <br><%= @order.payment_method.instructions %>
+    </p>
 
-          <%= link_to 'Pago completo',
-            order_path(@order, order: { submitted: true }), 
-            method: :patch, 
-            class: 'ui small green button' %>
+    <% if !@order.submitted and !@order.expired %>
+      <div class="ui divider"></div>
+      
+      <h5 class="lead">Sube to recibo para comprobar el pago:</h5>
+      <p><button>Subir imágenes</button></p>
 
-          <div class="ui divider"></div>
+      <%= link_to 'Pago completo',
+        order_path(@order, order: { submitted: true }), 
+        method: :patch, 
+        class: 'ui small green button' %>
 
-          <%= link_to 'Quieres cancelar?', '#', html: { confirm: 'Estás seguro?' } %>
-        
-        <% elsif @order.completed %>
+      <div class="ui divider"></div>
 
-          <p class="ui green message">
-          Gracias por comprar con <b>BitAztec</b>. En cualquier momento te llegarán tus bitcoins. Puedes verficar la transacción aqui: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
-          </p>
+      <%= link_to 'Quieres cancelar?', '#', html: { confirm: 'Estás seguro?' } %>
 
-        <% elsif !@order.expired %>
+    <% elsif @order.completed %>
 
-          <p class="ui yellow message">
-            Gracias por comprar con <b>BitAztec</b>. Tu pago está en proceso de revisión.
-          </p>
-        <% else %>
+      <p class="alert alert-success">
+      Gracias por comprar con <b>BitAztec</b>. En cualquier momento te llegarán tus bitcoins. Puedes verficar la transacción aqui: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
+      </p>
 
-          <p class="ui red message">
-            Esta orden se expiró. Puedes hacer otra haciendo click <%= link_to 'aqui', new_order_path %>.
-          </p>
-        <% end %>   
-      </div>
-    </div>
+    <% elsif !@order.expired %>
+
+      <p class="alert alert-warning">
+        Gracias por comprar con <b>BitAztec</b>. Tu pago está en proceso de revisión.
+      </p>
+    <% else %>
+
+      <p class="alert alert-danger">
+        Esta orden se expiró. Puedes hacer otra haciendo click <%= link_to 'aqui', new_order_path %>.
+      </p>
+    <% end %>   
   </div>
 
-  <div class="column">
+  <div class="col">
     <%= render 'shared/message_feed' %>
   </div>
 </div>

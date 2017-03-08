@@ -1,38 +1,38 @@
-<h3>Pedido #<%= @order.id %></h3>
+<p><i class="fa fa-bitcoin"></i> Pedidos</p>
 
-<div class="ui two column grid">
-  <div class="column">
-    <div class="ui segments">
-      <div class="ui segment">
-        <p>Estado: <%= @order.status %></p>
-      </div>
+<nav class="breadcrumb">
+  <a href="<%= admin_orders_path %>" class="breadcrumb-item">
+    <i class="fa fa-angle-left"></i> pedidos
+  </a>
+  <span class="breadcrumb-item"><%= "##{@order.id}" %></span>
+</nav>
 
-      <div class="ui secondary segment">
-        <p>Pedido hecho por <%= link_to @order.user.email, admin_user_path(@order.user) %></p>
-        <p>Pedido creado el: <%= @order.created_at_formatted %> (hace <%= time_ago_in_words @order.created_at %>)</p>
-        <p>Cantidad solicitada: <b><%= @order.amount %> BTC</b> a <b><%= number_to_currency @order.price %></b></p> 
-      </div>
+<div class="row">
+  <div class="col">
+    <div class="alert alert-info">Estado: <b><%= @order.status %></b></div>
 
-      <% if !@order.completed %>
-        <div class="ui segment">
-          <p>Ya transferiste los Bitcoins?</p>
-          <%= link_to 'Listo', admin_order_path(complete: true), method: :put, class: 'ui small green button' %>
-        </div>
-      <% end %>
-    </div>
+    <p>Pedido hecho por <%= link_to @order.user.email, admin_user_path(@order.user) %></p>
+    <p>Creado el <%= @order.created_at_formatted %> (hace <%= time_ago_in_words @order.created_at %>)</p>
+    <p>Cantidad solicitada: <b><%= @order.amount %> BTC</b> a <b><%= number_to_currency @order.price %></b></p> 
+
+    <hr>
 
     <p>Evidencia presentada:</p>
   
     <div class="ui small images">
-      <img src="http://semantic-ui.com/images/wireframe/image.png">
-      <img src="http://semantic-ui.com/images/wireframe/image.png">
-      <img src="http://semantic-ui.com/images/wireframe/image.png">
     </div>
+
+    <hr>
+    
+    <% if !@order.completed %>
+      <div class="ui segment">
+        <p>Ya transferiste los Bitcoins?</p>
+        <%= link_to 'Listo', admin_order_path(complete: true), method: :put, class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>  
   
-  <div class="column">
+  <div class="col">
     <%= render 'shared/message_feed' %>
   </div>    
 </div>
-
-    
