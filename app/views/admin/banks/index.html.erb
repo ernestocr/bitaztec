@@ -1,11 +1,16 @@
-<h2>Lista de bancos</h2>
+<p>
+  <i class="fa fa-bank"></i> Bancos
+  <a href="<%= new_admin_bank_path %>" class="nav-link float-right no-mg">
+    <i class="fa fa-plus"></i> Banco nuevo
+  </a>
+</p>
 
-<table class="ui celled table">
+<table class="table">
   <thead>
     <tr>
       <th>Nombre</th>
       <th>Status</th>
-      <th>Cuentas</th>
+      <th># Cuentas</th>
       <th></th>
       <th colspan="1"></th>
     </tr>
@@ -21,14 +26,7 @@
               object: bank, 
               path: toggle_admin_banks_path(bank) %>
         </td>
-        <td>
-          <span class='ui label'>
-            Active <%= bank.accounts.where(active: true).count %>
-          </span>
-          <span class='ui label'>
-            Total <%= bank.accounts.count %>
-          </span>
-        </td>
+        <td><%= bank.accounts.count %></td>
         <td>
           <%= image_tag bank.image.thumb %>
         </td>
@@ -42,5 +40,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Agregar banco', new_admin_bank_path, class: 'ui button' %>

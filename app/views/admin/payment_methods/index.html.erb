@@ -1,34 +1,47 @@
-<h2>Todos los métodos de pago</h2>
+<p>
+  <i class="fa fa-credit-card"></i> Métodos de pago
+  <a href="<%= new_admin_payment_method_path %>" class="nav-link float-right no-mg">
+    <i class="fa fa-plus"></i> Método nuevo
+  </a>
+</p>
 
-<table class="ui celled table">
+<table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>Nombre</th>
       <th>Método</th>
-      <th>Instrucciones</th>
-      <th colspan="3"></th>
+      <th>Estado</th>
+      <th>Ordenes</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @payment_methods.each do |payment_method| %>
       <tr>
+        <td><%= image_tag payment_method.image.thumb %></td>
         <td><%= link_to payment_method.name, admin_payment_method_path(payment_method) %></td>
         <td><%= payment_method.method %></td>
-        <td><%= payment_method.instructions %></td>
         <td>
           <%= 
             render 'admin/shared/status_toggle', 
               object: payment_method, 
               path: toggle_admin_payment_methods_path(payment_method) %>
         </td>
-        <td><%= link_to 'Editar', edit_admin_payment_method_path(payment_method) %></td>
-        <td><%= link_to 'Borrar', 
+        <td>
+          <%= payment_method.orders.count %>
+        </td>
+        <td>
+          <center style="position: relative; top: 6px;">
+            <%= link_to 'Borrar', 
                   admin_payment_method_path(payment_method), 
-                  method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+                  method: :delete, 
+                  class: 'btn btn-sm btn-danger',
+                  data: { confirm: 'Estás seguro?' } %>
+          </center>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Método de pago nuevo', new_admin_payment_method_path, class: 'ui button' %>

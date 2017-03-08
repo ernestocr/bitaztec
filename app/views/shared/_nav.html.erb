@@ -1,28 +1,56 @@
-<div class="ui fixed menu">
-  <div class="ui container">
-    <%= link_to 'BitAztec', root_path, class: 'header item' %>
+<nav class="navbar navbar-light navbar-toggleable-sm bg-faded">
+  <button 
+     class="navbar-toggler navbar-toggler-right" 
+     type="button" 
+     data-toggle="collapse" 
+     data-target="#main-menu">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+    
+  <%= link_to 'BitAztec', root_path, class: 'navbar-brand' %>
+    
+  <div class="navbar-collapse collapse" id="main-menu">
+    
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to 'Mi cuenta', orders_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Comprar', new_order_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Como funciona', howto_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'FAQ', faq_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Acuerdo Legal', legal_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Contacto', contact_path, class: 'nav-link' %>    
+      </li>
+    </ul>
 
-    <%= link_to 'Mi cuenta', orders_path, class: 'item' %>
-    <%= link_to 'Comprar', new_order_path, class: 'item' %>
-    <%= link_to 'Como funciona', howto_path, class: 'item' %>
-    <%= link_to 'FAQ', faq_path, class: 'item' %>
-    <%= link_to 'Acuerdo Legal', legal_path, class: 'item' %>
-    <%= link_to 'Contacto', contact_path, class: 'item' %>    
-
-    <div class="right menu">
-      <% if user_signed_in? and current_user.admin? %>
-        <%= link_to 'Admin', admin_path, class: 'item' %>
-      <% end %>
-
+    <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
-        <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'item' %>
+        <% if user_signed_in? and current_user.admin? %>
+          <li class="nav-item">
+            <%= link_to 'Admin', admin_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+        <li clas="nav-item">
+          <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        </li>
       <% else %>
-        <%= link_to 'Entrar', new_user_session_path, class: 'item' %>
-        <%= link_to 'Registrar', new_user_registration_path, class: 'item' %>
+        <li clas="nav-item">
+          <%= link_to 'Entrar', new_user_session_path, class: 'nav-link' %>
+        </li>
+        <li clas="nav-item">
+          <%= link_to 'Registrar', new_user_registration_path, class: 'nav-link' %>
+        </li>
       <% end %>
-    </div>
+    </ul>
+
   </div>
-</div>
-
-<div class="spacer" style="width: 100%; height: 60px;"></div>
-
+</nav>

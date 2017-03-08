@@ -1,15 +1,26 @@
-<h2>Historial del usuario</h2>
-<p><%= @user.email %> (id: <%= @user.id %>)</p>
-
 <p>
-  Pedidos: <b><%= @user.orders.count %></b>
-  / Transacciones: <b><%= @user.orders.where(completed: true).count %></b>
-  <% if @user.admin? %>
-    / <b>Admin</b>
-  <% end %>
+  <i class="fa fa-users"></i> Usuarios
 </p>
 
-<table class="ui celled table">
+<nav class="breadcrumb">
+  <a href="<%= admin_users_path %>" class="breadcrumb-item">
+    <i class="fa fa-angle-left"></i> lista
+  </a>
+  <span class="breadcrumb-item active">historial</span>
+  <span class="breadcrumb-item active"><%= @user.email %></span>
+
+  <span class="breadcrumb-item active">
+    Pedidos: <b><%= @user.orders.count %></b>
+  </span>
+  <span class="breadcrumb-item active">
+    Transacciones: <b><%= @user.orders.where(completed: true).count %></b>
+  </span>
+  <% if @user.admin? %>
+    <span class="text-success breadcrumb-item active">Admin</span>
+  <% end %>
+</nav>
+
+<table class="table table-bordered table-sm">
   <thead>
     <tr>
       <th>ID</th>
@@ -18,7 +29,6 @@
       <th>Precio</th>
       <th>Domicilio del wallet</th>
       <th>Estado</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -30,7 +40,6 @@
         <td><%= number_to_currency order.price, precision: 0 %></td>
         <td><%= order.address %></td>
         <td><%= order.status %></td>
-        <td><%= render 'admin/orders/message_count', order: order %></td>
       </tr>
     <% end %>
   </tbody>

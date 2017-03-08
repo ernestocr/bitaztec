@@ -1,16 +1,20 @@
-<div class="ui fixed menu">
-  <div class="ui container">
-    <%= link_to 'BitAztec [Admin]', root_path, class: 'header item' %>
-    <%= render 'admin/shared/nav_links' %>
-  
-    <div class="right menu">
-      <% if user_signed_in? %>
-        <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'item' %>
-      <% else %>
-        <%= link_to 'Entrar', new_user_session_path, class: 'item' %>
-      <% end %>
-    </div>
-  </div>
+<div class="nav sidebar flex-column">
+  <a href="<%= admin_path %>" class="nav-link">
+    <i class="fa fa-tachometer"></i> Dashboard
+  </a>
+  <a href="<%= admin_orders_path %>" class="nav-link">
+    <i class="fa fa-bitcoin"></i> Pedidos
+  </a>
+  <a href="<%= admin_settings_path %>" class="nav-link">
+    <i class="fa fa-gears"></i> Configuración
+  </a>
+  <a href="<%= admin_users_path %>" class="nav-link">
+    <i class="fa fa-users"></i> Usuarios
+  </a>
+  <a href="<%= admin_payment_methods_path %>" class="nav-link">
+    <i class="fa fa-credit-card"></i> Métodos de pago
+  </a>
+  <a href="<%= admin_banks_path %>" class="nav-link">
+    <i class="fa fa-bank"></i> Bancos
+  </a>
 </div>
-
-<div class="spacer" style="width: 100%; height: 60px;"></div>

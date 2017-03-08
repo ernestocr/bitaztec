@@ -3,7 +3,6 @@ class Setting < ApplicationRecord
   default_scope { order(created_at: :desc) }
   
   validates :key, presence: true
-  validates :value, presence: true
 
   serialize :value
 

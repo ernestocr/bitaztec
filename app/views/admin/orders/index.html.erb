@@ -1,6 +1,8 @@
-<h2>Pedidos pendientes</h2>
+<p><i class="fa fa-bitcoin"></i> Pedidos</p>
 
-<table class="ui celled table">
+<p><b>Pendientes</b></p>
+
+<table class="table">
   <thead>
     <tr>
       <th>ID</th>
@@ -33,14 +35,15 @@
   </tbody>
 </table>
 <% if @pending_orders.count == 0 %>
-  <div class="ui warning message">
+  <div class="alert alert-info">
     You have no pending orders.
   </div>
 <% end %>
 
 <!-- NEW ORDERS -->
+<hr>
 
-<h2>Nuevas pedidos</h2>
+<p><b>Nuevos</b></p>
 
 <table class="ui celled table">
   <thead>
@@ -74,8 +77,8 @@
   </tbody>
 </table>
 
-<% if @new_orders.map { |order| order if !order.expired } == [nil] %>
-  <div class="ui warning message">
+<% if @new_orders.map.count == 0 %>
+  <div class="alert alert-info">
     No tienes pedidos nuevos.
   </div>
 <% end %>

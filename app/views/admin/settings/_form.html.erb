@@ -1,9 +1,14 @@
 <%= simple_form_for([:admin, setting], 
-                    html: { class: 'ui form' }, 
+                    html: { class: 'form' }, 
                     defaults: { wrapper_html: { class: 'field' } }) do |f| %>
-                    
-  <%= f.input :key, autofocus: true %>
-  <%= f.input :value %>
-  <%= f.submit 'Save', class: 'ui button' %>
-
+  
+  <div class="form-group"> 
+    <%= f.input :key, autofocus: true, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.input :value, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.submit 'Guardar', class: 'btn btn-success' %>
+  </div>
 <% end %>

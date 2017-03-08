@@ -1,16 +1,35 @@
 <%= simple_form_for([:admin, payment_method],
                     defaults: { wrapper_html: { class: 'field' } }, 
-                    html: { class: 'ui form' }) do |f| %>
-                    
-  <%= f.input :name, autofocus: true %>
-  <%= f.input :method, collection: ['Depósito', 'Transferencia'] %>
-  <%= f.association :banks, as: :select %>
-  <%= f.input :instructions %>
-  <%= f.input :schedule %>
-  <%= f.input :expires %>
-  <%= f.input :details %>
-  <%= f.input :image, as: :file %>
-  <%= f.input :active, input_html: { value: 'true' } %>
-  <%= f.submit 'Save', class: 'ui button' %>
+                    html: { class: 'form' }) do |f| %>
+  <div class="form-group"> 
+    <%= f.input :name, autofocus: true, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.input :method, collection: ['Depósito', 'Transferencia'], input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.association :banks, as: :select, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.input :instructions, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.input :schedule, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.input :expires, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.input :details, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.input :image, as: :file, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.input :active, input_html: { value: 'true' }, input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-group"> 
+    <%= f.submit 'Save', class: 'btn btn-primary' %>
+  </div>
 
 <% end %>

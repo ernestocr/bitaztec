@@ -1,10 +1,12 @@
-<div class="ui three column centered grid">
-  <div class="column">
-    <h2>
-      Nueva configuración
-      <small>&middot; <%= link_to 'cancelar', admin_settings_path %></small>
-    </h2>
+<nav class="breadcrumb">
+  <a href="<%= admin_settings_path %>" class="breadcrumb-item">
+    <i class="fa fa-angle-left"></i> Configuración
+  </a>
+  <span class="breadcrumb-item active">nueva configuración</span>
+</nav>
 
+<div class="row justify-content-lg-center">
+  <div class="col-lg-6">
     <%= render 'form', setting: @setting %>
   </div>
 </div>

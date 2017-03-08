@@ -1,11 +1,13 @@
-<div class="ui container" style="margin-bottom: 10px;">
-  <% if notice %>
-    <div class="ui message">
+<% if notice or alert %>
+  <% @style = 'alert-warning' if alert %>
+  <div class="alert alert-success alert-dismissible fade show <%= @style %>">
+    <button class="close" data-dismiss="alert">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <% if notice %>
       <%= notice %>
-    </div>
-  <% elsif alert %>
-    <div class="ui warning message">
+    <% else %>
       <%= alert %>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>
