@@ -13,6 +13,8 @@ class Order < ApplicationRecord
   validates :price, presence: true
   validates :address, presence: true
 
+  mount_uploaders :attachments, AttachmentUploader
+
   # order status, depending on a variety of situations
   def status
     if completed

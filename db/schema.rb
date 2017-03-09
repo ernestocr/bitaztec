@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306223443) do
+ActiveRecord::Schema.define(version: 20170308234541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170306223443) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "address"
+    t.string   "attachments",       default: [],                 array: true
     t.index ["payment_method_id"], name: "index_orders_on_payment_method_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end

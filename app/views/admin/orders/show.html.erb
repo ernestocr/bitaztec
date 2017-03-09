@@ -19,7 +19,14 @@
 
     <p>Evidencia presentada:</p>
   
-    <div class="ui small images">
+    <div class="">
+      <% @order.attachments.each do |attachment| %>
+        <% if attachment.file.extension == 'pdf' %>
+          <p><%= link_to 'pdf file', attachment.url %></p>
+        <% else %>
+          <%= image_tag attachment %>
+        <% end %>
+      <% end %>
     </div>
 
     <hr>

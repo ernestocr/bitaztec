@@ -73,7 +73,8 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:amount, :price, :address, :submitted, :payment_method_id)
+      params.require(:order).permit(
+        :amount, :price, :address, :submitted, :payment_method_id, {attachments: []})
     end
 
     def set_btc_price

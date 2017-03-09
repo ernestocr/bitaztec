@@ -35,20 +35,23 @@
       <br><%= @order.payment_method.instructions %>
     </p>
 
+    <hr>
+    
+
     <% if !@order.submitted and !@order.expired %>
       <div class="ui divider"></div>
       
-      <h5 class="lead">Sube to recibo para comprobar el pago:</h5>
-      <p><button>Subir imágenes</button></p>
+      <p>Sube to recibo para comprobar el pago:</p>
 
-      <%= link_to 'Pago completo',
-        order_path(@order, order: { submitted: true }), 
-        method: :patch, 
-        class: 'ui small green button' %>
+      <%= simple_form_for(@order) do |f| %>
+        <%= f.file_field :attachments, multiple: true %>
+        <%= f.hidden_field :submitted, value: true %>
+        <%= f.submit 'Listo', class: 'btn btn-success' %>
+      <% end %>
 
-      <div class="ui divider"></div>
-
-      <%= link_to 'Quieres cancelar?', '#', html: { confirm: 'Estás seguro?' } %>
+      <hr>
+      
+      <%= link_to 'Quieres cancelar?', '#', class: 'btn btn-sm btn-danger', html: { confirm: 'Estás seguro?' } %>
 
     <% elsif @order.completed %>
 
