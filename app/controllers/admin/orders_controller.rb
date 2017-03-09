@@ -27,6 +27,9 @@ class Admin::OrdersController < Admin::BaseController
       @order.update_attributes(completed: true)
       redirect_to admin_order_path(@order), 
         flash: { notice: "El pedido ##{@order.id} fue completado." }
+    elsif params[:reject]
+      @order.update_attributes(submitted: false)
+      redirect_to admin_order_path(@order)
     end
   end
 

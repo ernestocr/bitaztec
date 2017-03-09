@@ -54,4 +54,20 @@ body {
       background-color: #f7f7f8;
     }
   }
+
+  .attachment {
+    display: inline;
+  }
+
+  .pdf-file {
+    width: 50px;
+    height: 50px;
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+  }
 }

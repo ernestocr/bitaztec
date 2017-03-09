@@ -18,20 +18,29 @@
     <hr>
 
     <p>Evidencia presentada:</p>
-  
-    <div class="">
+
+    <% if @order.attachments.count == 0 %>
+      <p class="small text-muted">Aun no presentan evidencia.</p>
+    <% end %>
+
+    <div class="evidence">
       <% @order.attachments.each do |attachment| %>
         <% if attachment.file.extension == 'pdf' %>
-          <p><%= link_to 'pdf file', attachment.url %></p>
+          <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
         <% else %>
-          <%= image_tag attachment %>
+          <%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %>
         <% end %>
       <% end %>
     </div>
 
     <hr>
-    
-    <% if !@order.completed %>
+
+    <% if @order.submitted and !@order.completed %>
+      <p class="text-muted">Quieres rechazar el pedido?</p>
+      <%= link_to 'Rechazar', admin_order_path(reject: true), method: :put, class: 'btn btn-sm btn-danger' %>
+
+      <hr>
+      
       <div class="ui segment">
         <p>Ya transferiste los Bitcoins?</p>
         <%= link_to 'Listo', admin_order_path(complete: true), method: :put, class: 'btn btn-success' %>

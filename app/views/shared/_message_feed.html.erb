@@ -1,3 +1,9 @@
+<h5><i class="fa fa-comments"></i> Mensajes</h5>
+
+<% if @order.messages.count == 0 %>
+  <p class="text-muted small">Manda un mensaje si tienes alguna duda.</p>
+<% end %>
+
 <% @order.messages.each do |msg| %>
   <div class="media">
     <img class="d-flex mr-3" src="...">

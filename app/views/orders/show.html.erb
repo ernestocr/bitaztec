@@ -36,6 +36,21 @@
     </p>
 
     <hr>
+
+    <% if @order.attachments.count != 0 %>
+      <div class="evidence">
+        <p class="text-muted">Evidencia presentada:</p>
+        <% @order.attachments.each do |attachment| %>
+          <% if attachment.file.extension == 'pdf' %>
+            <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
+          <% else %>
+            <%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <hr>
+    <% end %>
     
 
     <% if !@order.submitted and !@order.expired %>
