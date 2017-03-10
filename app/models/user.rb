@@ -11,6 +11,9 @@ class User < ApplicationRecord
 
   has_many :orders
 
+  include Gravtastic
+  gravtastic
+
   # return number of active orders (pending/waiting)
   def active_orders_count
     count = 0

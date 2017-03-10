@@ -1,6 +1,11 @@
 <p><i class="fa fa-bitcoin"></i> Pedidos</p>
 
-<p><b>Históricos</b></p>
+<nav class="breadcrumb">
+  <a href="<%= admin_orders_path %>" class="breadcrumb-item">
+    <i class="fa fa-angle-left"></i> pedidos
+  </a>
+  <span class="breadcrumb-item">historial</span>
+</nav>
 
 <table class="table">
   <thead>
@@ -10,24 +15,19 @@
       <th>Cantidad</th>
       <th>Precio</th>
       <th>Método de pago</th>
-      <th colspan="2"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.created_at_formatted %></td>
+        <td><%= link_to order.created_at_formatted, admin_order_path(order) %></td>
         <td><%= order.user.email %></td>
         <td><%= order.amount %></td>
-        <td><%= order.price %></td>
+        <td><%= number_to_currency order.price, precision: 0 %></td>
         <td><%= order.payment_method.name %></td>
         <td><%= render 'admin/orders/message_count', order: order %></td>
-        <td>
-          <center>
-            <%= link_to 'Revisar', admin_order_path(order), class: 'ui mini button' %>
-          </center>
-        </td>
       </tr>
     <% end %>
   </tbody>

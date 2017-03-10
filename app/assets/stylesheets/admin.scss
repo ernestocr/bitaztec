@@ -36,6 +36,11 @@ body {
   .sidebar {
     padding-top: 20px;
     padding-left: 15px;
+
+    .nav-link.active {
+      color: #000;
+      border-right: 3px solid #eee;
+    }
   }
 
   .main {

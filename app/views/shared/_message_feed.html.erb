@@ -6,7 +6,7 @@
 
 <% @order.messages.each do |msg| %>
   <div class="media">
-    <img class="d-flex mr-3" src="...">
+    <%= image_tag msg.user.gravatar_url(size: 20, default: 'mm'), class: 'd-flex mr-3' %>
     <div class="media-body">
       <% if current_user == msg.user %>
         Tú
