@@ -8,6 +8,10 @@ class Admin::OrdersController < Admin::BaseController
     @pending_orders = Order.where(submitted: true, completed: false)
   end
 
+  def history
+    @orders = Order.all
+  end
+
   def show
     last_msgs = @order.messages.where(admin_read: false)
     if last_msgs

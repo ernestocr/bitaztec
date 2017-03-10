@@ -14,12 +14,7 @@ class MessagesController < ApplicationController
     end
 
     message.save!
-    
-    if current_user.admin?
-      redirect_to admin_order_path(order)
-    else
-      redirect_to order_path(order)
-    end
+    redirect_to :back
   end
 
   private

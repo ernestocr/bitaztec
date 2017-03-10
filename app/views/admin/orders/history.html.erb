@@ -1,0 +1,39 @@
+<p><i class="fa fa-bitcoin"></i> Pedidos</p>
+
+<p><b>Históricos</b></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Cuando</th>
+      <th>Usuario</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Método de pago</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at_formatted %></td>
+        <td><%= order.user.email %></td>
+        <td><%= order.amount %></td>
+        <td><%= order.price %></td>
+        <td><%= order.payment_method.name %></td>
+        <td><%= render 'admin/orders/message_count', order: order %></td>
+        <td>
+          <center>
+            <%= link_to 'Revisar', admin_order_path(order), class: 'ui mini button' %>
+          </center>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if @orders.count == 0 %>
+  <div class="alert alert-info">
+    No hay pedidos.
+  </div>
+<% end %>

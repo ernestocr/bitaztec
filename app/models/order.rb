@@ -26,7 +26,7 @@ class Order < ApplicationRecord
     elsif expired
       'Expirado'
     else
-      'Esperando el pago'
+      'Esperando el pago y/o evidencia'
     end
   end
 

@@ -19,7 +19,11 @@ Rails.application.routes.draw do
     end
     
     resources :settings
-    resources :orders
+    resources :orders do
+      collection do
+        get 'history' => :history, as: :history
+      end
+    end
     
     resources :banks do
       collection do

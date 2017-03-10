@@ -28,7 +28,7 @@
         <% if attachment.file.extension == 'pdf' %>
           <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
         <% else %>
-          <%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %>
+          <a href="<%= attachment.url %>"><%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %></a>
         <% end %>
       <% end %>
     </div>
