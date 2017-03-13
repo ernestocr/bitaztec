@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308234541) do
+ActiveRecord::Schema.define(version: 20170313205410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_holders", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string   "number"
@@ -22,6 +28,8 @@ ActiveRecord::Schema.define(version: 20170308234541) do
     t.boolean  "active",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "clabe"
+    t.string   "card"
     t.index ["bank_id"], name: "index_accounts_on_bank_id", using: :btree
   end
 
@@ -62,6 +70,8 @@ ActiveRecord::Schema.define(version: 20170308234541) do
     t.datetime "updated_at",                        null: false
     t.string   "address"
     t.string   "attachments",       default: [],                 array: true
+    t.datetime "completed_at"
+    t.integer  "authorized_by"
     t.index ["payment_method_id"], name: "index_orders_on_payment_method_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end

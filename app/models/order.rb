@@ -1,7 +1,6 @@
 class Order < ApplicationRecord
 
-  default_scope { order(created_at: :desc) }
-
+  default_scope { order(created_at: :desc) } 
   has_many :messages
 
   belongs_to :payment_method
@@ -66,6 +65,15 @@ class Order < ApplicationRecord
       end
     end
     return false
+  end
+
+  # authorized_by
+  def completed_by
+    if authorized_by != nil
+      User.find(authorized_by)
+    else
+      'Not completed'
+    end
   end
 
   # EXTRAS

@@ -10,42 +10,38 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-Bugs:
-- Payment Method deletion violates order fk constraint
-  - Delete orders OR hide instead of delete
-
-Important:
-- image upload system (múltiple files)
-  - multiple images?
-  - limit size upload?
-  - should have a revoke option
+- Validate btc address
+- QR code scanner -> address
+- Put address con completion
 - mail system
   - user registration/confirmation [b-u]
   - new order (maybe just on order submit) [b-a]
   - order complete [b-u]
   - order expired [b-u]
   - new message [b-a, b-u]
-* order message history
-* link to blockchain.info upon order completion
-* implement order expiration mechanism
-* transition to simpleform
+  - revoke order
 - implement frontend design
-* restructure payment method list
-
-Details:
-* add date display method
-* change user facing route names to spanish
 - translate to spanish
-- change css framework to bootstrap
 - use xhr to toggle model status
-- add gravatar
-
-Javascript:
 - buy page btc/peso calculator
 - admin search (orders/users)
 - add a lighthouse for order images
 
-Extras:
-- Admin tables are clickable
+### DONE:
+
+* Delete method for accounts
+* Error messages for forms
+* Completion datetime
+* CLABE (18), cuenta bancaria, # de tarjeta
+* listado de dueños de cuentas
+* authorizedby
+* image upload system (múltiple files)
+* order message history
+* link to blockchain.info upon order completion
+* implement order expiration mechanism
+* transition to simpleform
+* restructure payment method list
+* add date display method
+* change user facing route names to spanish
 
 

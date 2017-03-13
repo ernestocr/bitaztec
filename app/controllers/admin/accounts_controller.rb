@@ -1,7 +1,7 @@
 class Admin::AccountsController < Admin::BaseController
 
   before_action :set_bank
-  before_action :set_account, only: [:edit, :update, :toggle]
+  before_action :set_account, only: [:edit, :update, :destroy, :toggle]
 
   def index
     @accounts = @bank.accounts.all
@@ -12,6 +12,7 @@ class Admin::AccountsController < Admin::BaseController
   end
 
   def edit
+    @account_holders = AccountHolder.all
   end
 
   def create
@@ -36,6 +37,11 @@ class Admin::AccountsController < Admin::BaseController
     redirect_to :back
   end
 
+  def destroy
+    @account.destroy
+    redirect_to admin_bank_accounts_path @bank
+  end
+
   private
 
     def set_bank
@@ -51,5 +57,3 @@ class Admin::AccountsController < Admin::BaseController
     end
 
 end
-
-

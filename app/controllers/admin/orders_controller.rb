@@ -1,6 +1,5 @@
 class Admin::OrdersController < Admin::BaseController
-
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def index
     # only get new/pending orders
@@ -28,7 +27,12 @@ class Admin::OrdersController < Admin::BaseController
   def update
     # if the order is now complete
     if params[:complete]
-      @order.update_attributes(completed: true)
+      @order.update_attributes(
+        completed: true, 
+        authorized_by: current_user.id,
+        completed_at: DateTime.current 
+      )
+      
       redirect_to admin_order_path(@order), 
         flash: { notice: "El pedido ##{@order.id} fue completado." }
     elsif params[:reject]

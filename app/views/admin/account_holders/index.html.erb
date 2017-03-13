@@ -1,0 +1,35 @@
+<p><i class="fa fa-money"></i> Dueños de cuentas</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @account_holders.each do |account_h| %>
+      <%= simple_form_for([:admin, account_h]) do |f| %>
+        <tr>
+          <td><%= f.input_field :name, class: 'form-control' %></td>
+          <td>
+            <%= f.submit 'Guardar', class: 'btn btn-sm btn-primary' %>
+            <%= link_to 'Borrar', 
+                    admin_account_holder_path(account_h), 
+                    method: :delete, data: { confirm: 'Estás seguro?' },
+                    class: 'btn btn-sm btn-secondary' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    <%= simple_form_for([:admin, @account_holder]) do |f| %>
+      <tr>
+        <td><%= f.input_field :name, class: 'form-control', placeholder: 'Nombre del dueño' %></td>
+        <td>
+          <%= f.submit 'Agregar', class: 'btn btn-sm btn-success' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

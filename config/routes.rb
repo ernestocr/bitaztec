@@ -24,6 +24,8 @@ Rails.application.routes.draw do
         get 'history' => :history, as: :history
       end
     end
+
+    resources :account_holders
     
     resources :banks do
       collection do

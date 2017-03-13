@@ -1,22 +1,56 @@
-<% page = params[:controller].downcase.split('/')[1] %>
+<nav class="navbar navbar-light navbar-toggleable-sm bg-faded">
+  <button 
+     class="navbar-toggler navbar-toggler-right" 
+     type="button" 
+     data-toggle="collapse" 
+     data-target="#main-menu">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+    
+  <%= link_to 'BitAztec', root_path, class: 'navbar-brand' %>
+    
+  <div class="navbar-collapse collapse" id="main-menu">
+    
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to 'Mi cuenta', orders_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Comprar', new_order_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Como funciona', howto_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'FAQ', faq_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Acuerdo Legal', legal_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Contacto', contact_path, class: 'nav-link' %>    
+      </li>
+    </ul>
 
-<div class="nav sidebar flex-column">
-  <a href="<%= admin_path %>" class="nav-link <%= 'active' if page == 'dashboard' %>">
-    <i class="fa fa-tachometer"></i> Dashboard
-  </a>
-  <a href="<%= admin_orders_path %>" class="nav-link <%= 'active' if page == 'orders' %>">
-    <i class="fa fa-bitcoin"></i> Pedidos
-  </a>
-  <a href="<%= admin_settings_path %>" class="nav-link <%= 'active' if page == 'settings' %>">
-    <i class="fa fa-gears"></i> Configuración
-  </a>
-  <a href="<%= admin_users_path %>" class="nav-link <%= 'active' if page == 'users' %>">
-    <i class="fa fa-users"></i> Usuarios
-  </a>
-  <a href="<%= admin_payment_methods_path %>" class="nav-link <%= 'active' if page == 'payment_methods' %>">
-    <i class="fa fa-credit-card"></i> Métodos de pago
-  </a>
-  <a href="<%= admin_banks_path %>" class="nav-link <%= 'active' if page == 'banks' %>">
-    <i class="fa fa-bank"></i> Bancos
-  </a>
-</div>
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <% if user_signed_in? and current_user.admin? %>
+          <li class="nav-item">
+            <%= link_to 'Admin', admin_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+        <li clas="nav-item">
+          <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        </li>
+      <% else %>
+        <li clas="nav-item">
+          <%= link_to 'Entrar', new_user_session_path, class: 'nav-link' %>
+        </li>
+        <li clas="nav-item">
+          <%= link_to 'Registrar', new_user_registration_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
+</nav>
