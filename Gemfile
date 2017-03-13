@@ -64,3 +64,6 @@ gem 'mini_magick'
 
 # gravatar
 gem 'gravtastic'
+
+# bitcoin utilities
+gem 'bitcoin-ruby'

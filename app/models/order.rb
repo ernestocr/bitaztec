@@ -1,3 +1,5 @@
+require 'Bitcoin'
+
 class Order < ApplicationRecord
 
   default_scope { order(created_at: :desc) } 
@@ -11,6 +13,8 @@ class Order < ApplicationRecord
   validates :amount, presence: true
   validates :price, presence: true
   validates :address, presence: true
+  
+  validate :valid_btc_address
 
   mount_uploaders :attachments, AttachmentUploader
 
@@ -84,6 +88,13 @@ class Order < ApplicationRecord
 
   def expires_at_formatted
     expires_at.strftime('%d/%m/%Y at %I:%M %p')
+  end
+
+  # Validator
+  def valid_btc_address
+    if !Bitcoin.valid_address? address
+      errors.add(:address, 'No es un wallet valido.')
+    end
   end
 
 end
