@@ -10,7 +10,6 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- Validate btc address
 - QR code scanner -> address
 - Put address con completion
 - mail system
@@ -29,6 +28,7 @@ Built by: github.com/ernestocr
 
 ### DONE:
 
+* Validate btc address
 * Delete method for accounts
 * Error messages for forms
 * Completion datetime

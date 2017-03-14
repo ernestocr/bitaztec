@@ -67,3 +67,5 @@ gem 'gravtastic'
 
 # bitcoin utilities
 gem 'bitcoin-ruby'
+
+gem 'rails_12factor', group: :production
