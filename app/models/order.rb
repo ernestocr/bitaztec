@@ -1,4 +1,4 @@
-require 'Bitcoin'
+require 'bitcoin'
 
 class Order < ApplicationRecord
 
