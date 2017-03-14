@@ -1,6 +1,6 @@
-<p><i class="fa fa-money"></i> Dueños de cuentas</p>
+<p class="page"><i class="fa fa-money"></i> Dueños de cuentas</p>
 
-<table class="table">
+<table class="table table-responsive">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -14,18 +14,20 @@
         <tr>
           <td><%= f.input_field :name, class: 'form-control' %></td>
           <td>
-            <%= f.submit 'Guardar', class: 'btn btn-sm btn-primary' %>
-            <%= link_to 'Borrar', 
+            <div class="btn-group">
+              <%= f.submit 'Guardar', class: 'btn btn-sm btn-primary' %>
+              <%= link_to 'Borrar', 
                     admin_account_holder_path(account_h), 
                     method: :delete, data: { confirm: 'Estás seguro?' },
                     class: 'btn btn-sm btn-secondary' %>
+            </div>
           </td>
         </tr>
       <% end %>
     <% end %>
     <%= simple_form_for([:admin, @account_holder]) do |f| %>
       <tr>
-        <td><%= f.input_field :name, class: 'form-control', placeholder: 'Nombre del dueño' %></td>
+        <td><%= f.input_field :name, class: 'form-control', placeholder: 'nombre del dueño' %></td>
         <td>
           <%= f.submit 'Agregar', class: 'btn btn-sm btn-success' %>
         </td>

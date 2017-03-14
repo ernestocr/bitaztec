@@ -1,14 +1,13 @@
 <p>
-  <i class="fa fa-credit-card"></i> Métodos de pago
+  <span class="page"><i class="fa fa-credit-card"></i> Métodos de pago</span>
   <a href="<%= new_admin_payment_method_path %>" class="nav-link float-right no-mg">
     <i class="fa fa-plus"></i> Método nuevo
   </a>
 </p>
 
-<table class="table">
+<table class="table table-responsive">
   <thead>
     <tr>
-      <th></th>
       <th>Nombre</th>
       <th>Método</th>
       <th>Estado</th>
@@ -20,7 +19,6 @@
   <tbody>
     <% @payment_methods.each do |payment_method| %>
       <tr>
-        <td><%= image_tag payment_method.image.thumb %></td>
         <td><%= link_to payment_method.name, admin_payment_method_path(payment_method) %></td>
         <td><%= payment_method.method %></td>
         <td>

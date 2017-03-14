@@ -1,4 +1,4 @@
-<p><i class="fa fa-credit-card"></i> Métodos de pago</p>
+<p class="page"><i class="fa fa-credit-card"></i> Métodos de pago</p>
 
 <nav class="breadcrumb">
   <a href="<%= admin_payment_methods_path %>" class="breadcrumb-item">
@@ -9,7 +9,7 @@
 </nav>
 
 <div class="row">
-  <div class="col-2">
+  <div class="col-sm-2">
     <p><b>Estado</b></p>
     <p>
       <%= 
@@ -19,11 +19,11 @@
       %>
     </p>
   </div>
-  <div class="col">
+  <div class="col-sm-5">
     <p><b>Instrucciones:</b></p>
     <p><%= @payment_method.instructions %></p> 
   </div>
-  <div class="col">
+  <div class="col-sm-5">
     <p><b>Detalles:</b></p>
     <p><%= @payment_method.details %></p> 
   </div>
@@ -36,12 +36,13 @@
 <% @payment_method.banks.each do |bank| %>
   <div class="row">
     <div class="col-4">
-      <p><b><%= bank.name %></b>
-      &middot; <%= render 'admin/shared/status_toggle', object: bank, path: '#' %>
+      <p>
+        <b><%= bank.name %></b>
+        <%= render 'admin/shared/status_toggle', object: bank, path: toggle_admin_banks_path(bank) %>
       </p>
     </div>
     <div class="col">
-      <table class="table">
+      <table class="table table-responsive">
         <thead>
           <tr>
             <th>Número</th>
@@ -54,7 +55,11 @@
           <tr>
             <td><%= account.number %></td>
             <td><%= account.holder %></td>
-            <td><%= account.active %></td>
+            <td>
+              <%= render 'admin/shared/status_toggle',
+                object: account, 
+                path: toggle_admin_bank_accounts_path(account) %>
+            </td>
             <td><%= link_to 'edit', edit_admin_bank_account_path(account) %></td>
           </tr>
         <% end %>

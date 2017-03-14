@@ -1,17 +1,16 @@
 <p>
-  <i class="fa fa-bank"></i> Bancos
+  <span class="page"><i class="fa fa-bank"></i> Bancos</span>
   <a href="<%= new_admin_bank_path %>" class="nav-link float-right no-mg">
     <i class="fa fa-plus"></i> Banco nuevo
   </a>
 </p>
 
-<table class="table">
+<table class="table table-responsive">
   <thead>
     <tr>
       <th>Nombre</th>
       <th>Status</th>
-      <th># Cuentas</th>
-      <th></th>
+      <th>Imagen</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -26,15 +25,23 @@
               object: bank, 
               path: toggle_admin_banks_path(bank) %>
         </td>
-        <td><%= bank.accounts.count %></td>
         <td>
           <%= image_tag bank.image.thumb %>
         </td>
         <td>
-          <%= link_to 'Editar', edit_admin_bank_path(bank) %>
-          &middot; <%= link_to 'Borrar', 
-                    admin_bank_path(bank), 
-                    method: :delete, data: { confirm: 'Estás seguro?' } %>
+          <div class="btn-group">
+            <a href="<%= edit_admin_bank_path(bank) %>" 
+               class="btn btn-sm btn-secondary">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a class="btn btn-sm btn-danger"
+               href="<%= admin_bank_path(bank) %>"
+               data-confirm="Estás seguro?"
+               rel="nofollow"
+               data-method="delete">
+              <i class="fa fa-trash"></i>
+            </a>
+          </div>
         </td>
       </tr>
     <% end %>

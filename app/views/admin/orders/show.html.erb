@@ -1,4 +1,4 @@
-<p><i class="fa fa-bitcoin"></i> Pedidos</p>
+<p class="page"><i class="fa fa-bitcoin"></i> Pedidos</p>
 
 <nav class="breadcrumb">
   <a href="<%= admin_orders_path %>" class="breadcrumb-item">
@@ -8,7 +8,7 @@
 </nav>
 
 <div class="row">
-  <div class="col">
+  <div class="col-sm-6">
     <div class="alert alert-info">Estado: <b><%= @order.status %></b></div>
 
     <p>Pedido hecho por <%= link_to @order.user.email, admin_user_path(@order.user) %></p>
@@ -48,7 +48,7 @@
     <% end %>
   </div>  
   
-  <div class="col">
+  <div class="col-sm-6">
     <%= render 'shared/message_feed' %>
   </div>    
 </div>

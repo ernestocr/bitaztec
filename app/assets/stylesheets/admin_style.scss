@@ -1,50 +1,85 @@
-.container-fluid {
-  height: 100%;
-}
-
 body {
   background: rgb(250, 250, 250) !important;
-  min-height: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
 }
 
 .navbar {
   z-index: 9999;
 }
 
-.admin {
-  min-height: 100%;
+.no-mg {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav-link {
+  padding-left: 0;
+}
+
+.sidebar {
+  .nav-link.active {
+    color: #000;
+    border-right: 3px solid #eee;
+  }
+}
+
+.main {
+  background: #fff;
+}
+
+.table {
+  border-radius: 3px;
+
+  thead {
+    background-color: #f7f7f8;
+  }
+}
+
+.attachment {
+  display: inline;
+}
+
+.pdf-file {
+  width: 50px;
+  height: 50px;
+  padding: .25rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: .25rem;
+  max-width: 100%;
   height: auto;
-  padding-top: 60px;
-  margin-top: -60px;
-  margin-left: -15px !important;
-  margin-right: -15px !important;
+  text-align: center;
+}
+
+// DESKTOP
+@media (min-width: 728px) {
+  body {
+    min-height: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
   
-  .no-mg {
-    margin: 0 !important;
-    padding: 0 !important;
+  .container-fluid {
+    height: 100%;
+  }
+  
+  .admin {
+    min-height: 100%;
+    height: auto;
+    padding-top: 60px;
+    margin-top: -60px;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
   }
 
-  .nav-link {
-    padding-left: 0;
-  }
-  
   .sidebar {
     padding-top: 20px;
     padding-left: 15px;
-
-    .nav-link.active {
-      color: #000;
-      border-right: 3px solid #eee;
-    }
   }
 
   .main {
-    background: #fff;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 15px !important;
@@ -53,26 +88,31 @@ body {
   }
 
   .table {
-    border-radius: 3px;
+    width: 100%;
+    display: table;
+  }
+}
 
-    thead {
-      background-color: #f7f7f8;
+// MOBILE
+@media (max-width: 600px) {
+  .container-fluid {
+    padding: 0;
+  }
+
+  .sidebar {
+    padding: 0 15px;
+
+    .nav-link.active {
+      border: none;
     }
   }
 
-  .attachment {
-    display: inline;
+  .main {
+    border-top: 5px solid #eee;
+    padding: 15px !important; 
   }
 
-  .pdf-file {
-    width: 50px;
-    height: 50px;
-    padding: .25rem;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: .25rem;
-    max-width: 100%;
-    height: auto;
-    text-align: center;
+  .page {
+    display: none;
   }
 }
