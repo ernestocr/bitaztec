@@ -69,5 +69,6 @@ gem 'gravtastic'
 gem 'bitcoin-ruby'
 
 gem 'rails_12factor', group: :production
-
 gem 'will_paginate', '~> 3.1.0'
+gem 'rails-i18n'
+gem 'devise-i18n'

@@ -24,5 +24,7 @@ module Bitaztecv1
   
     # Change default Time Zone
     config.time_zone = 'Guadalajara'
+
+    config.i18n.default_locale = :es
   end
 end
