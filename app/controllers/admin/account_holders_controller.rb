@@ -6,6 +6,9 @@ class Admin::AccountHoldersController < Admin::BaseController
   end
 
   def create
+    @account_holders = AccountHolder.all
+    
+    @account_holder  = AccountHolder.new
     @account_holder = AccountHolder.new(account_holder_params)
     if @account_holder.save
       redirect_to admin_account_holders_path,
@@ -16,6 +19,7 @@ class Admin::AccountHoldersController < Admin::BaseController
   end
 
   def update
+    @account_holders = AccountHolder.all
     @account_holder = AccountHolder.find(params[:id])
     if @account_holder.update_attributes(account_holder_params)
       redirect_to admin_account_holders_path,

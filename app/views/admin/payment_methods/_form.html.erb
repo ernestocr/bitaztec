@@ -25,9 +25,14 @@
   <div class="form-group"> 
     <%= f.input :image, as: :file, input_html: { class: 'form-control' } %>
   </div>
-  <div class="form-group"> 
-    <%= f.input :active, input_html: { value: 'true' }, input_html: { class: 'form-control' } %>
+
+  <div class="form-check">
+    <label class="form-check-label">
+      <%= f.check_box :active, class: 'form-check-input' %>
+      <%= f.label :active %>
+    </label>
   </div>
+
   <div class="form-group"> 
     <%= f.submit 'Guardar', class: 'btn btn-primary' %>
   </div>

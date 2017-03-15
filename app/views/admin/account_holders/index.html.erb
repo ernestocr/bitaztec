@@ -25,13 +25,18 @@
         </tr>
       <% end %>
     <% end %>
-    <%= simple_form_for([:admin, @account_holder]) do |f| %>
-      <tr>
-        <td><%= f.input_field :name, class: 'form-control', placeholder: 'nombre del dueño' %></td>
-        <td>
-          <%= f.submit 'Agregar', class: 'btn btn-sm btn-success' %>
-        </td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
+
+<div class="row">
+  <div class="col-sm-4" style="margin-left: 10px;">
+    <%= simple_form_for([:admin, @account_holder]) do |f| %>
+      <div class="form-group" >
+        <%= f.input_field :name, class: 'form-control', placeholder: 'nombre del dueño' %>
+        <%= f.error :name %>
+      </div>
+      <%= f.submit 'Agregar', class: 'btn btn-sm btn-success' %>
+    <% end %> 
+  </div>
+</div>
+

@@ -65,6 +65,12 @@ body {
   }
 }
 
+form {
+  .error {
+    color: red;
+  }
+}
+
 // DESKTOP
 @media (min-width: 728px) {
   body {
