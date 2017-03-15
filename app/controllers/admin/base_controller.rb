@@ -10,7 +10,7 @@ class Admin::BaseController < ApplicationController
 
     def btc_price_set?
       if !Setting.btc_price
-        flash[:alert] = 'El precio del Bitcoin no está! Ve a configuración y agregalo.'
+        flash[:alert] = 'El precio del Bitcoin no está! Ve a configuración y agrega "btc_price".'
       end
     end
 
