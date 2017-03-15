@@ -3,7 +3,7 @@ body {
 }
 
 .navbar {
-//  z-index: 9999;
+  z-index: 1;
 }
 
 .no-mg {
@@ -23,6 +23,7 @@ body {
 }
 
 .main {
+  z-index: 0;
   background: #fff;
 }
 

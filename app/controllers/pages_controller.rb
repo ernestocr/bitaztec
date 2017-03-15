@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   # Can change route names later
 
   def home
+    @btc_price = Setting.btc_price
   end
 
   def howto

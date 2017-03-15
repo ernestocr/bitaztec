@@ -1,0 +1,119 @@
+@import 'colors';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: $white;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.footer {
+  background: $blue;
+  padding: 20px 0 10px 0;
+  color: $white;
+
+  a {
+    color: $lwhite;
+    text-decoration: none;
+    transition: all .2s;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  p {
+    margin-bottom: 5px;
+  }
+}
+
+.copyright {
+  b {
+    color: $red;
+  }
+  
+  color: $lwhite; 
+  padding: 20px 0;
+  background: $dblue;
+  text-align: center;
+}
+
+.float-right {
+  float: right;
+}
+
+/* NAVBARS */
+
+.login {
+  background: $dblue;
+  padding: 10px 0;
+  padding-right: 20px;
+  clear: both;
+  font-size: 0.7em;
+  overflow: auto;
+
+  p {
+    color: $lwhite;
+    display: inline-block;
+
+    a {
+      text-decoration: none;
+      color: $lwhite;
+      transition: all .2s;
+
+      &:hover {
+        color: $white;
+      }
+    }
+
+    .login-link {
+      color: $yellow;
+    }
+  }
+}
+
+.nav {
+  clear: both;
+  overflow: auto;
+  padding: 20px 0;
+
+  .brand {
+    img {
+      max-height: 40px;
+    }
+  }
+
+  ul {
+    position: relative;
+    top: 12px;
+    float: right;
+  
+    li {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 0.8em;
+
+      a {
+        text-decoration: none;
+        color: $dgrey;
+        font-weight: 600;
+        transition: all .2s;
+        padding: 5px 10px;
+
+        &:hover {
+          color: $black;
+        }
+
+        &.active {
+          background: $red;
+          color: $white;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}

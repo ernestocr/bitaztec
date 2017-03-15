@@ -1,2 +1,69 @@
-<h1>BitAztec v1</h1>
-<p>Compra bitcoins aqui!</p>
+<div class="home">
+  <div class="leader">
+    <div class="container">
+      <div class="price">
+        <h1>1 BTC: <span><%= number_to_currency @btc_price, precision: 0 %></span></h1>
+      </div>
+
+      <div class="call-to-action">
+        <%= link_to 'Comprar', new_order_path %> 
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="mentions">
+      <div class="grid grid--gutters">
+        <div class="grid-cell">
+          <%= image_tag '#' %>
+        </div>
+        <div class="grid-cell">
+          <%= image_tag '#' %>
+        </div>
+        <div class="grid-cell">
+          <%= image_tag '#' %>
+        </div>
+        <div class="grid-cell">
+          <%= image_tag '#' %>
+        </div>
+        <div class="grid-cell">
+          <%= image_tag '#' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info">
+    <div class="container">
+      <center class="description">
+        <h2>BitAztec</h2>
+        <p>La manera más sencilla de de adquirir bitcoins en México.</p>
+      </center>
+
+      <div class="features">
+        <div class="grid grid--gutters">
+          <div class="grid-cell feature">
+            <%= image_tag 'fast.png' %>
+            <h3>Rápido</h3>
+            <p>Recibo to compra minutos despues de hacer tu compra.</p>
+          </div>
+          <div class="grid-cell feature">
+            <%= image_tag 'secure.png' %>
+            <h3>Seguro</h3>
+            <p>Compra mediante depósito en efectivo o transferencia bancaria.</p>
+          </div>
+          <div class="grid-cell feature">
+            <%= image_tag 'anon.png' %>
+            <h3>Anónimo</h3>
+            <p>Únicamente se require una cuenta de email y confirmación.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="call-to-action">
+        <%= link_to '¿Cómo funciona?', faq_path %> 
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -21,13 +21,12 @@ Built by: github.com/ernestocr
   - revoke order
 - implement frontend design
 - translate to spanish
-- use xhr to toggle model status
+- ? use xhr to toggle model status
 - buy page btc/peso calculator
-- admin search (orders/users)
-- order history pagination
 
 ### DONE:
 
+* order history pagination
 * add a lighthouse for order images
 * Validate btc address
 * Delete method for accounts
