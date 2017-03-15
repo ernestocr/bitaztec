@@ -66,56 +66,56 @@
   flex: 0 0 25%;
 }
 
-@media (--break-sm) {
-  .small.grid--fit > .grid-cell {
+@media (min-width: 480px) {
+  .small-grid--fit > .grid-cell {
     flex: 1;
   }
-  .small.grid--full > .grid-cell {
+  .small-grid--full > .grid-cell {
     flex: 0 0 100%;
   }
-  .small.grid--1of2 > .grid-cell {
+  .small-grid--1of2 > .grid-cell {
     flex: 0 0 50%;
   }
-  .small.grid--1of3 > .grid-cell {
+  .small-grid--1of3 > .grid-cell {
     flex: 0 0 33.3333%;
   }
-  .small.grid--1of4 > .grid-cell {
+  .small-grid--1of4 > .grid-cell {
     flex: 0 0 25%;
   }
 }
 
-@media (--break-md) {
-  .med.grid--fit > .grid-cell {
+@media (min-width: 768px) {
+  .med-grid--fit > .grid-cell {
     flex: 1;
   }
-  .med.grid--full > .grid-cell {
+  .med-grid--full > .grid-cell {
     flex: 0 0 100%;
   }
-  .med.grid--1of2 > .grid-cell {
+  .med-grid--1of2 > .grid-cell {
     flex: 0 0 50%;
   }
-  .med.grid--1of3 > .grid-cell {
+  .med-grid--1of3 > .grid-cell {
     flex: 0 0 33.3333%;
   }
-  .med.grid--1of4 > .grid-cell {
+  .med-grid--1of4 > .grid-cell {
     flex: 0 0 25%;
   }
 }
 
-@media (--break-lg) {
-  .large.grid--fit > .grid-cell {
+@media (min-width: 1024px) {
+  .large-grid--fit > .grid-cell {
     flex: 1;
   }
-  .large.grid--full > .grid-cell {
+  .large-grid--full > .grid-cell {
     flex: 0 0 100%;
   }
-  .large.grid--1of2 > .grid-cell {
+  .large-grid--1of2 > .grid-cell {
     flex: 0 0 50%;
   }
-  .large.grid--1of3 > .grid-cell {
+  .large-grid--1of3 > .grid-cell {
     flex: 0 0 33.3333%;
   }
-  .large.grid--1of4 > .grid-cell {
+  .large-grid--1of4 > .grid-cell {
     flex: 0 0 25%;
   }
 }
@@ -142,64 +142,64 @@
 }
 
 @media (--break-sm) {
-  .small.grid--gutters {
+  .small-grid--gutters {
     margin: -1em 0 1em -1em;
   }
-  .small.grid--gutters > .grid-cell {
+  .small-grid--gutters > .grid-cell {
     padding: 1em 0 0 1em;
   }
-  .small.grid--guttersLg {
+  .small-grid--guttersLg {
     margin: -1.5em 0 1.5em -1.5em;
   }
-  .small.grid--guttersLg > .grid-cell {
+  .small-grid--guttersLg > .grid-cell {
     padding: 1.5em 0 0 1.5em;
   }
-  .small.grid--guttersXl {
+  .small-grid--guttersXl {
     margin: -2em 0 2em -2em;
   }
-  .small.grid--guttersXl > .grid-cell {
+  .small-grid--guttersXl > .grid-cell {
     padding: 2em 0 0 2em;
   }
 }
 
 @media (--break-md) {
-  .med.grid--gutters {
+  .med-grid--gutters {
     margin: -1em 0 1em -1em;
   }
-  .med.grid--gutters > .grid-cell {
+  .med-grid--gutters > .grid-cell {
     padding: 1em 0 0 1em;
   }
-  .med.grid--guttersLg {
+  .med-grid--guttersLg {
     margin: -1.5em 0 1.5em -1.5em;
   }
-  .med.grid--guttersLg > .grid-cell {
+  .med-grid--guttersLg > .grid-cell {
     padding: 1.5em 0 0 1.5em;
   }
-  .med.grid--guttersXl {
+  .med-grid--guttersXl {
     margin: -2em 0 2em -2em;
   }
-  .med.grid--guttersXl > .grid-cell {
+  .med-grid--guttersXl > .grid-cell {
     padding: 2em 0 0 2em;
   }
 }
 
 @media (--break-lg) {
-  .large.grid--gutters {
+  .large-grid--gutters {
     margin: -1em 0 1em -1em;
   }
-  .large.grid--gutters > .grid-cell {
+  .large-grid--gutters > .grid-cell {
     padding: 1em 0 0 1em;
   }
-  .large.grid--guttersLg {
+  .large-grid--guttersLg {
     margin: -1.5em 0 1.5em -1.5em;
   }
-  .large.grid--guttersLg > .grid-cell {
+  .large-grid--guttersLg > .grid-cell {
     padding: 1.5em 0 0 1.5em;
   }
-  .large.grid--guttersXl {
+  .large-grid--guttersXl {
     margin: -2em 0 2em -2em;
   }
-  .large.grid--guttersXl > .grid-cell {
+  .large-grid--guttersXl > .grid-cell {
     padding: 2em 0 0 2em;
   }
 }

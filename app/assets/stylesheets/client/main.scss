@@ -117,3 +117,33 @@ body {
     }
   }
 }
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 0 15px; 
+  }
+
+  .login {
+    padding-right: 0;
+  }
+
+  .nav {
+    ul {
+      display: none;
+    }
+  }
+
+  .footer {
+    .grid-cell {
+      text-align: center;
+
+      a {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

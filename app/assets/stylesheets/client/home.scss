@@ -18,6 +18,11 @@
       width: auto;
       margin: 0 auto;
       display: inline-block;
+      transition: all .2s;
+
+      &:hover {
+        box-shadow: 0px 5px 15px $dgrey;
+      }
     }
   }
   
@@ -92,6 +97,19 @@
           max-height: 66px;
           margin-bottom: 10px;
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    .leader {
+      padding: 80px 0;
+
+      .price {
+        background-size: 100%;
+        background-repeat: repeat;
       }
     }
   }
