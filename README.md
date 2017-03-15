@@ -24,10 +24,11 @@ Built by: github.com/ernestocr
 - use xhr to toggle model status
 - buy page btc/peso calculator
 - admin search (orders/users)
-- add a lighthouse for order images
+- order history pagination
 
 ### DONE:
 
+* add a lighthouse for order images
 * Validate btc address
 * Delete method for accounts
 * Error messages for forms

@@ -28,7 +28,7 @@
         <% if attachment.file.extension == 'pdf' %>
           <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
         <% else %>
-          <a href="<%= attachment.url %>"><%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %></a>
+          <a data-toggle="lightbox" href="<%= attachment.url %>"><%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %></a>
         <% end %>
       <% end %>
     </div>
@@ -52,3 +52,11 @@
     <%= render 'shared/message_feed' %>
   </div>    
 </div>
+
+<script>
+  $(document).unbind('click');
+  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+  });
+</script>

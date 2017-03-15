@@ -32,8 +32,13 @@
     <% end %>
   </tbody>
 </table>
+
 <% if @orders.count == 0 %>
   <div class="alert alert-info">
     No hay pedidos.
   </div>
 <% end %>
+
+<div class="pagination">
+  <%= will_paginate @posts, previous_label: 'Previo', next_label: 'Siguiente' %>
+</div>

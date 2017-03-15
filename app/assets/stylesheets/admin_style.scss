@@ -3,7 +3,7 @@ body {
 }
 
 .navbar {
-  z-index: 9999;
+//  z-index: 9999;
 }
 
 .no-mg {
@@ -48,6 +48,20 @@ body {
   max-width: 100%;
   height: auto;
   text-align: center;
+}
+
+.pagination {
+  .previous_page.disabled {
+    margin-right: 5px;
+  }
+
+  .next_page.disabled {
+    margin-left: 5px;
+  }
+
+  a {
+    margin: 0 5px;
+  }
 }
 
 // DESKTOP

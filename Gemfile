@@ -69,3 +69,5 @@ gem 'gravtastic'
 gem 'bitcoin-ruby'
 
 gem 'rails_12factor', group: :production
+
+gem 'will_paginate', '~> 3.1.0'
