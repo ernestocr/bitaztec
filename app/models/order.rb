@@ -3,6 +3,7 @@ require 'bitcoin'
 class Order < ApplicationRecord
 
   default_scope { order(created_at: :desc) } 
+  default_scope { where('expires_at > ? OR submitted = true', DateTime.now.utc) }
   has_many :messages
 
   belongs_to :payment_method
@@ -17,6 +18,8 @@ class Order < ApplicationRecord
   validate :valid_btc_address
 
   mount_uploaders :attachments, AttachmentUploader
+
+  before_create :add_expires_at
 
   # order status, depending on a variety of situations
   def status
@@ -35,13 +38,7 @@ class Order < ApplicationRecord
 
   # true/false if expired
   def expired
-    expires = created_at + expires_in.hours
-    return DateTime.now.utc > expires.utc
-  end
-
-  # what time does it expire at?
-  def expires_at
-    created_at + expires_in.hours
+    return DateTime.now.utc > expires_at.utc
   end
 
   # is it canceled?
@@ -86,5 +83,11 @@ class Order < ApplicationRecord
       errors.add(:address, 'No es un wallet valido.')
     end
   end
+
+  private
+
+    def add_expires_at
+      self.expires_at = DateTime.now.utc + self.expires_in.hours
+    end
 
 end

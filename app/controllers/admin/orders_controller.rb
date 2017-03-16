@@ -30,7 +30,7 @@ before_action :set_order, only: [:show, :edit, :update, :destroy]
       @order.update_attributes(
         completed: true, 
         authorized_by: current_user.id,
-        completed_at: DateTime.current 
+        completed_at: DateTime.now.utc 
       )
       
       redirect_to admin_order_path(@order), 

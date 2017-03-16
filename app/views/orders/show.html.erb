@@ -1,93 +1,97 @@
-<p class="alert alert-info">Estado: <b><%= @order.status %></b></p>
+<div class="container">
 
-<h3>Ficha de depósito</h3>
+  <p class="alert alert-info">Estado: <b><%= @order.status %></b></p>
 
-<div class="row">
-  
-  <div class="col">
-    <p>
-      <strong>Pedido creado el:</strong>
-      <%= formatted_date(@order.created_at) %>
-    </p>
+  <h3>Ficha de depósito</h3>
 
-    <p>
-      <strong>Cantidad:</strong>
-      <%= @order.amount %>
-    </p>
-
-    <p>
-      <strong>Precio:</strong>
-      <%= @order.price %>
-    </p>
-
-    <p>
-      <strong>Se expira el:</strong>
-      <%= formatted_date(@order.expires_at) %>
-    </p>
-
-    <p>
-      <strong>Método de pago:</strong>
-      <%= @order.payment_method.name %>
-    </p>
-
-    <p>
-      <strong>Instrucciones:</strong>
-      <br><%= @order.payment_method.instructions %>
-    </p>
-
-    <hr>
-
-    <% if @order.attachments.count != 0 %>
-      <div class="evidence">
-        <p class="text-muted">Evidencia presentada:</p>
-        <% @order.attachments.each do |attachment| %>
-          <% if attachment.file.extension == 'pdf' %>
-            <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
-          <% else %>
-            <%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <hr>
-    <% end %>
+  <div class="row">
     
+    <div class="col">
+      <p>
+        <strong>Pedido creado el:</strong>
+        <%= formatted_date(@order.created_at) %>
+      </p>
 
-    <% if !@order.submitted and !@order.expired %>
-      <div class="ui divider"></div>
-      
-      <p>Sube to recibo para comprobar el pago:</p>
+      <p>
+        <strong>Cantidad:</strong>
+        <%= @order.amount %>
+      </p>
 
-      <%= simple_form_for(@order) do |f| %>
-        <%= f.file_field :attachments, multiple: true %>
-        <%= f.hidden_field :submitted, value: true %>
-        <%= f.submit 'Listo', class: 'btn btn-success' %>
-      <% end %>
+      <p>
+        <strong>Precio:</strong>
+        <%= @order.price %>
+      </p>
+
+      <p>
+        <strong>Se expira el:</strong>
+        <%= formatted_date(@order.expires_at) %>
+      </p>
+
+      <p>
+        <strong>Método de pago:</strong>
+        <%= @order.payment_method.name %>
+      </p>
+
+      <p>
+        <strong>Instrucciones:</strong>
+        <br><%= @order.payment_method.instructions %>
+      </p>
 
       <hr>
+
+      <% if @order.attachments.count != 0 %>
+        <div class="evidence">
+          <p class="text-muted">Evidencia presentada:</p>
+          <% @order.attachments.each do |attachment| %>
+            <% if attachment.file.extension == 'pdf' %>
+              <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
+            <% else %>
+              <%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <hr>
+      <% end %>
       
-      <%= link_to 'Quieres cancelar?', '#', class: 'btn btn-sm btn-danger', html: { confirm: 'Estás seguro?' } %>
 
-    <% elsif @order.completed %>
+      <% if !@order.submitted and !@order.expired %>
+        <div class="ui divider"></div>
+        
+        <p>Sube to recibo para comprobar el pago:</p>
 
-      <p class="alert alert-success">
-      Gracias por comprar con <b>BitAztec</b>. En cualquier momento te llegarán tus bitcoins. Puedes verficar la transacción aqui: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
-      </p>
+        <%= simple_form_for(@order) do |f| %>
+          <%= f.file_field :attachments, multiple: true %>
+          <%= f.hidden_field :submitted, value: true %>
+          <%= f.submit 'Listo', class: 'btn btn-success' %>
+        <% end %>
 
-    <% elsif !@order.expired %>
+        <hr>
+        
+        <%= link_to 'Quieres cancelar?', '#', class: 'btn btn-sm btn-danger', html: { confirm: 'Estás seguro?' } %>
 
-      <p class="alert alert-warning">
-        Gracias por comprar con <b>BitAztec</b>. Tu pago está en proceso de revisión.
-      </p>
-    <% else %>
+      <% elsif @order.completed %>
 
-      <p class="alert alert-danger">
-        Esta orden se expiró. Puedes hacer otra haciendo click <%= link_to 'aqui', new_order_path %>.
-      </p>
-    <% end %>   
+        <p class="alert alert-success">
+        Gracias por comprar con <b>BitAztec</b>. En cualquier momento te llegarán tus bitcoins. Puedes verficar la transacción aqui: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
+        </p>
+
+      <% elsif !@order.expired %>
+
+        <p class="alert alert-warning">
+          Gracias por comprar con <b>BitAztec</b>. Tu pago está en proceso de revisión.
+        </p>
+      <% else %>
+
+        <p class="alert alert-danger">
+          Esta orden se expiró. Puedes hacer otra haciendo click <%= link_to 'aqui', new_order_path %>.
+        </p>
+      <% end %>   
+    </div>
+
+    <div class="col">
+      <%= render 'shared/message_feed' %>
+    </div>
   </div>
 
-  <div class="col">
-    <%= render 'shared/message_feed' %>
-  </div>
 </div>
