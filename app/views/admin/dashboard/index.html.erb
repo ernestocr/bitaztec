@@ -24,10 +24,28 @@
         <%= f.submit 'Actualizar precio', class: 'btn btn-block btn-secondary' %>
       <% end %>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-8 offset-sm-1">
       <p><i class="fa fa-comment"></i> Mensajes nuevos</p>
+      <% @messages.reverse.group_by(&:user_id).each do |id, msgs| %>
+        <% msg = msgs.first %>
+        <a href="<%= admin_order_path(msg.order) %>">
+          <div class="media">
+            <%= image_tag msg.user.gravatar_url(size: 20, default: 'mm'), class: 'd-flex mr-3' %>
+            <div class="media-body">
+              <% if current_user == msg.user %>
+                Tú
+              <% else %>
+                <%= msg.user.email %>
+              <% end %>
+              <span class="small text-muted">Hace <%= time_ago_in_words msg.created_at %></span>
+              <br>
+              <%= msg.body %>
+            </div>
+          </div>
+        </a>
+        <hr>
+      <% end %>
     </div>
   </div>
-  <hr>
 </div>
 

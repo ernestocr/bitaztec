@@ -5,6 +5,8 @@ class Admin::DashboardController < Admin::BaseController
 
     @pending_orders = Order.where(submitted: true, completed: false)
     @new_orders = Order.where(submitted: false, completed: false)
+
+    @messages = Message.where(admin_read: false)
   end
 
 end
