@@ -12,7 +12,7 @@
     <div class="alert alert-info">Estado: <b><%= @order.status %></b></div>
 
     <p>Pedido hecho por <%= link_to @order.user.email, admin_user_path(@order.user) %></p>
-    <p>Creado el <%= @order.created_at_formatted %> (hace <%= time_ago_in_words @order.created_at %>)</p>
+    <p>Creado el <%= formatted_date(@order.created_at) %> (hace <%= time_ago_in_words @order.created_at %>)</p>
     <p>Cantidad solicitada: <b><%= @order.amount %> BTC</b> a <b><%= number_to_currency @order.price %></b></p> 
 
     <hr>
@@ -54,9 +54,11 @@
 </div>
 
 <script>
-  $(document).unbind('click');
+$(document).on('turbolinks:load', function(){
+  $(document).undelegate('[data-toggle="lightbox"]', 'click');
   $(document).on('click', '[data-toggle="lightbox"]', function(event) {
     event.preventDefault();
     $(this).ekkoLightbox();
   });
+})
 </script>

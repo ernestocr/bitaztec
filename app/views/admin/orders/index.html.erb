@@ -17,7 +17,7 @@
   <tbody>
     <% @pending_orders.each do |order| %>
       <tr>
-        <td><%= order.created_at_formatted %></td>
+        <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
         <td><%= order.user.email %></td>
         <td><%= order.amount %></td>
         <td><%= order.price %></td>
@@ -60,12 +60,12 @@
     <% @new_orders.each do |order| %>
       <% if !order.expired %>
         <tr>
-          <td><%= link_to order.created_at_formatted, admin_order_path(order) %></td>
+          <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
           <td><%= order.user.email %></td>
           <td><%= order.amount %></td>
           <td><%= order.price %></td>
           <td><%= order.payment_method.name %></td>
-          <td><%= order.expires_at_formatted %></td>
+          <td><%= formatted_date(order.expires_at) %></td>
           <td><%= render 'admin/orders/message_count', order: order %></td>
         </tr>
       <% end %>

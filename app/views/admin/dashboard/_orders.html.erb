@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th><i class="fa fa-calendar"></i></th>
+      <th><i class="fa fa-database"></i></th>
+      <th><i class="fa fa-dollar"></i></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+      <tr>
+        <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
+        <td><%= order.amount %></td>
+        <td><%= number_to_currency(order.price, precision: 0) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

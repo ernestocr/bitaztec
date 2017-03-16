@@ -8,7 +8,7 @@ before_action :set_order, only: [:show, :edit, :update, :destroy]
   end
 
   def history
-    @orders = Order.paginate(page: params[:page], per_page: 30)
+    @orders = Order.where(completed: true).paginate(page: params[:page], per_page: 30)
   end
 
   def show

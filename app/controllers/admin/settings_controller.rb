@@ -28,7 +28,11 @@ class Admin::SettingsController < Admin::BaseController
 
   def update
     if @setting.update(setting_params)
-      redirect_to admin_settings_path, notice: 'La configuración fue actualizada.'
+      if params[:dashboard] == 'true'
+        redirect_to admin_path
+      else
+        redirect_to admin_settings_path, notice: 'La configuración fue actualizada.'
+      end
     else
       render :edit
     end

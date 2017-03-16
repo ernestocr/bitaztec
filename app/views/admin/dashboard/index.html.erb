@@ -1,3 +1,33 @@
 <p><i class="fa fa-tachometer"></i> Dashboard</p>
 
-<h3>Hola admin</h3>
+<div class="dashboard">
+  <div class="row">
+    <div class="col-sm-6">
+      <p><b><i class="fa fa-folder-o text-danger"></i> Pendientes</b></p>
+      <%= render 'admin/dashboard/orders', orders: @pending_orders %>
+    </div>
+    <div class="col-sm-6">
+      <p><b><i class="fa fa-folder-o text-primary"></i> Nuevos</b></p>
+      <%= render 'admin/dashboard/orders', orders: @new_orders %>
+    </div>
+  </div>
+  <hr>
+  
+  <div class="row">
+    <div class="col-sm-3">
+      <p><i class="fa fa-btc"></i> Precio actual</p>
+      <%= simple_form_for [:admin, @btc_price] do |f| %>
+        <div class="form-group">
+          <input type="hidden" name="dashboard" value="true">
+          <%= f.input_field :value, class: 'form-control' %>
+        </div>  
+        <%= f.submit 'Actualizar precio', class: 'btn btn-block btn-secondary' %>
+      <% end %>
+    </div>
+    <div class="col-sm-6">
+      <p><i class="fa fa-comment"></i> Mensajes nuevos</p>
+    </div>
+  </div>
+  <hr>
+</div>
+

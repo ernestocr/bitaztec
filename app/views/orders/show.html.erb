@@ -7,7 +7,7 @@
   <div class="col">
     <p>
       <strong>Pedido creado el:</strong>
-      <%= @order.created_at_formatted %>
+      <%= formatted_date(@order.created_at) %>
     </p>
 
     <p>
@@ -22,7 +22,7 @@
 
     <p>
       <strong>Se expira el:</strong>
-      <%= @order.expires_at_formatted %>
+      <%= formatted_date(@order.expires_at) %>
     </p>
 
     <p>

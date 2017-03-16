@@ -80,16 +80,6 @@ class Order < ApplicationRecord
     end
   end
 
-  # EXTRAS
-  
-  def created_at_formatted
-    created_at.strftime('%d/%m/%Y at %I:%M %p')
-  end
-
-  def expires_at_formatted
-    expires_at.strftime('%d/%m/%Y at %I:%M %p')
-  end
-
   # Validator
   def valid_btc_address
     if !Bitcoin.valid_address? address
