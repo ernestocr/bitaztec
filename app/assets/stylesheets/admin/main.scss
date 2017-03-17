@@ -71,6 +71,13 @@ form {
   }
 }
 
+.message-list {
+  padding-top: 10px;
+  border-top: 2px solid #eee;
+  max-height: 250px;
+  overflow: scroll;
+}
+
 // DESKTOP
 @media (min-width: 728px) {
   body {

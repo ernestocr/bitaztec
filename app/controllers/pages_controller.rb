@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
 
-  # Static pages
-  # Can change route names later
+  # static pages
 
   def home
     @btc_price = Setting.btc_price

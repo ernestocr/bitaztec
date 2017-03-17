@@ -20,12 +20,12 @@ Built by: github.com/ernestocr
   - new message [b-a, b-u]
   - revoke order
 - implement frontend design
-- translate to spanish
 - ? use xhr to toggle model status
 - buy page btc/peso calculator
 
 ### DONE:
 
+* translate to spanish
 * order history pagination
 * add a lighthouse for order images
 * Validate btc address

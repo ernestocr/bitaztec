@@ -3,15 +3,12 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    order = Order.find(params[:message][:order_id])
-    message = order.messages.new(message_params)
+    message = Message.new(message_params)
     message.user = current_user
     
-    if current_user.admin?
-      message.admin_read = true
-    else
-      message.user_read = true
-    end
+    # whoever wrote it, also read it
+    message.admin_read = current_user.admin?
+    message.user_read  = !current_user.admin?
 
     message.save!
     redirect_to :back
@@ -19,8 +16,8 @@ class MessagesController < ApplicationController
 
   private
 
-  def message_params
-    params.require(:message).permit(:body, :order_id)
-  end
+    def message_params
+      params.require(:message).permit(:body, :order_id)
+    end
 
 end

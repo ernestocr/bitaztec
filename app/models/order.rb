@@ -87,6 +87,7 @@ class Order < ApplicationRecord
   private
 
     def add_expires_at
+      self.expires_in = self.payment_method.expires
       self.expires_at = DateTime.now.utc + self.expires_in.hours
     end
 
