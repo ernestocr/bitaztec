@@ -1,12 +1,8 @@
 class Admin::SettingsController < Admin::BaseController
-  before_action :set_setting, only: [:show, :edit, :update, :destroy]
+  before_action :set_setting, only: [:edit, :update, :destroy]
 
   def index
     @settings = Setting.all
-  end
-
-  def show
-    redirect_to admin_settings_path
   end
 
   def new
@@ -28,6 +24,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def update
     if @setting.update(setting_params)
+      # admin can update "btc_price" from dashboard
       if params[:dashboard] == 'true'
         redirect_to admin_path
       else

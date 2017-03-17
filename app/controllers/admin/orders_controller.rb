@@ -1,5 +1,5 @@
 class Admin::OrdersController < Admin::BaseController
-before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def index
     # only get new/pending orders
@@ -12,21 +12,12 @@ before_action :set_order, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-    last_msgs = @order.messages.where(admin_read: false)
-    if last_msgs
-      last_msgs.each do |msg|
-        msg.update_attributes(admin_read: true)
-      end
-    end
+    read_msgs @order    
   end
 
-  # probably won't need an edit page
-  # def edit
-  # end
-
   def update
-    # if the order is now complete
     if params[:complete]
+      # if the order is now complete
       @order.update_attributes(
         completed: true, 
         authorized_by: current_user.id,
@@ -35,15 +26,15 @@ before_action :set_order, only: [:show, :edit, :update, :destroy]
       
       redirect_to admin_order_path(@order), 
         flash: { notice: "El pedido ##{@order.id} fue completado." }
+    
     elsif params[:reject]
+      # if not, then it's being rejected
       @order.update_attributes(submitted: false)
       redirect_to admin_order_path(@order)
     end
   end
 
   def destroy
-    # cancel an order
-    # don't forget to notify user
     @order.destroy
     redirect_to admin_orders_path, flash: { notice: 'El pedido fue cancelado.' }
   end
@@ -52,6 +43,14 @@ before_action :set_order, only: [:show, :edit, :update, :destroy]
 
     def set_order
       @order = Order.find(params[:id])
+    end
+    
+    # update :admin_read
+    def read_msgs order
+      last_msgs = @order.messages.where(admin_read: false)
+      last_msgs.each do |msg|
+        msg.update_attributes(admin_read: true)
+      end
     end
 
 end

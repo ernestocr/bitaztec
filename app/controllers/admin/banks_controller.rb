@@ -40,6 +40,7 @@ class Admin::BanksController < Admin::BaseController
   end
 
   def toggle
+    # direct db update
     @bank.toggle!(:active)
     redirect_to :back
   end

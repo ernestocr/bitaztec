@@ -33,6 +33,7 @@ class Admin::AccountsController < Admin::BaseController
   end
 
   def toggle
+    # direct db update
     @account.toggle!(:active)
     redirect_to :back
   end

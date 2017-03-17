@@ -35,11 +35,11 @@ class Admin::PaymentMethodsController < Admin::BaseController
 
   def destroy
     @payment_method.update_attribute(:deprecated, true)
-    #@payment_method.destroy
     redirect_to admin_payment_methods_path, notice: 'El método de pago fue borrado.'
   end
 
   def toggle
+    # direct db update
     @payment_method.toggle!(:active)
     redirect_to :back
   end
@@ -51,7 +51,10 @@ class Admin::PaymentMethodsController < Admin::BaseController
     end
 
     def payment_method_params
-      params.require(:payment_method).permit(:name, :method, :schedule, :instructions, :notice, :active, :details, :expires, :image, bank_ids: [])
+      params.require(:payment_method).permit(
+        :name, :method, :schedule, :instructions, :notice, 
+        :active, :details, :expires, :image, bank_ids: []
+      )
     end
 
 end
