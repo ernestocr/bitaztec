@@ -11,6 +11,14 @@ class MessagesController < ApplicationController
     message.user_read  = !current_user.admin?
 
     message.save!
+    
+    if current_user.admin?
+      # if admin created message, send notif. to user
+      UserMailer.new_message(message).deliver_later
+    else
+      # AdminMailer.new_message(message)
+    end
+
     redirect_to :back
   end
 

@@ -15,4 +15,9 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.order_denied(order)
   end
 
+  def new_message
+    msg = Message.first
+    UserMailer.new_message(msg)
+  end
+
 end
