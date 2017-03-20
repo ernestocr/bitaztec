@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
       # if admin created message, send notif. to user
       UserMailer.new_message(message).deliver_later
     else
-      # AdminMailer.new_message(message)
+      AdminMailer.new_message(message).deliver_later
     end
 
     redirect_to :back

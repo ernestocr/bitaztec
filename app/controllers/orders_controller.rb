@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
     @order.price = @btc_price
     
     if @order.save
+      AdminMailer.new_order(@order).deliver_later
       redirect_to @order, notice: 'Pedido enviado exitosamente.'
     else
       render :new
@@ -32,6 +33,7 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
+      AdminMailer.order_submitted(@order).deliver_later
       redirect_to @order, notice: 'Pedido fue actualizado exitosamente.'
     else
       render :edit
@@ -40,6 +42,7 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
+    AdminMailer.order_cancelled().deliver_later
     redirect_to orders_url, notice: 'Tu pedido fue cancelado.'
   end
 

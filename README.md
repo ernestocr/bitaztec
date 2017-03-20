@@ -10,21 +10,21 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
+- simple notification system
 - QR code scanner -> address
 - Put address con completion
-- mail system
-  - user registration/confirmation [b-u]
-  - new order (maybe just on order submit) [b-a]
-  - order complete [b-u]
-  - order expired [b-u]
-  - new message [b-a, b-u]
-  - revoke order
 - implement frontend design
-- ? use xhr to toggle model status
 - buy page btc/peso calculator
 
 ### DONE:
 
+* mail system
+  * user registration/confirmation [b-u]
+  * new order/pending order [b-a]
+  * order complete [b-u]
+  * order expired [b-u]
+  * new message [b-a, b-u]
+  * revoke order
 * translate to spanish
 * order history pagination
 * add a lighthouse for order images
