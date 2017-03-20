@@ -1,0 +1,23 @@
+<h1>Pedido expirado.</h1>
+<p>Estimado usuario <b><%= @user.email %></b>. Tu orden se ha expirado. No pasa nada, si desea comprar bitcons vuelva crear un pedido <%= link_to 'aqui', url_for(controller: 'orders', action: 'new') %>.</p>
+<p>Detalles del pedido:</p>
+
+<table>
+  <tbody>
+    <tr> <td>Cantidad</td>
+      <td><%= @order.amount %></td>
+    </tr>
+    <tr>
+      <td>Precio</td>
+      <td><%= @order.price %></td>
+    </tr>
+    <tr>
+      <td>Domicilio</td>
+      <td><%= @order.address %></td>
+    </tr>
+    <tr>
+      <td>Se expiró</td>
+      <td><%= @order.expires_at.strftime('%d/%m/%Y a las %I:%M %p') %></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+<h1>Pedido completado!</h1>
+<p>Gracias estimado usuario <b><%= @user.email %></b>. Tu orden ha sido aprobada, y los bitcoins han sido enviados.</p>
+<p>Detalles del pedido:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Cantidad</td>
+      <td><%= @order.amount %></td>
+    </tr>
+    <tr>
+      <td>Precio</td>
+      <td><%= @order.price %></td>
+    </tr>
+    <tr>
+      <td>Domicilio</td>
+      <td><%= @order.address %></td>
+    </tr>
+    <tr>
+      <td>Verificación</td>
+      <td><%= link_to 'Blockchain', "https://blockchain.info/address/#{@order.address}" %></td>
+    </tr>
+    <tr>
+      <td>Ficha</td>
+      <td><%= link_to 'Transferencia en BitAztec', url_for(@order) %></td>
+    </tr>
+  </tbody>
+</table>

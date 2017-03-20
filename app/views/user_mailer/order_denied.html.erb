@@ -1,0 +1,23 @@
+<h1>Pedido rechazado.</h1>
+<p>Estimado usuario <b><%= @user.email %></b>. Tu orden ha sido rechazada. Esto probablemente se deba a que no es suficiente la evidencia que ha demostrado. Revise los mensajes de su orden para ver que procede. Gracias</p>
+<p>Detalles del pedido:</p>
+
+<table>
+  <tbody>
+    <tr> <td>Cantidad</td>
+      <td><%= @order.amount %></td>
+    </tr>
+    <tr>
+      <td>Precio</td>
+      <td><%= @order.price %></td>
+    </tr>
+    <tr>
+      <td>Domicilio</td>
+      <td><%= @order.address %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= link_to 'Ficha', url_for(@order) %></td>
+    </tr>
+  </tbody>
+</table>

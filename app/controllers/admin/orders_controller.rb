@@ -23,6 +23,8 @@ class Admin::OrdersController < Admin::BaseController
         authorized_by: current_user.id,
         completed_at: DateTime.now.utc 
       )
+
+      UserMailer.order_complete(@order).deliver_later
       
       redirect_to admin_order_path(@order), 
         flash: { notice: "El pedido ##{@order.id} fue completado." }
