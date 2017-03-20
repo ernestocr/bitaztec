@@ -2,15 +2,16 @@ body {
   padding: 0;
   background: #f7f7f7;
   text-align: center;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
-.email-table {
-  width: 538px;
-  padding: 20px;
+.container {
   background: #fff;
-  margin: 40px auto;
-  text-align: left;
-  font-family: 'Helvetica Neue', sans-serif;
+  border-radius: 3px;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
 }
 
 h1 {
