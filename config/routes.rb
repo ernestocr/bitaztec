@@ -1,12 +1,23 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  
+ 
+  # user buy route 
   resources :orders, except: :new
   match '/comprar', to: 'orders#new', as: :new_order, via: :get
 
+  # message creation route
   resources :messages, only: [:create]
 
+  # notifications
+  resources :notifications do
+    collection do
+      post :mark_as_read
+      get :count  
+    end
+  end
+
+  # .../admin/...
   namespace :admin do
     match '/', to: 'dashboard#index', via: :get
     

@@ -12,6 +12,7 @@ Built by: github.com/ernestocr
 
 - simple notification system
 - QR code scanner -> address
+  - JS https://cirocosta.github.io/qcode-decoder/
 - Put address con completion
 - implement frontend design
 - buy page btc/peso calculator

@@ -11,6 +11,7 @@ class User < ApplicationRecord
          :confirmable
 
   has_many :orders
+  has_many :notifications, foreign_key: :recipient_id
 
   include Gravtastic
   gravtastic

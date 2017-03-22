@@ -14,8 +14,13 @@ class MessagesController < ApplicationController
     
     if current_user.admin?
       # if admin created message, send notif. to user
+      Notification.create(recipient: message.order.user, action: 'new message', notifiable: message.order)
       UserMailer.new_message(message).deliver_later
     else
+      # send notif to all admins?
+      User.where(admin: true).each do |admin|
+        Notification.create(recipient: admin, action: 'new message', notifiable: message.order)
+      end
       AdminMailer.new_message(message).deliver_later
     end
 

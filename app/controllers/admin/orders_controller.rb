@@ -24,6 +24,8 @@ class Admin::OrdersController < Admin::BaseController
         completed_at: DateTime.now.utc 
       )
 
+      # notify user
+      Notification.create(recipient: @order.user, action: 'completed', notifiable: @order)
       UserMailer.order_complete(@order).deliver_later
       
       redirect_to admin_order_path(@order), 
@@ -32,6 +34,11 @@ class Admin::OrdersController < Admin::BaseController
     elsif params[:reject]
       # if not, then it's being rejected
       @order.update_attributes(submitted: false)
+
+      # notify user
+      Notification.create(recipient: @order.user, action: 'rejected', notifiable: @order)
+      UserMailer.order_denied(@order).deliver_later
+
       redirect_to admin_order_path(@order)
     end
   end
