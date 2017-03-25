@@ -34,6 +34,10 @@ $(document).on('turbolinks:load', function() {
   var input2 = $('#order_amount_m');
   var result = $('.calculator .money');
 
+  if ( !price.length || !input1.length ) {
+    return false;
+  }
+
   // amount -> money 
   input1.on('input', function(e) {
     var val = input1.val();

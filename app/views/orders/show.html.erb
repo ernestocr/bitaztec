@@ -62,6 +62,11 @@
 
         <%= simple_form_for(@order) do |f| %>
           <%= f.file_field :attachments, multiple: true %>
+          
+          <div class="evidence-preview">
+            <img />
+          </div>
+
           <%= f.hidden_field :submitted, value: true %>
           <%= f.submit 'Listo', class: 'btn btn-success' %>
         <% end %>

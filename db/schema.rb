@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322023423) do
+ActiveRecord::Schema.define(version: 20170325073029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20170322023423) do
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "payment_method_id"
-    t.integer  "amount"
+    t.decimal  "amount"
     t.integer  "price"
     t.boolean  "submitted",         default: false
     t.integer  "expires_in",        default: 3

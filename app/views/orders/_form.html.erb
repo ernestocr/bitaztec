@@ -4,7 +4,7 @@
 
   <%= f.input :price, disabled: true, input_html: { value: @btc_price } %>
 
-  <%= f.input :amount, autofocus: true %>
+  <%= f.input :amount, autofocus: true, input_html: { step: :any } %>
   <p>En moneda: <input type="number" id="order_amount_m">
 
 
