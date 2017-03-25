@@ -2,7 +2,10 @@
 
 <div class="nav sidebar flex-column">
   <a href="<%= admin_path %>" class="nav-link <%= 'active' if page == 'dashboard' %>">
-    <i class="fa fa-tachometer"></i> Dashboard
+    <i class="fa fa-tachometer"></i> Dashboard 
+    <% if @notifications != 0 %>
+      <span class="badge badge-danger float-right"><%= @notifications %></span>
+    <% end %>
   </a>
   <a href="<%= admin_orders_path %>" class="nav-link <%= 'active' if page == 'orders' %>">
     <i class="fa fa-bitcoin"></i> Pedidos
