@@ -15,12 +15,12 @@ Built by: github.com/ernestocr
 - simple notification system
 - QR code scanner -> address
   - JS https://cirocosta.github.io/qcode-decoder/
-- Put address con completion
+- Put address on completion
 - implement frontend design
-- buy page btc/peso calculator
 
 ### DONE:
 
+* buy page btc/peso calculator
 * mail system
   * user registration/confirmation [b-u]
   * new order/pending order [b-a]

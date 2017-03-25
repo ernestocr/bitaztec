@@ -26,7 +26,7 @@ function updateFinalCost(price, result, val) {
 }
 
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
 
   /* Calculator */
   var price  = $('#order_price');
