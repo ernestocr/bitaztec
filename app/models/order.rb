@@ -11,9 +11,9 @@ class Order < ApplicationRecord
 
   validates :user, presence: true
   validates :payment_method_id, presence: true
-  validates :amount, presence: true
+  validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :price, presence: true
-  validates :address, presence: true
+  # validates :address, presence: true
   
   validate :valid_btc_address
 
@@ -79,7 +79,7 @@ class Order < ApplicationRecord
 
   # Validator
   def valid_btc_address
-    if !Bitcoin.valid_address? address
+    if address and !Bitcoin.valid_address? address
       errors.add(:address, 'No es un wallet valido.')
     end
   end

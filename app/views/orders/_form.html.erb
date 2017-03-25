@@ -2,9 +2,21 @@
                     defaults: { wrapper_html: { class: 'field' } },
                     html: { class: 'ui form' }) do |f| %>
 
-  <%= f.input :amount, autofocus: true %>
   <%= f.input :price, disabled: true, input_html: { value: @btc_price } %>
-  <%= f.input :address %>
+
+  <%= f.input :amount, autofocus: true %>
+  <p>En moneda: <input type="number" id="order_amount_m">
+
+
+  <hr>
+
+  <div class="calculator">
+    <p>Cantidad a comprar: <span class="money"></span></p>
+  </div>
+  
+  <br>
+  
+  <%#= f.input :address %>
   <%= f.association :payment_method %>
 
   <%= f.submit 'Comprar!', class: 'ui blue button' %>

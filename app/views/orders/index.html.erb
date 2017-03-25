@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container pending-buy">
   
   <h2>Mi cuenta</h2>
   <hr>
@@ -8,7 +8,6 @@
     Pedidos creados: <%= current_user.orders.count %> &middot;
     Transacciones completadas: <%= current_user.orders.where(completed: true).count %>
   </p>
-  <hr>
   
   <table class="">
     <thead>
