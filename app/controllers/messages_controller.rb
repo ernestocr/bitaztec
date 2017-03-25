@@ -24,6 +24,7 @@ class MessagesController < ApplicationController
       AdminMailer.new_message(message).deliver_later
     end
 
+    # quick reload
     redirect_to :back
   end
 

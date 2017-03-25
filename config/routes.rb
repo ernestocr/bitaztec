@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
  
-  # user buy route 
+  # buy route 
   resources :orders, except: :new
   match '/comprar', to: 'orders#new', as: :new_order, via: :get
 
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     match '/', to: 'dashboard#index', via: :get
     
     resources :users
+    resources :settings
+    resources :account_holders
     
     resources :payment_methods do
       collection do
@@ -29,15 +31,12 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :settings
     resources :orders do
       collection do
         get 'history' => :history, as: :history
       end
     end
 
-    resources :account_holders
-    
     resources :banks do
       collection do
         get 'toggle/:id' => :toggle, as: :toggle
@@ -51,6 +50,8 @@ Rails.application.routes.draw do
     end
   end
   
+  # static pages
+
   root to: 'pages#home'
 
   get '/instrucciones', to: 'pages#howto', as: :howto

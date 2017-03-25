@@ -10,6 +10,8 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
+- deploy
+- change smtp to godaddy (useless)
 - simple notification system
 - QR code scanner -> address
   - JS https://cirocosta.github.io/qcode-decoder/

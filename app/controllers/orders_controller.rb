@@ -5,12 +5,15 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :set_btc_price, only: [:new, :create]
   
+  # can't access new, create if they have a pending order  
   before_action :has_pending_order, only: [:new, :create]
 
+  # user's main page
   def index
     @orders = current_user.orders.all
   end
 
+  # order receipt
   def show
     read_msgs @order    
   end
@@ -21,6 +24,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.new(order_params)
+    # set price from db, not from a form
     @order.price = @btc_price
     
     if @order.save
@@ -32,6 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def update
+    # called only after image upload and address submition
     if @order.update(order_params)
       AdminMailer.order_submitted(@order).deliver_later
       redirect_to @order, notice: 'Pedido fue actualizado exitosamente.'

@@ -1,5 +1,6 @@
 class AdminMailer < ApplicationMailer
 
+  # get list of emails form all admins
   default to: Proc.new { User.where(admin: true).pluck(:email) },
           from: 'notification@bitaztec.com'
 
