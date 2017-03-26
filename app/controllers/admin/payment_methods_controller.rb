@@ -45,14 +45,14 @@ class Admin::PaymentMethodsController < Admin::BaseController
   end
 
   private
-    
+
     def set_payment_method
       @payment_method = PaymentMethod.find(params[:id])
     end
 
     def payment_method_params
       params.require(:payment_method).permit(
-        :name, :method, :schedule, :instructions, :notice, 
+        :name, :method, :schedule, :instructions, :notice,
         :active, :details, :expires, :image, bank_ids: []
       )
     end

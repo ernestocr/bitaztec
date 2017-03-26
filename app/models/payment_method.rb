@@ -2,7 +2,7 @@ class PaymentMethod < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
   default_scope { where(deprecated: false) }
-  
+
   validates :name, presence: true
   validates :method, presence: true
   validates :instructions, presence: true

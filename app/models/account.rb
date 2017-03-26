@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
-  
+
   validates :number, length: { is: 19 }, allow_blank: true
   validates :clabe, length: { is: 18 }, allow_blank: true
   validates :card, length: { maximum: 19, minimum: 13 }, allow_blank: true

@@ -8,7 +8,7 @@ class AdminMailer < ApplicationMailer
     @order = order
     mail(subject: "Pedido nuevo, #{@order.amount} a #{@order.price}")
   end
-  
+
   def order_submitted(order)
     @order = order
     mail(subject: "Pedido pagado, #{@order.amount} a #{@order.price}")

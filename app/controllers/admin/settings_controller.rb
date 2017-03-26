@@ -41,7 +41,7 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   private
-    
+
     def set_setting
       @setting = Setting.find(params[:id])
     end

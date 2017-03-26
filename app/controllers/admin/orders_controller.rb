@@ -12,25 +12,25 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def show
-    read_msgs @order    
+    read_msgs @order
   end
 
   def update
     if params[:complete]
       # if the order is now complete
       @order.update_attributes(
-        completed: true, 
+        completed: true,
         authorized_by: current_user.id,
-        completed_at: DateTime.now.utc 
+        completed_at: DateTime.now.utc
       )
 
       # notify user
       Notification.create(recipient: @order.user, action: 'completed', notifiable: @order)
       UserMailer.order_complete(@order).deliver_later
-      
-      redirect_to admin_order_path(@order), 
+
+      redirect_to admin_order_path(@order),
         flash: { notice: "El pedido ##{@order.id} fue completado." }
-    
+
     elsif params[:reject]
       # if not, then it's being rejected
       @order.update_attributes(submitted: false)
@@ -53,7 +53,7 @@ class Admin::OrdersController < Admin::BaseController
     def set_order
       @order = Order.find(params[:id])
     end
-    
+
     # update :admin_read
     def read_msgs order
       last_msgs = @order.messages.where(admin_read: false)

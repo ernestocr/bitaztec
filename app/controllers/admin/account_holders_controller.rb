@@ -11,7 +11,7 @@ class Admin::AccountHoldersController < Admin::BaseController
   def create
     # same page
     @account_holders = AccountHolder.all
-    
+
     @account_holder = AccountHolder.new(account_holder_params)
     if @account_holder.save
       redirect_to admin_account_holders_path,
@@ -24,7 +24,7 @@ class Admin::AccountHoldersController < Admin::BaseController
   def update
     # same page
     @account_holders = AccountHolder.all
-    
+
     if @account_holder.update_attributes(account_holder_params)
       redirect_to admin_account_holders_path,
         flash: { notice: 'Dueño de cuenta actualizado.' }

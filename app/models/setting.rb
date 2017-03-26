@@ -1,7 +1,7 @@
 class Setting < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
-  
+
   validates :key, presence: true
 
   serialize :value
@@ -12,7 +12,7 @@ class Setting < ApplicationRecord
     if result
       return result.value
     end
-  
+
     return nil
   end
 

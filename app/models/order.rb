@@ -2,7 +2,7 @@ require 'bitcoin'
 
 class Order < ApplicationRecord
 
-  default_scope { order(created_at: :desc) } 
+  default_scope { order(created_at: :desc) }
   default_scope { where('expires_at > ? OR submitted = true', DateTime.now.utc) }
   has_many :messages
 
@@ -14,7 +14,7 @@ class Order < ApplicationRecord
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :price, presence: true
   # validates :address, presence: true
-  
+
   validate :valid_btc_address
 
   mount_uploaders :attachments, AttachmentUploader
@@ -47,7 +47,7 @@ class Order < ApplicationRecord
   end
 
   # Messages
-  
+
   # unread by user?
   def new_message_for_user?
     messages.each do |msg|

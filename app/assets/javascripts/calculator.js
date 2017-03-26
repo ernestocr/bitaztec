@@ -14,10 +14,10 @@ function updateFinalCost(price, result, val) {
   if ( $.isNumeric(n) && n > 0 ) {
     // round up
     n = Math.ceil(n);
-    
+
     // add commas and stuff
     var res = n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-    
+
     // update dom
     result.text('$' + res);
   } else {
@@ -38,7 +38,7 @@ $(document).on('turbolinks:load', function() {
     return false;
   }
 
-  // amount -> money 
+  // amount -> money
   input1.on('input', function(e) {
     var val = input1.val();
     if ( $.isNumeric(val) && val >= 0 ) {
