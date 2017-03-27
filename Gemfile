@@ -68,7 +68,7 @@ gem 'gravtastic'
 gem 'bitcoin-ruby'
 
 # For heroku
-gem 'rails_12factor', group: :production
+# gem 'rails_12factor', group: :production
 
 # Pagination
 gem 'will_paginate', '~> 3.1.0'
