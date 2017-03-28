@@ -10,7 +10,6 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- add better titles
 - add favicon
 - add SSL (free)
 - setup domain email and use smtp
@@ -24,6 +23,7 @@ Built by: github.com/ernestocr
 
 ### DONE:
 
+* add better titles
 * deploy
 * buy page btc/peso calculator
 * mail system
