@@ -18,4 +18,11 @@ class PagesController < ApplicationController
   def legal
   end
 
+  # TESTING GODADDY SMTP EMAIL RELAY
+  def godaddy
+    user = User.first
+    UserMailer.godaddy(user).deliver_now
+    render text: 'check logs to see if email went through'
+  end
+
 end

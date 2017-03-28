@@ -25,4 +25,9 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Mensaje nuevo')
   end
 
+  def godaddy(user)
+    @user = user
+    mail(to: @user.email, subject: 'Using GoDaddy email relay')
+  end
+  
 end

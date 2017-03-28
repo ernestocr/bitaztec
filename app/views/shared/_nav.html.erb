@@ -33,7 +33,7 @@
         <%= link_to 'Mi cuenta', orders_path, class: "#{'active' if page == 'index'}" %>
       </li>
       <li>
-        <%= link_to 'Comprar', new_order_path, class: "#{'active' if page == 'new'}" %>
+        <%= link_to 'Comprar', new_order_path, class: "#{'active' if page == 'new' and controller_name == 'orders'}" %>
       </li>
       <li>
         <%= link_to 'Como funciona', howto_path, class: "#{'active' if page == 'howto'}" %>

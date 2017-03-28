@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BitAztec</title>
+    <title>
+      <%= if content_for?(:title) then yield(:title) + ' | ' end %>
+      BitAztec
+    </title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload' %>

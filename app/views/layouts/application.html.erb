@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BitAztec</title>
+
+    <!-- Devise titles -->
+    <% if controller_name == 'registrations' %>
+      <% title 'Registro' %>
+    <% elsif controller_name == 'sessions' %>
+      <% title 'Inicia sesión' %> 
+    <% elsif controller_name == 'passwords' %>
+      <% title 'Contraseña' %> 
+    <% elsif controller_name == 'confirmations' %>
+      <% title 'Confirmación' %> 
+    <% end %>
+
+    <title>
+      <%= if content_for?(:title) then yield(:title) + ' | ' end %>
+      BitAztec
+    </title>
+    
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>

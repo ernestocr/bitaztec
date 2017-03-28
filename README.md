@@ -10,16 +10,21 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- deploy
-- change smtp to godaddy (useless)
+- add better titles
+- add favicon
+- add SSL (free)
+- setup domain email and use smtp
 - simple notification system
+  - waiting for UI
 - QR code scanner -> address
   - JS https://cirocosta.github.io/qcode-decoder/
+  - Not working, but there is a way...
 - Put address on completion
 - implement frontend design
 
 ### DONE:
 
+* deploy
 * buy page btc/peso calculator
 * mail system
   * user registration/confirmation [b-u]
