@@ -10,8 +10,6 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- add favicon
-- add SSL (free)
 - setup domain email and use smtp
 - simple notification system
   - waiting for UI
@@ -23,6 +21,8 @@ Built by: github.com/ernestocr
 
 ### DONE:
 
+* add favicon
+* add SSL (free)
 * add better titles
 * deploy
 * buy page btc/peso calculator
