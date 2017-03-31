@@ -58,7 +58,6 @@ Rails.application.configure do
 
   # ActionMailer
   # GMAIL
-=begin
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
@@ -68,18 +67,6 @@ Rails.application.configure do
 		password:             ENV['gmail_password'],
 		authentication:       'plain',
 		enable_starttls_auto: true
-  }
-=end
-
-  # GODADDY
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: 'smtpout.secureserver.net',
-    domain: 'www.example.com',
-    port: 80,
-    user_name: 'example@example.com',
-    password: 'yourpassword',
-    authentication: :plain
   }
 
 end

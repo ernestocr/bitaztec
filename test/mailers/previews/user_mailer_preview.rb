@@ -20,9 +20,4 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.new_message(msg)
   end
 
-  def godaddy
-    user = User.first
-    UserMailer.godaddy(user)
-  end
-
 end
