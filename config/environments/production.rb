@@ -91,9 +91,11 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:        'smtpout.secureserver.net',
     domain:         'bitaztec.com',
-    port:           '80',
-    user_name:      ENV['goddady_username'],
-    password:       ENV['goddady_password'],
+    port:           80,
+    #user_name:      @username,
+    #password:       @password,
+    user_name:      ENV['godaddy_username'],
+    password:       ENV['godaddy_password'],
     authentication: :plain
   }
 

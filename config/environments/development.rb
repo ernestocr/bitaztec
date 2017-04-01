@@ -58,6 +58,7 @@ Rails.application.configure do
 
   # ActionMailer
   # GMAIL
+=begin 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
@@ -67,6 +68,25 @@ Rails.application.configure do
 		password:             ENV['gmail_password'],
 		authentication:       'plain',
 		enable_starttls_auto: true
+  }
+=end
+
+  config.action_mailer.perform_deliveries = true 
+  config.action_mailer.raise_delivery_errors = true
+
+  #@username = ENV['godaddy_username']
+  #@password = ENV['godaddy_password']
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:        'smtpout.secureserver.net',
+    domain:         'bitaztec.com',
+    port:           80,
+    #user_name:      @username,
+    #password:       @password,
+    user_name:      ENV['godaddy_username'],
+    password:       ENV['godaddy_password'],
+    authentication: :plain
   }
 
 end
