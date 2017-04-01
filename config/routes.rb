@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  # TESTING GODADDY SMTP EMAIL RELAY
-  get '/godaddy', to: 'pages#godaddy'
-
   devise_for :users
  
   # buy route 
