@@ -2,16 +2,16 @@ class AdminMailer < ApplicationMailer
 
   # get list of emails form all admins
   default to: Proc.new { User.where(admin: true).pluck(:email) },
-          from: 'notification@bitaztec.com'
+          from: 'BitAztec <admin@bitaztec.com>'
 
   def new_order(order)
     @order = order
-    mail(subject: "Pedido nuevo, #{@order.amount} a #{@order.price}")
+    mail(subject: "Pedido nuevo, #{@order.amount} a #{number_to_currency @order.price}")
   end
 
   def order_submitted(order)
     @order = order
-    mail(subject: "Pedido pagado, #{@order.amount} a #{@order.price}")
+    mail(subject: "Pedido pagado, #{@order.amount} a #{number_to_currency @order.price}")
   end
 
   def order_cancelled
