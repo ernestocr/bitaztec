@@ -4,8 +4,6 @@
 */
 
 $(document).on('turbolinks:load', function() {
-  $('.nav ul').removeClass('is-acitve');
-
   $('.hamburger').on('click', function() {
     $(this).toggleClass('is-active');
     $('.nav ul').toggleClass('is-active');

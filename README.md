@@ -10,7 +10,8 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- setup domain email and use smtp
+- devise redirect back (it's the default)
+- check mobile nav, turbolinks
 - simple notification system
   - waiting for UI
 - QR code scanner -> address
@@ -21,6 +22,7 @@ Built by: github.com/ernestocr
 
 ### DONE:
 
+* setup domain email and use smtp
 * add favicon
 * add SSL (free)
 * add better titles

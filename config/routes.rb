@@ -50,10 +50,15 @@ Rails.application.routes.draw do
     end
   end
   
-  # static pages
+  authenticated :user do
+    root to: 'orders#index'
+  end
 
   root to: 'pages#home'
 
+  # static pages
+
+  get '/home', to: 'pages#home', as: :home
   get '/instrucciones', to: 'pages#howto', as: :howto
   get '/legal', to: 'pages#legal', as: :legal
   get '/preguntas', to: 'pages#faq', as: :faq
