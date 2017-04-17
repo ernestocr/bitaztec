@@ -11,6 +11,38 @@ body {
   max-width: 960px;
 }
 
+.alert {
+  max-width: 960px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: $grey;
+
+  button {
+    outline: none;
+    position: relative;
+    top: -10px;
+    font-size: 1.5em;
+    float: right;
+    border: none;
+    background: none;
+    font-weight: lighter;
+  }
+
+  &.alert-success {
+    background-color: $green;
+    color: $white;
+    
+    button {
+      color: $white;
+    }
+  }
+
+  &.alert-warning {
+    background-color: $yellow;
+  }
+}
+
 .footer {
   background: $blue;
   padding: 20px 0 10px 0;

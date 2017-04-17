@@ -1,0 +1,72 @@
+@import 'colors';
+
+.devise {
+  max-width: 300px;
+  margin: 60px auto 100px auto;
+
+  h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  a {
+    color: $dgrey;
+    display: block;
+  }
+
+  #error_explanation {
+    margin-bottom: 20px;
+    
+    h2 {
+      font-size: 1em;
+      color: $red;
+      display: none;
+    }
+
+    ul {
+      list-style-type: disc;
+
+      li {
+        color: $red;
+      }
+    }
+  }
+
+  form {
+    br {
+      display: none;
+    }
+
+    margin-bottom: 20px;
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    input[type=email],
+    input[type=password] {
+      width: 98%;
+      font-size: 1em;
+      margin-top: 4px;
+      outline: none;
+      border: 1px solid #ddd;
+      background: $white;
+      padding: 3px;
+
+      &:focus {
+        border-color: $blue;
+      }
+    }
+
+    input[type=submit] {
+      width: 100%;
+      text-align: center;
+      color: $white;
+      background-color: $blue;
+      border: none;
+      font-size: 1em;
+      padding: 10px 0;
+    }
+  }
+}
