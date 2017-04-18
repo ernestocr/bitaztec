@@ -10,7 +10,7 @@
  */
 
 function updateFinalCost(price, result, val) {
-  var n = price.val()*val;
+  var n = price*val;
   if ( $.isNumeric(n) && n > 0 ) {
     // round up
     n = Math.ceil(n);
@@ -26,15 +26,15 @@ function updateFinalCost(price, result, val) {
 }
 
 
-$(document).on('turbolinks:load', function() {
+$(document).on('ready', function() {
 
   /* Calculator */
-  var price  = $('#order_price');
+  var price  = $('#order_price').data('value');
   var input1 = $('#order_amount');
   var input2 = $('#order_amount_m');
   var result = $('.calculator .money');
-
-  if ( !price.length || !input1.length ) {
+  
+  if ( !input1.length ) {
     return false;
   }
 
@@ -42,7 +42,7 @@ $(document).on('turbolinks:load', function() {
   input1.on('input', function(e) {
     var val = input1.val();
     if ( $.isNumeric(val) && val >= 0 ) {
-      var money = price.val()*val;
+      var money = price*val;
       // update other input
       input2.val(money);
     } else {
@@ -55,7 +55,7 @@ $(document).on('turbolinks:load', function() {
   input2.on('input', function(e) {
     var val = input2.val();
     if ( $.isNumeric(val) && val >= 0 ) {
-      var amount = val/price.val();
+      var amount = val/price;
       // amount = Math.round( (10000*amount) )/10000;
       // update other input
       input1.val(amount);

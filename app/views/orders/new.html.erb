@@ -1,8 +1,61 @@
 <% title 'Crear pedido nuevo' %>
 
-<div class="container pending-buy">
-  <h1>Comprar Bitcoin</h1>
-  <br>
-  
-  <%= render 'form', order: @order %>
+<div class="buy">
+  <div class="container">
+    <h1>Comprar</h1>
+
+    <div class="steps-tabs">
+      <div class="tab tab-1 active">1</div>
+      <div class="tab tab-2">2</div>
+      <div class="tab tab-3">3</div>
+    </div>
+
+    <div class="steps">
+
+      <div class="step step-1 active">
+        <h3>Ingrese la cantidad</h3>
+        <div class="content">
+          <p>Precio actual 1 BTC: <span data-value="<%= @btc_price %>" id="order_price"><%= number_to_currency @btc_price, separator: '.', precision: 0 %></span></p>
+
+          <input type="number" placeholder="Bitcoin..." step="any" id="order_amount">
+          <input type="number" placeholder="Pesos..." id="order_amount_m">
+        </div>
+      </div>
+
+      <div class="step step-2">
+        <h3>Escoja su método de pago</h3>
+
+        <div class="content">
+          <select class="select required" aria-invalid="true" id="order_payment_method">
+            <option value=""></option>
+            <option value="1">Depósito en Santander</option>
+          </select> 
+        </div>
+      </div>
+
+      <div class="step step-3">
+        <h3>Verifique su pedido</h3>
+
+        <div class="content">
+          <p>
+            Usted quiere comprar 
+            <span class="verify-amount">1</span> BTC
+            a $<span class="verify-price"><%= @btc_price %></span>
+            para un total de $<span class="verify-total">20348394</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="navigation">
+        <div class="buttons">
+          <button class="prev">Regresar</button>
+          <button class="next">Continuar</button>
+          <button class="make-order">Comprar!</button>
+        </div>  
+      </div>
+
+    </div>
+
+    <%= render 'form', order: @order %>
+  </div>  
 </div>
