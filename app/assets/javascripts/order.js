@@ -1,3 +1,7 @@
+/*
+ * Show file before actual upload
+ */
+
 $(document).on('turbolinks:load', function() {
   if ( !$('.pending-buy').length ) { return false; }
 

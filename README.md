@@ -10,13 +10,8 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- devise redirect back (it's the default)
-- check mobile nav, turbolinks
 - simple notification system
   - waiting for UI
-- QR code scanner -> address
-  - JS https://cirocosta.github.io/qcode-decoder/
-  - Not working, but there is a way...
 - Put address on completion
 - implement frontend design
 
