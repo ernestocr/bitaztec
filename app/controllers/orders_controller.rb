@@ -10,7 +10,8 @@ class OrdersController < ApplicationController
 
   # user's main page
   def index
-    @orders = current_user.orders.all
+    @history = current_user.orders.where(completed: true)
+    @order = current_user.orders.where(completed: false).first
   end
 
   # order receipt

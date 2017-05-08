@@ -90,3 +90,6 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.1'
 end
 
+group :development do
+  gem 'irbtools', require: 'irbtools/binding'
+end

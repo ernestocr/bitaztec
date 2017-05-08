@@ -1,0 +1,164 @@
+@import 'colors';
+
+.account {
+  b {
+    font-weight: bold;
+  }
+
+  margin-top: 20px;
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  hr {
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .data {
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  table {
+    text-align: left;
+    border: 1px solid $ldgrey;
+
+    thead {
+      th {
+        font-weight: 600;
+        background: $grey;
+      }
+    }
+
+    td, th {
+      padding: 5px;
+      border: 1px solid $ldgrey;
+    }
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    
+    & > div {
+      flex: 1;
+      min-width: 320px;
+    }
+  }
+
+  .notifications {
+    margin-right: 20px;
+    margin-bottom: 40px;
+    max-height: 300px;
+    overflow: scroll;
+
+    h2 {
+      small {
+        font-size: 0.5em;
+        float: right;
+        position: relative;
+        top: 10px;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $black;
+    }
+
+    .notification {
+      border: 1px solid $ldgrey;
+      margin-bottom: 10px;
+      padding: 5px;
+      transition: all .2s;
+      
+      &:hover {
+        background: $lgrey;
+      }
+
+      span {
+        color: $ldgrey;
+        font-size: 0.8em;
+      }
+    }
+
+    .no-notifs {
+      border: 1px solid $ldgrey;
+      padding: 10px;
+      text-align: center;
+      color: $ldgrey;
+      margin-top: 20px;
+    }
+  }
+
+  .pending {
+    .order {
+      margin-top: 20px;
+      border: 1px solid $ldgrey;
+      padding: 10px;
+      
+      p {
+        margin-bottom: 10px;
+      }
+
+      span {
+        font-weight: 600;
+      }
+    }
+
+    .no-order {
+      border: 1px solid $ldgrey;
+      padding: 10px;
+      text-align: center;
+      color: $ldgrey;
+      margin-top: 20px;
+    }
+  }
+
+  .history {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+
+    .table-container {
+      overflow: scroll;
+    }
+    
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+    
+    table {
+      width: 100%;
+    } 
+  }
+}
+
+@media (max-width: 768px) {
+  .notifications .mark-as-read {
+    float: none !important;
+    display: block !important;
+    position: static !important;
+    margin-top: 5px;
+  }
+
+  .grid .notifications {
+    margin-right: 0;
+  }
+}

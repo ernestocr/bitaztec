@@ -32,4 +32,8 @@ class User < ApplicationRecord
     self.orders.where(completed: true).count
   end
 
+  def get_notifications
+    self.notifications.unread
+  end
+
 end
