@@ -12,6 +12,15 @@ class OrdersController < ApplicationController
   def index
     @history = current_user.orders.where(completed: true)
     @order = current_user.orders.where(completed: false).first
+    if @order and @order.expired
+      Notification.create(
+        recipient: @order.user,
+        action: 'expired',
+        notifiable: @order
+      )
+      @order.destroy
+      @order = nil
+    end
   end
 
   # order receipt

@@ -93,3 +93,6 @@ end
 group :development do
   gem 'irbtools', require: 'irbtools/binding'
 end
+
+# for Cron jobs
+gem 'whenever', :require => false
