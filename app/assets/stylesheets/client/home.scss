@@ -1,6 +1,8 @@
 @import 'colors';
 
 .home {
+  background: #ECECEC;
+
   .call-to-action {
     text-align: center;
 
@@ -48,7 +50,12 @@
 
   .mentions {
     text-align: center;
-    padding: 40px 0;
+    padding: 40px 0 20px;
+    background: #ECECEC;
+
+    img {
+      max-width: 220px;
+    }
   }
 
   .info {
