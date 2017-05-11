@@ -63,5 +63,6 @@ Rails.application.routes.draw do
   get '/legal', to: 'pages#legal', as: :legal
   get '/preguntas', to: 'pages#faq', as: :faq
   get '/contacto', to: 'pages#contact', as: :contact
+  post '/contacto', to: 'pages#send_message', as: :contact_forms
 
 end

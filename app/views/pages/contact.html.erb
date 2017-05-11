@@ -1,3 +1,28 @@
 <% title 'Contacto' %>
 
-<h2>Contacto</h2>
+<div class="contact">
+  <div class="container">
+    <h2>Contacto</h2>
+
+    <div class="contact-form">
+      <%= form_for @contact_form do |f| %>
+        <div class="field">
+          <label class="icon name"></label>
+          <%= f.text_field :name, placeholder: 'Nombre', autofocus: true %>
+        </div>
+
+        <div class="field">
+          <label class="icon at"></label>
+          <%= f.email_field :email, placeholder: 'Correo electrónico' %>
+        </div>
+
+        <div class="field">
+          <label class="icon message"></label>
+          <%= f.text_area :message, placeholder: 'Mensaje ó duda...' %>
+        </div>
+
+        <center><%= f.submit 'Enviar' %></center>
+      <% end %>
+    </div>
+  </div>
+</div>

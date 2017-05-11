@@ -1,87 +1,87 @@
 <% title 'Mi cuenta' %>
 
-<div class="container account">
-  
+<div class="account">
+
   <h2>Mi cuenta</h2>
-  <hr>
-
-  <div class="data"> 
-    <p>Miembro desde hace <%= time_ago_in_words current_user.created_at %></p>
-    <p>Transacciones completadas: <b><%= current_user.orders.where(completed: true).count %></b></p>
-  </div>
-
-  <hr />
-
-  <div class="grid">
-
-    <div class="notifications">
-      <h2>Notificaciones <small class="mark-as-read">Marcar como leidos</small></h2>
-      <% current_user.get_notifications.each do |notif| %>
-        <a href="<%= notif.link %>">
-          <div class="notification">
-            <span><%= formatted_date notif.created_at %></span>
-            <p><%= notif.message %></p>
-          </div>
-        </a>
-      <% end %>
-      <div class="no-notifs" style="<%= 'display: none;' if current_user.get_notifications.count > 0 %>">
-        <p>No tienes notificaciones :)</p>
-      </div>
+  
+  <div class="container">
+    <center><div class="icon"></div></center>
+    
+    <div class="data"> 
+      <p>Miembro desde hace <%= time_ago_in_words current_user.created_at %></p>
+      <p><b><%= current_user.orders.where(completed: true).count %></b> transacciones completadas</p>
     </div>
 
-    <div class="pending">
-      <h2>Pedido activo</h2>
-      
-      <% if @order %>
-        <div class="order">
-          <p>Cantidad: <span><%= @order.amount  %></span></p>
-          <p>Precio: <span><%= number_to_currency @order.price, precision: 0  %></span></p>
-          <p>Estado: <span><%= @order.amount  %></span></p>
-          <p>Expiración: <span><%= formatted_date @order.expires_at  %></span></p>
-          <p><%= link_to 'Ver ficha', @order %></p>
+    <div class="grid">
+
+      <div class="notifications">
+        <h2>Notificaciones <small class="mark-as-read">Marcar como leidos</small></h2>
+        <% current_user.get_notifications.each do |notif| %>
+          <a href="<%= notif.link %>">
+            <div class="notification">
+              <span><%= formatted_date notif.created_at %></span>
+              <p><%= notif.message %></p>
+            </div>
+          </a>
+        <% end %>
+        <div class="no-notifs" style="<%= 'display: none;' if current_user.get_notifications.count > 0 %>">
+          <p>No tienes notificaciones :)</p>
         </div>
-      <% else %>
-        <p class="no-order">
-          No tienes un pedido activo.
-          <%= link_to 'Crea uno', new_order_path %>
-        </p>
-      <% end %>
-    </div> 
-    
-    </div> <!-- End grid -->
-      
-    <div class="history">
-      <h2>Historial</h2>
-
-      <div class="table-container">      
-        <table>
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
-              <th>Estado</th>
-              <th>Método de pago</th>
-              <th colspan="2"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @history.each do |order| %>
-              <tr>
-                <td><%= formatted_date(order.created_at) %></td>
-                <td><%= order.amount %></td>
-                <td><%= number_to_currency order.price, precision: 0 %></td>
-                <td><%= order.status %></td>
-                <td><%= order.payment_method.name %></td>
-                <td><%= link_to 'Ficha', order_path(order), class: 'ui small button' %></td>
-                <td><%= render 'admin/orders/message_count', order: order %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
       </div>
-    </div> <!-- end history -->
 
+      <div class="pending">
+        <h2>Pedido activo</h2>
+        
+        <% if @order %>
+          <div class="order">
+            <p>Cantidad: <span><%= @order.amount  %></span></p>
+            <p>Precio: <span><%= number_to_currency @order.price, precision: 0  %></span></p>
+            <p>Estado: <span><%= @order.amount  %></span></p>
+            <p>Expiración: <span><%= formatted_date @order.expires_at  %></span></p>
+            <p><%= link_to 'Ver ficha', @order %></p>
+          </div>
+        <% else %>
+          <p class="no-order">
+            No tienes un pedido activo.
+            <%= link_to 'Crea uno', new_order_path %>
+          </p>
+        <% end %>
+      </div> 
+      
+      </div> <!-- End grid -->
+        
+      <div class="history">
+        <h2>Historial</h2>
+
+        <div class="table-container">      
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Método de pago</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @history.each do |order| %>
+                <tr>
+                  <td><%= formatted_date(order.created_at) %></td>
+                  <td><%= order.amount %></td>
+                  <td><%= number_to_currency order.price, precision: 0 %></td>
+                  <td><%= order.status %></td>
+                  <td><%= order.payment_method.name %></td>
+                  <td><%= link_to 'Ficha', order_path(order), class: 'ui small button' %></td>
+                  <td><%= render 'admin/orders/message_count', order: order %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div> <!-- end history -->
+  </div> <!-- end container -->
 </div>
 

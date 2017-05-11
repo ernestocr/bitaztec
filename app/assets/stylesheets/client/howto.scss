@@ -21,14 +21,37 @@
     .step {
       margin-bottom: 20px;
       overflow: auto;
-      height: 100px;
+      height: 120px;
       min-height: 100px;
+      box-shadow: 0 2px 2px $mgrey;
 
       .image {
         min-height: 100%;
         width: 30%;
         float: left;
         background: $blue;
+        //background-size: 90%;
+        background-position: center;
+        
+        &.step-1 {
+          background-image: image-url('how/1.png');
+        }
+
+        &.step-2 {
+          background-image: image-url('how/2.png');
+        }
+
+        &.step-3 {
+          background-image: image-url('how/3.png');
+        }
+
+        &.step-4 {
+          background-image: image-url('how/4.png');
+        }
+
+        &.step-5 {
+          background-image: image-url('how/5.png');
+        }
       }
 
       .description {

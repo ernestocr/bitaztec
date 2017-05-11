@@ -96,3 +96,8 @@ end
 
 # for Cron jobs
 gem 'whenever', :require => false
+
+# don't re-invent the wheel
+gem 'mail_form', '~> 1.6'
+
+
