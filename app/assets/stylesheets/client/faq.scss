@@ -1,0 +1,37 @@
+@import "colors";
+
+.faq {
+  margin: 50px 0 100px;
+
+  h2 {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    
+    b {
+      font-weight: bold;
+    }
+  }
+
+  .questions {
+    max-width: 700px;
+
+    div {
+      margin: 40px 0;
+    }
+
+    p:first-child {
+      font-weight: bold;
+      color: $yellow;
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.5em;
+      color: $black;
+    
+      a {
+        color: $blue;
+      }
+    }
+  }
+}
