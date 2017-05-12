@@ -13,11 +13,14 @@
     <div class="steps">
 
       <div class="step step-1 active">
-        <h3>Ingrese la cantidad</h3>
+        <h3>Ingrese la cantidad deseada</h3>
+        <p>Precio actual 1 BTC: <span data-value="<%= @btc_price %>" id="order_price"><%= number_to_currency @btc_price, separator: '.', precision: 0 %></span></p>
+        
         <div class="content">
-          <p>Precio actual 1 BTC: <span data-value="<%= @btc_price %>" id="order_price"><%= number_to_currency @btc_price, separator: '.', precision: 0 %></span></p>
-
-          <input type="number" placeholder="Bitcoin..." step="any" id="order_amount">
+          <span class="icon btc"></span>
+          <input type="number" placeholder="Bitcoin..." step="any" id="order_amount" autofocus>
+          
+          <span class="icon s"></span>
           <input type="number" placeholder="Pesos..." id="order_amount_m">
         </div>
       </div>
@@ -26,10 +29,26 @@
         <h3>Escoja su método de pago</h3>
 
         <div class="content">
-          <select class="select required" aria-invalid="true" id="order_payment_method">
-            <option value=""></option>
-            <option value="1">Depósito en Santander</option>
-          </select> 
+          
+          <div class="types">
+            <div data-type="deposit"><span>Depósito Bancario</span></div> 
+            <div data-type="transfer"><span>Transferencia Electrónica</span></div> 
+            <div data-type="other"><span>ATM</span></div> 
+          </div>
+
+          <div class="options">
+            <div data-value="1" data-type="deposit">
+              Depósito en Bancomer | 8am - 8pm
+            </div>
+            <div data-value="2" data-type="deposit">
+              Depósito en HSBC | 8am - 8pm
+            </div>
+            <div data-value="3" data-type="deposit">
+              Depósito en Banamex | 8am - 8pm
+            </div>
+            </div>
+          
+          <input type="hidden" id="order_payment_method"> 
         </div>
       </div>
 

@@ -36,7 +36,7 @@
           <div class="order">
             <p>Cantidad: <span><%= @order.amount  %></span></p>
             <p>Precio: <span><%= number_to_currency @order.price, precision: 0  %></span></p>
-            <p>Estado: <span><%= @order.amount  %></span></p>
+            <p>Estado: <span><%= @order.status  %></span></p>
             <p>Expiración: <span><%= formatted_date @order.expires_at  %></span></p>
             <p><%= link_to 'Ver ficha', @order %></p>
           </div>

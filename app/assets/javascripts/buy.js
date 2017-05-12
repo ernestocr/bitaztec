@@ -58,29 +58,29 @@ $(document).ready(function() {
     
     $('.make-order').hide();
 
-    if ( current_step == 1 ) {
+    if ( CURRENT_STEP == 1 ) {
       
       $('.step').hide();
       $('.step-2').show();
       $('.prev').show();
 
-      current_step = 2;
+      CURRENT_STEP = 2;
     
-    } else if ( current_step == 2) {
+    } else if ( CURRENT_STEP == 2) {
       
-      if ( selected_method != '' ) {
+      if ( SELECTED_METHOD != '' ) {
         $('.step').hide();
         $('.step-3').show();
         $('.next').hide();
         $('.make-order').show();
 
         confirmBuy();
-        current_step = 3;
+        CURRENT_STEP = 3;
       }
 
     }
     
-    changeTab(current_step); 
+    changeTab(CURRENT_STEP); 
   });
   
   // GO BACK
@@ -88,20 +88,43 @@ $(document).ready(function() {
     $('.step').hide();
     $('.make-order').hide();
 
-    if ( current_step == 2 ) {
+    if ( CURRENT_STEP == 2 ) {
+      
       $('.step-1').show();
       $('.prev').hide();
 
-      current_step = 1;
-    } else if ( current_step == 3 ) {
+      CURRENT_STEP = 1;
+
+    } else if ( CURRENT_STEP == 3 ) {
+      
       $('.step-2').show();
       $('.prev').show();
       $('.next').show();
 
-      current_step = 2;
+      CURRENT_STEP = 2;
     }
 
-    changeTab(current_step); 
+    changeTab(CURRENT_STEP); 
+  });
+
+  // SHOW METHOD OPTIONS
+  $('.types div').on('click', function() {
+    $('.types div').removeClass('selected');
+    $(this).addClass('selected');
+
+    var method_type = $(this).data('type');
+
+    $('.options div').hide();
+    $('.options div[data-type="' + method_type + '"]').show();
+  });
+
+  // CHOOSE METHOD OPTION
+  $('.options div').on('click', function() {
+    $('.options div').removeClass('selected');
+    $(this).addClass('selected');
+
+    SELECTED_METHOD = $(this).data('value');
+    $('#order_payment_method').val(SELECTED_METHOD);
   });
 
   // FINAL STEP

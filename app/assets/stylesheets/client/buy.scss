@@ -58,33 +58,123 @@
       }
 
       .content {
-        margin: 40px 0;
+        max-width: 80%;
+        margin: 40px auto;
       }
 
       input[type=text],
       input[type=number] {
-        margin: 10px auto;
-        font-size: 1em;
-        width: 100%;
-        max-width: 300px;
+        margin: 30px auto;
+        font-size: 1.1em;
+        width: 85%;
         padding: 5px;
         text-align: center;
         background: $white;
         outline: none;
-        border: 1px solid $grey;
+        border: none;
+        border-bottom: 1px solid $grey;
         display: block;
+        box-shadow: 0px 2px 2px $lgrey;
 
         &:focus {
           border-color: $blue;
         }
       }
 
+      .icon {
+        height: 30px;
+        width: 30px;
+        display: block;
+        float: left;
+        background-size: cover;
+
+        &.btc {
+          background-image: image-url('icons/btc.png');
+        }
+
+        &.s {
+          background-image: image-url('icons/s.png');
+        }
+      }
+
       .step-1 {
         text-align: center;
 
+        p {
+          margin-top: 20px;
+          color: $yellow; 
+        }
+
         #order_price {
-          color: $dgrey;
           font-weight: bold;
+        }
+      }
+
+      .step-2 {
+        .types {
+          overflow: auto;
+          display: flex;
+          padding: 10px 0;
+          justify-content: center;
+          align-items: center;
+
+          div {
+            cursor: pointer;
+            text-align: center;
+            height: 100px;
+            background: $yellow;
+            color: $white;
+            flex-grow: 1;
+            margin: 0 5px;
+            flex: 1;
+            box-shadow: 0px 2px 2px $mgrey;
+            font-size: 1.3em;
+            transition: all .2s;
+            display: flex;
+            border: 1px solid rgba(0, 0, 0, 0);
+
+            &:hover {
+              box-shadow: 0px 2px 10px $mgrey;
+            }
+
+            span {
+              margin: auto;
+            }
+          }
+
+          div:first-child {
+            background: $blue;
+          }
+
+          div:last-child {
+            background: $red;
+          }
+
+          div.selected {
+            border: 1px solid $blue;
+            background: $white;
+            color: $blue;
+          }
+        }
+
+        .options {
+          max-width: 98%;
+          margin: 20px auto;
+          
+          div {
+            display: none;
+            cursor: pointer;
+            border: 1px solid $blue;
+            box-shadow: 0px 2px 2px $mgrey;
+            padding: 10px;
+            margin-bottom: 20px;
+            background: $lgrey;
+            transition: all .2s;
+
+            &.selected {
+              background: $white;
+            }
+          }
         }
       }
 

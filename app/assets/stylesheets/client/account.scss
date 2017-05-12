@@ -100,11 +100,14 @@
     overflow: scroll;
 
     h2 {
+      margin-bottom: 20px;
+      position: relative;
+
       small {
         font-size: 0.5em;
-        float: right;
-        position: relative;
-        top: 10px;
+        position: absolute;
+        top: 7px;
+        right: 0px;
         cursor: pointer;
 
         &:hover {
@@ -120,7 +123,7 @@
 
     .notification {
       border: 1px solid $ldgrey;
-      margin-bottom: 10px;
+      margin: 10px 0;
       padding: 5px;
       transition: all .2s;
       
@@ -139,7 +142,6 @@
       padding: 10px;
       text-align: center;
       color: $ldgrey;
-      margin-top: 20px;
     }
   }
 
@@ -193,6 +195,8 @@
     display: block !important;
     position: static !important;
     margin-top: 5px;
+    position: static;
+    text-align: center;
   }
 
   .grid .notifications {
