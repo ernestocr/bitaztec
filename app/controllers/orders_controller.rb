@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = current_user.orders.new
+    @methods = PaymentMethod.where(active: true, deprecated: false)
   end
 
   def create

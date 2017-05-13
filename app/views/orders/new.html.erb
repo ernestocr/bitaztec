@@ -31,22 +31,18 @@
         <div class="content">
           
           <div class="types">
-            <div data-type="deposit"><span>Depósito Bancario</span></div> 
-            <div data-type="transfer"><span>Transferencia Electrónica</span></div> 
-            <div data-type="other"><span>ATM</span></div> 
+            <div data-type="Depósito"><span>Depósito Bancario</span></div> 
+            <div data-type="Transferencia"><span>Transferencia Electrónica</span></div> 
+            <div data-type="pendiente"><span>ATM</span></div> 
           </div>
 
           <div class="options">
-            <div data-value="1" data-type="deposit">
-              Depósito en Bancomer | 8am - 8pm
-            </div>
-            <div data-value="2" data-type="deposit">
-              Depósito en HSBC | 8am - 8pm
-            </div>
-            <div data-value="3" data-type="deposit">
-              Depósito en Banamex | 8am - 8pm
-            </div>
-            </div>
+            <% @methods.each do |method| %>
+              <div data-value="<%= method.id %>" data-type="<%= method.method %>">
+                <%= method.name %> | <%= method.schedule %>
+              </div>
+            <% end %>
+          </div>
           
           <input type="hidden" id="order_payment_method"> 
         </div>
