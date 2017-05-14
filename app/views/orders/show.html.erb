@@ -1,104 +1,79 @@
 <% title 'Ficha de depósito para tu pedido' %>
 
-<div class="container pending-buy">
+<div class="receipt">
+  <h2>Ficha de pago</h2>
 
-  <p class="alert alert-info">Estado: <b><%= @order.status %></b></p>
+  <div class="container">
 
-  <h3>Ficha de depósito</h3>
+    <p class="alert alert-info">Estado: <b><%= @order.status %></b></p>
 
-  <div class="row">
-    
-    <div class="col">
-      <p>
-        <strong>Pedido creado el:</strong>
-        <%= formatted_date(@order.created_at) %>
-      </p>
-
-      <p>
-        <strong>Cantidad:</strong>
-        <%= @order.amount %>
-      </p>
-
-      <p>
-        <strong>Precio:</strong>
-        <%= @order.price %>
-      </p>
-
-      <p>
-        <strong>Se expira el:</strong>
-        <%= formatted_date(@order.expires_at) %>
-      </p>
-
-      <p>
-        <strong>Método de pago:</strong>
-        <%= @order.payment_method.name %>
-      </p>
-
-      <p>
-        <strong>Instrucciones:</strong>
-        <br><%= @order.payment_method.instructions %>
-      </p>
-
-      <hr>
-
-      <% if @order.attachments.count != 0 %>
-        <div class="evidence">
-          <p class="text-muted">Evidencia presentada:</p>
-          <% @order.attachments.each do |attachment| %>
-            <% if attachment.file.extension == 'pdf' %>
-              <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
-            <% else %>
-              <%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %>
-            <% end %>
-          <% end %>
+    <div class="structure">
+      <div class="paper">
+        <div class="data">
+          <h3>Datos e instrucciones</h3>
+          <p>Pedido creado el <%= formatted_date(@order.created_at) %></p>
+          <br />
+          <p class="numbers"><%= @order.amount %> BTC a <%= number_to_currency @order.price, precision: 0 %></p>
+          <p class="numbers total">Total: <%= number_to_currency @order.amount * @order.price, precision: 0 %></p>
+          <br />
+          <p>Se expira el <%= formatted_date(@order.expires_at) %></p>
+          <p>Método de pago: <%= @order.payment_method.name %></p>
+          <p><%= @order.payment_method.instructions %></p>
         </div>
 
-        <hr>
-      <% end %>
-      
+        <hr />
 
-      <% if !@order.submitted and !@order.expired %>
-        <div class="ui divider"></div>
-        
-        <p>Sube to recibo para comprobar el pago:</p>
-
-        <%= simple_form_for(@order) do |f| %>
-          <%= f.file_field :attachments, multiple: true %>
-          
-          <div class="evidence-preview">
-            <img />
+        <% if @order.attachments.count != 0 %>
+          <div class="evidence">
+            <p class="text-muted">Evidencia presentada:</p>
+            <% @order.attachments.each do |attachment| %>
+              <% if attachment.file.extension == 'pdf' %>
+                <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
+              <% else %>
+                <%= image_tag attachment, class: 'attachment img-thumbnail' %>
+              <% end %>
+            <% end %>
           </div>
-
-          <%= f.hidden_field :submitted, value: true %>
-          <%= f.submit 'Listo', class: 'btn btn-success' %>
         <% end %>
 
-        <hr>
+        <% if !@order.submitted and !@order.expired %>
+          <p>Sube to recibo para comprobar el pago:</p>
+          <br />
+          <%= simple_form_for(@order) do |f| %>
+            <%= f.file_field :attachments, multiple: true %>
+            <div class="evidence-preview">
+              <img />
+            </div>
+            <%= f.hidden_field :submitted, value: true %>
+            <div class="field">
+              <%= f.submit 'Listo', class: 'btn btn-success' %>
+            </div>
+          <% end %>
+
+          <hr />
+            
+          <%= link_to 'Quieres cancelar?', '#', class: 'btn btn-sm btn-danger', html: { confirm: 'Estás seguro?' } %>
         
-        <%= link_to 'Quieres cancelar?', '#', class: 'btn btn-sm btn-danger', html: { confirm: 'Estás seguro?' } %>
-
-      <% elsif @order.completed %>
-
-        <p class="alert alert-success">
-        Gracias por comprar con <b>BitAztec</b>. En cualquier momento te llegarán tus bitcoins. Puedes verficar la transacción aqui: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
-        </p>
-
-      <% elsif !@order.expired %>
-
-        <p class="alert alert-warning">
-          Gracias por comprar con <b>BitAztec</b>. Tu pago está en proceso de revisión.
-        </p>
-      <% else %>
-
-        <p class="alert alert-danger">
-          Esta orden se expiró. Puedes hacer otra haciendo click <%= link_to 'aqui', new_order_path %>.
-        </p>
-      <% end %>   
-    </div>
-
-    <div class="col">
-      <%= render 'shared/message_feed' %>
-    </div>
-  </div>
-
+        <% elsif @order.completed %>
+            
+          <p class="alert alert-success">
+            Gracias por comprar con <b>BitAztec</b>. En cualquier momento te llegarán tus bitcoins. Puedes verficar la transacción aqui: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
+          </p>
+        <% elsif @order.submitted %>
+          <p class="alert alert-warning">
+            Gracias por comprar con <b>BitAztec</b>. Tu pago está en proceso de revisión.
+          </p>
+        <% elsif @order.expired and !@order.submitted %>
+          <p class="alert alert-danger">
+            Esta orden se expiró. Puedes hacer otra haciendo click <%= link_to 'aqui', new_order_path %>.
+          </p>
+        <% end %>
+      </div>   
+ 
+      <div class="messages">
+        <h3>Tienes alguna duda?</h3>
+        <%= render 'shared/message_feed' %>
+      </div>
+    </div> <!-- end structure -->
+  </div> <!-- end container -->
 </div>

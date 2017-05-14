@@ -2,9 +2,9 @@
  * Show file before actual upload
  */
 
-$(document).on('turbolinks:load', function() {
-  if ( !$('.pending-buy').length ) { return false; }
-
+$(document).on('ready', function() {
+  if ( !$('.receipt').length ) { return false; }
+  
   // evidence preview
   $('#order_attachments').on('change', function() {
     var reader = new FileReader();

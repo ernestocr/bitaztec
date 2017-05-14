@@ -11,6 +11,8 @@ class Notification < ApplicationRecord
       "Tu pedido ha sido completado exitosamente!"
     elsif self.action == 'expired'
       "Tu pedido ha expirado. Tendrás que hacer uno nuevo."
+    elsif self.action == 'new message'
+      "Tienes un nuevo mensaje."
     else
       "Missing notification message."
     end

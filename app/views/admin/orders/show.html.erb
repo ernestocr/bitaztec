@@ -62,13 +62,11 @@
 </div>
 
 <script>
-$(document).on('turbolinks:load', function(){
+$(document).on('ready', function(){
   $(document).undelegate('[data-toggle="lightbox"]', 'click');
   $(document).on('click', '[data-toggle="lightbox"]', function(event) {
     event.preventDefault();
     $(this).ekkoLightbox();
   });
 });
-
-$('.message-list').scrollTop($('.message-list')[0].scrollHeight);
 </script>

@@ -15,8 +15,9 @@
           <%= msg.user.email %>
         <% end %>
         <span class="small text-muted">Hace <%= time_ago_in_words msg.created_at %></span>
-        <br>
-        <%= msg.body %>
+        <div class="content">
+          <%= msg.body %>
+        </div>
       </div>
     </div>
     <br>
@@ -29,11 +30,15 @@
 <%= form_for(@order.messages.new, html: { class: 'ui reply form' }) do |f| %>
   <%= f.hidden_field :order_id %>
   <div class="form-group">
-    <%= f.text_area :body, class: 'form-control' %>
+    <%= f.text_area :body, class: 'form-control', placeholder: 'Escribe algo...' %>
   </div>
   <button class="btn btn-primary btn-sm">
     <i class="fa fa-send"></i> Enviar  
   </button>
 <% end %>
 
-  
+ <script>
+  $(document).ready(function() {
+    $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
+  });
+ </script> 

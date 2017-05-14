@@ -48,11 +48,11 @@ class OrdersController < ApplicationController
 
   def update
     # called only after image upload and address submition
-    if @order.update(order_params)
+    if order_params[:attachments] == nil
+      redirect_to @order, alert: 'Debes subir la evidencia de pago.'
+    elsif @order.update(order_params)
       AdminMailer.order_submitted(@order).deliver_later
       redirect_to @order, notice: 'Pedido fue actualizado exitosamente.'
-    else
-      render :edit
     end
   end
 

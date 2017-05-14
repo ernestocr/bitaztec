@@ -10,13 +10,14 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- simple notification system
-  - waiting for UI
+- On rejection, add an hour for expiration limit
+- Expiration logic is handled by outside task ONLY
 - Put address on completion
 - implement frontend design
 
 ### DONE:
 
+* simple notification system
 * setup domain email and use smtp
 * add favicon
 * add SSL (free)
