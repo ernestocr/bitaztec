@@ -10,8 +10,8 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
+- Address and receipt validation in browser 
 - On rejection, add an hour for expiration limit
-- Expiration logic is handled by outside task ONLY
 - Put address on completion
 - implement frontend design
 

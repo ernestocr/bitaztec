@@ -33,41 +33,40 @@
                 <%= image_tag attachment, class: 'attachment img-thumbnail' %>
               <% end %>
             <% end %>
+
+            <p class="address"><b>Domicilio del wallet:</b> <span><%= @order.address %></span></p>
           </div>
         <% end %>
 
         <% if !@order.submitted and !@order.expired %>
-          <p>Sube to recibo para comprobar el pago:</p>
+          <p>1. Sube tu recibo para comprobar el pago:</p>
           <br />
+
           <%= simple_form_for(@order) do |f| %>
             <%= f.file_field :attachments, multiple: true %>
+            
             <div class="evidence-preview">
               <img />
             </div>
+            
             <%= f.hidden_field :submitted, value: true %>
+
+            <p>2. Domicilio de tu wallet</p>
             <div class="field">
-              <%= f.submit 'Listo', class: 'btn btn-success' %>
+              <%= f.text_field :address, placeholder: 'Poner domicilio que recibirá los bitcoins...', class: 'wallet' %>
+            </div>
+            
+            <div class="field">
+              <%= f.submit 'Pago liquidado', class: 'btn btn-success' %>
             </div>
           <% end %>
 
           <hr />
-            
           <%= link_to 'Quieres cancelar?', '#', class: 'btn btn-sm btn-danger', html: { confirm: 'Estás seguro?' } %>
         
-        <% elsif @order.completed %>
-            
-          <p class="alert alert-success">
-            Gracias por comprar con <b>BitAztec</b>. En cualquier momento te llegarán tus bitcoins. Puedes verficar la transacción aqui: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
-          </p>
-        <% elsif @order.submitted %>
-          <p class="alert alert-warning">
-            Gracias por comprar con <b>BitAztec</b>. Tu pago está en proceso de revisión.
-          </p>
-        <% elsif @order.expired and !@order.submitted %>
-          <p class="alert alert-danger">
-            Esta orden se expiró. Puedes hacer otra haciendo click <%= link_to 'aqui', new_order_path %>.
-          </p>
         <% end %>
+
+        <%= render 'orders/step' %>      
       </div>   
  
       <div class="messages">

@@ -50,9 +50,13 @@ class OrdersController < ApplicationController
     # called only after image upload and address submition
     if order_params[:attachments] == nil
       redirect_to @order, alert: 'Debes subir la evidencia de pago.'
+    elsif order_params[:address] == nil
+      redirect_to @order, alert: 'Debes poner un domicilio válido.'
     elsif @order.update(order_params)
       AdminMailer.order_submitted(@order).deliver_later
       redirect_to @order, notice: 'Pedido fue actualizado exitosamente.'
+    else
+      redirect_to @order, alert: 'Debes poner un domicilio válido.'
     end
   end
 

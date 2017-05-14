@@ -1,0 +1,13 @@
+<% if @order.completed %>
+  <p class="alert alert-success">
+    Gracias por comprar con <b>BitAztec</b>. En cualquier momento te llegarán tus bitcoins. Puedes verficar la transacción aqui: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
+  </p>
+<% elsif @order.submitted %>
+  <p class="alert alert-warning">
+    Gracias por comprar con <b>BitAztec</b>. Tu pago está en proceso de revisión.
+  </p>
+<% elsif @order.expired and !@order.submitted %>
+  <p class="alert alert-danger">
+    Esta orden se expiró. Puedes hacer otra haciendo click <%= link_to 'aqui', new_order_path %>.
+  </p>
+<% end %>
