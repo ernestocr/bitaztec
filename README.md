@@ -10,13 +10,13 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- Address and receipt validation in browser 
 - On rejection, add an hour for expiration limit
-- Put address on completion
 - implement frontend design
 
 ### DONE:
 
+* Put address on completion
+* Address and receipt validation in browser 
 * simple notification system
 * setup domain email and use smtp
 * add favicon

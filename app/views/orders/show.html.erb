@@ -42,7 +42,7 @@
           <p>1. Sube tu recibo para comprobar el pago:</p>
           <br />
 
-          <%= simple_form_for(@order) do |f| %>
+          <%= simple_form_for(@order, html: { class: 'complete-order' }) do |f| %>
             <%= f.file_field :attachments, multiple: true %>
             
             <div class="evidence-preview">
