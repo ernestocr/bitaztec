@@ -49,13 +49,44 @@
   }
 
   .mentions {
-    overflow: scroll;
     text-align: center;
-    padding: 40px 0 20px;
+    padding: 60px 0 30px;
     background: #ECECEC;
 
     img {
       max-width: 220px;
+    }
+
+    .grid-cell {
+      height: 37px;
+      padding-top: 0;
+      position: relative;
+
+      span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-image: image-url('external.png');
+        background-repeat: no-repeat;
+        background-position: center 0;
+        background-size: 100% auto;
+        cursor: pointer;
+      }
+
+      &.cript span {
+        background-position: center -37px;
+      }
+
+      &.coindesk span {
+        background-position: center -78px;
+      }
+
+      &.diario span {
+        background-position: center -117px;
+      }
     }
   }
 
@@ -118,6 +149,30 @@
       .price {
         background-size: 100%;
         background-repeat: repeat;
+      }
+    }
+
+    .mentions {
+      display: none;
+      .grid {
+        flex-flow: column no-wrap;
+      
+        .grid-cell {
+          height: 57px;
+          margin-bottom: 10px;
+
+          &.cript span {
+            background-position: center -57px;
+          }
+
+          &.coindesk span {
+            background-position: center -114px;
+          }
+
+          &.diario span {
+            background-position: center -171px;
+          }
+        }
       }
     }
   }

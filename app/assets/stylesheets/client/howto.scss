@@ -30,27 +30,31 @@
         width: 30%;
         float: left;
         background: $blue;
-        //background-size: 90%;
-        background-position: center;
+        background-image: image-url('how.png');
+        background-position: center top;
         
         &.step-1 {
-          background-image: image-url('how/1.png');
+          //background-image: image-url('how/1.png');
         }
 
         &.step-2 {
-          background-image: image-url('how/2.png');
+          //background-image: image-url('how/2.png');
+          background-position: center -120px;
         }
 
         &.step-3 {
-          background-image: image-url('how/3.png');
+          //background-image: image-url('how/3.png');
+          background-position: center -240px;
         }
 
         &.step-4 {
-          background-image: image-url('how/4.png');
+          //background-image: image-url('how/4.png');
+          background-position: center -360px;
         }
 
         &.step-5 {
-          background-image: image-url('how/5.png');
+          //background-image: image-url('how/5.png');
+          background-position: center -480px;
         }
       }
 
