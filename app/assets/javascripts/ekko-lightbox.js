@@ -613,6 +613,5 @@ var Lightbox = (function ($) {
 
 	return Lightbox;
 })(jQuery);
-//# sourceMappingURL=ekko-lightbox.js.map
 
 }(jQuery);
