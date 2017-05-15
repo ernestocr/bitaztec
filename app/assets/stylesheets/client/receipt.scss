@@ -23,10 +23,11 @@ b {
 
     .structure {
       display: flex;
+      flex-flow: row wrap;
 
       & > div {
+        flex: 1;
         flex-grow: 1;
-        order: 1;
       }
 
       h3 {
@@ -181,6 +182,25 @@ b {
 
         &:hover {
           opacity: 0.8;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .receipt {
+    .structure {
+      .messages {
+        margin: 10px 0 0;
+        border-top: 2px solid $lgrey;
+        padding-top: 20px;
+      }
+
+      .paper {
+        .address span {
+          display: block;
+          margin-top: 10px;
         }
       }
     }

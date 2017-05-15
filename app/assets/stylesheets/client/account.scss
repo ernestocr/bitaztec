@@ -188,25 +188,27 @@
 }
 
 @media (max-width: 768px) {
-  .notifications .mark-as-read {
-    float: none !important;
-    display: block !important;
-    position: static !important;
-    margin-top: 5px;
-    position: static;
-    text-align: center;
-  }
+  .account {
+    .notifications .mark-as-read {
+      float: none !important;
+      display: block !important;
+      position: static !important;
+      margin-top: 5px;
+      position: static;
+      text-align: center;
+    }
 
-  .grid .notifications {
-    margin-right: 0;
-  }
+    .grid .notifications {
+      margin-right: 0;
+    }
 
-  .data {
-    position: static !important;
-    margin: 10px 0 30px;
-    
-    p {
-      text-align: center !important;
+    .data {
+      position: static !important;
+      margin: 10px 0 30px;
+      
+      p {
+        text-align: center !important;
+      }
     }
   }
 }
