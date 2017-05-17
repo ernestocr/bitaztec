@@ -10,11 +10,12 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- On rejection, add an hour for expiration limit
-- implement frontend design
+- check different payment methods ui
 
 ### DONE:
 
+* delete notification on click
+* On rejection, add an hour for expiration limit
 * Put address on completion
 * Address and receipt validation in browser 
 * simple notification system

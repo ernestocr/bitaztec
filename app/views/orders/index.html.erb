@@ -17,7 +17,7 @@
       <div class="notifications">
         <h2>Notificaciones <small class="mark-as-read">Marcar como leidos</small></h2>
         <% current_user.get_notifications.each do |notif| %>
-          <a href="<%= notif.link %>">
+          <a href="<%= notif.link %>?clear_notifs=true">
             <div class="notification">
               <span><%= formatted_date notif.created_at %></span>
               <p><%= notif.message %></p>

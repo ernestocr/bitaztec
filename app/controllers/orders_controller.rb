@@ -25,6 +25,9 @@ class OrdersController < ApplicationController
 
   # order receipt
   def show
+    if params[:clear_notifs]
+      Notification.where(notifiable_id: @order.id).update_all(read_at: Time.zone.now) 
+    end
     read_msgs @order
   end
 
