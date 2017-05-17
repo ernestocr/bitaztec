@@ -1,5 +1,5 @@
 <h1>Mensaje nuevo</h1>
-<p>Estimado usuario <b><%= @user.email %></b>. Tienes un mensaje nuevo en tu pedido #<%= @order.id %></p>
+<p>Estimado usuario. Tienes un mensaje nuevo en tu pedido #<%= @order.id %></p>
 <p><b><%= @msg.user.admin? ? 'Admin' : @msg.user.email %></b> dice: "<%= @msg.body %>"</p>
 <p>Puedes contestar <%= link_to 'aqui', url_for(@order) %>.</p>
 

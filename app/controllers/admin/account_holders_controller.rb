@@ -4,7 +4,7 @@ class Admin::AccountHoldersController < Admin::BaseController
 
   def index
     @account_holders = AccountHolder.all
-    # same page new
+    # same page new object
     @account_holder  = AccountHolder.new
   end
 

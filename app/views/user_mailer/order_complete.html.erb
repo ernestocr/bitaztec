@@ -10,7 +10,11 @@
     </tr>
     <tr>
       <td>Precio</td>
-      <td><%= @order.price %></td>
+      <td><%= number_to_currency @order.price, precision: 0, separator: '.' %></td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td><%= number_to_currency (@order.amount * @order.price), precision: 2, separator: '.' %></td>
     </tr>
     <tr>
       <td>Domicilio</td>

@@ -6,12 +6,14 @@ class AdminMailer < ApplicationMailer
 
   def new_order(order)
     @order = order
-    mail(subject: "Pedido nuevo, #{@order.amount} a #{number_to_currency @order.price}")
+    @price = view_context.number_to_currency @order.price, precision: 2, separator: '.'
+    mail(subject: "Pedido nuevo, #{@order.amount} a #{@price}")
   end
 
   def order_submitted(order)
     @order = order
-    mail(subject: "Pedido pagado, #{@order.amount} a #{number_to_currency @order.price}")
+    @price = view_context.number_to_currency @order.price, precision: 2, separator: '.'
+    mail(subject: "Pedido pagado, #{@order.amount} a #{@price}")
   end
 
   def order_cancelled

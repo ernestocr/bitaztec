@@ -17,12 +17,16 @@ $(document).on('ready', function() {
     reader.readAsDataURL(this.files[0]);
   });
 
-  // validate btc address before form submit
+  // validate form before form submit
   $('.complete-order').on('submit', function(e) {
     var btc_address = $('.wallet').val();
     
-    if ( btc_address == '' ) {
-      alert('Debes ingresar el domicilio de tu wallet.');
+    if ( typeof $('.evidence-preview img').attr('src') == 'undefined' ) {
+      alert('Debes subir una imagen o un pdf de tu recibo.');
+      return false;
+    }
+    
+    if ( btc_address == '' ) { alert('Debes ingresar el domicilio de tu wallet.');
       $('.wallet').focus();
       return false;
     }

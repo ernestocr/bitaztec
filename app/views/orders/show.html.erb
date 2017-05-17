@@ -12,7 +12,10 @@
         <h3>Datos e instrucciones</h3>
         <div class="data">
           <p><%= formatted_date(@order.created_at) %></p>
-          <p>Se expira el <b><%= formatted_date(@order.expires_at) %></b></p>
+          <p>
+            Se expira el <b><%= formatted_date(@order.expires_at) %></b>
+            <span>Te quedan <%= distance_of_time_in_words DateTime.current, @order.expires_at %></span>
+          </p>
         </div>  
         
         <div class="invoice">
@@ -49,7 +52,7 @@
           <% end %>
 
           <hr />
-          <%= link_to 'Quieres cancelar?', order_path(@order), method: :delete, data: { confirm: 'Estás seguro?' } %>
+          <%= link_to 'Quieres cancelar?', order_path(@order), class: 'cancel-order', method: :delete, data: { confirm: 'Estás seguro?' } %>
         <% end %>
 
 

@@ -12,6 +12,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def show
+    # mark all messages as admin_read
     read_msgs @order
   end
 

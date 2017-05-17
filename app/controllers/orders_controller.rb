@@ -12,7 +12,10 @@ class OrdersController < ApplicationController
   def index
     @history = current_user.orders.where(completed: true)
     @order = current_user.orders.where(completed: false).first
-    if @order and @order.expired
+
+    # if the user has a pending order, has not submitted evidence
+    # and is expired, then delete the order, and notify the user
+    if @order and @order.expired and !@order.submitted
       Notification.create(
         recipient: @order.user,
         action: 'expired',
@@ -25,9 +28,11 @@ class OrdersController < ApplicationController
 
   # order receipt
   def show
+    # if the GET request came from a notification click
     if params[:clear_notifs]
       Notification.where(notifiable_id: @order.id).update_all(read_at: Time.zone.now) 
     end
+    # mark all messages as read
     read_msgs @order
   end
 
@@ -43,7 +48,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       AdminMailer.new_order(@order).deliver_later
-      redirect_to @order, notice: 'Tu pedido fue enviado exitosamente.'
+      redirect_to @order, notice: 'Tu pedido fue creado exitosamente.'
     else
       render :new
     end
@@ -58,8 +63,6 @@ class OrdersController < ApplicationController
     elsif @order.update(order_params)
       AdminMailer.order_submitted(@order).deliver_later
       redirect_to @order, notice: 'Tu pedido fue actualizado exitosamente.'
-    else
-      redirect_to @order, alert: 'Debes poner un domicilio válido.'
     end
   end
 
