@@ -33,7 +33,8 @@ class Admin::OrdersController < Admin::BaseController
 
     elsif params[:reject]
       # if not, then it's being rejected
-      @order.update_attributes(submitted: false)
+      tolerance = DateTime.current + 1.hour
+      @order.update_attributes(submitted: false, expires_at: tolerance)
 
       # notify user
       Notification.create(recipient: @order.user, action: 'rejected', notifiable: @order)

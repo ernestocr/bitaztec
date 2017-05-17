@@ -54,7 +54,7 @@
 
 
         <!-- user has submitted evidence -->
-        <% if @order.attachments.count != 0 %>
+        <% if @order.attachments.count != 0 and @order.submitted %>
           <div class="evidence">
             <p class="text-muted">Evidencia presentada:</p>
             <% @order.attachments.each do |attachment| %>
