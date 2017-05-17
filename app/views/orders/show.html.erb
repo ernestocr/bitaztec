@@ -9,63 +9,71 @@
 
     <div class="structure">
       <div class="paper">
+        <h3>Datos e instrucciones</h3>
         <div class="data">
-          <h3>Datos e instrucciones</h3>
-          <p>Pedido creado el <%= formatted_date(@order.created_at) %></p>
-          <br />
-          <p class="numbers"><%= @order.amount %> BTC a <%= number_to_currency @order.price, precision: 0 %></p>
-          <p class="numbers total">Total: <%= number_to_currency @order.amount * @order.price, precision: 0 %></p>
-          <br />
-          <p>Se expira el <%= formatted_date(@order.expires_at) %></p>
-          <p>Método de pago: <%= @order.payment_method.name %></p>
-          <p><%= @order.payment_method.instructions %></p>
+          <p><%= formatted_date(@order.created_at) %></p>
+          <p>Se expira el <b><%= formatted_date(@order.expires_at) %></b></p>
+        </div>  
+        
+        <div class="invoice">
+          <p class="quantity"><%= @order.amount %> BTC <span><%= number_to_currency @order.price, precision: 0 %> &times; BTC</span></p>
+          <p class="total"><b>Total</b> <span><b><%= number_to_currency @order.amount * @order.price, precision: 0 %></b></span></p>
+        </div>  
+        
+        <div class="method"> 
+          <p>Método de pago: <b><%= @order.payment_method.name %></b></p>
         </div>
 
-        <hr />
+        
+        <!-- waiting on user submit evidence -->
+        <% if !@order.submitted and !@order.expired %>
+          <div class="follow-through">
+            <p><b>1.</b> <%= @order.payment_method.instructions %></p><br/>
+            
+            <p><b>2.</b> Sube tu recibo para comprobar el pago:</p><br/>
 
+            <%= simple_form_for(@order, html: { class: 'complete-order' }) do |f| %>
+              <%= f.file_field :attachments, multiple: true %>
+              <div class="evidence-preview">
+                <img />
+              </div>
+              <%= f.hidden_field :submitted, value: true %>
+              <p><b>3.</b> Introduce el domicilio de tu wallet</p>
+              <div class="field">
+                <%= f.text_field :address, placeholder: 'Poner domicilio que recibirá los bitcoins...', class: 'wallet' %>
+              </div>
+              <div class="field">
+                <%= f.submit 'Pago liquidado', class: 'btn btn-success' %>
+              </div>
+            </div>
+          <% end %>
+
+          <hr />
+          <%= link_to 'Quieres cancelar?', order_path(@order), method: :delete, data: { confirm: 'Estás seguro?' } %>
+        <% end %>
+
+
+        <!-- user has submitted evidence -->
         <% if @order.attachments.count != 0 %>
           <div class="evidence">
             <p class="text-muted">Evidencia presentada:</p>
             <% @order.attachments.each do |attachment| %>
               <% if attachment.file.extension == 'pdf' %>
-                <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
+                <p class="pdf-file attachment">
+                  <%= link_to 'PDF', attachment.url %>
+                </p>
               <% else %>
-                <%= image_tag attachment, class: 'attachment img-thumbnail' %>
+                <%= image_tag attachment, class: 'img-thumbnail' %>
               <% end %>
             <% end %>
 
-            <p class="address"><b>Domicilio del wallet:</b> <span><%= @order.address %></span></p>
+            <p class="address">
+            <b>Domicilio del wallet:</b> <span><%= @order.address %></span>
+            </p>
           </div>
         <% end %>
-
-        <% if !@order.submitted and !@order.expired %>
-          <p>1. Sube tu recibo para comprobar el pago:</p>
-          <br />
-
-          <%= simple_form_for(@order, html: { class: 'complete-order' }) do |f| %>
-            <%= f.file_field :attachments, multiple: true %>
-            
-            <div class="evidence-preview">
-              <img />
-            </div>
-            
-            <%= f.hidden_field :submitted, value: true %>
-
-            <p>2. Domicilio de tu wallet</p>
-            <div class="field">
-              <%= f.text_field :address, placeholder: 'Poner domicilio que recibirá los bitcoins...', class: 'wallet' %>
-            </div>
-            
-            <div class="field">
-              <%= f.submit 'Pago liquidado', class: 'btn btn-success' %>
-            </div>
-          <% end %>
-
-          <hr />
-          <%= link_to 'Quieres cancelar?', '#', class: 'btn btn-sm btn-danger', html: { confirm: 'Estás seguro?' } %>
         
-        <% end %>
-
+        <!-- helper message for user -->
         <%= render 'orders/step' %>      
       </div>   
  

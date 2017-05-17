@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       AdminMailer.new_order(@order).deliver_later
-      redirect_to @order, notice: 'Pedido enviado exitosamente.'
+      redirect_to @order, notice: 'Tu pedido fue enviado exitosamente.'
     else
       render :new
     end
@@ -54,14 +54,20 @@ class OrdersController < ApplicationController
       redirect_to @order, alert: 'Debes poner un domicilio válido.'
     elsif @order.update(order_params)
       AdminMailer.order_submitted(@order).deliver_later
-      redirect_to @order, notice: 'Pedido fue actualizado exitosamente.'
+      redirect_to @order, notice: 'Tu pedido fue actualizado exitosamente.'
     else
       redirect_to @order, alert: 'Debes poner un domicilio válido.'
     end
   end
 
   def destroy
+    # destroy all current notifications
+    Notification.where(notifiable_id: @order.id).delete_all
+    
+    # destroy order
     @order.destroy
+    
+    # notify the admin that the order was cancelled
     AdminMailer.order_cancelled().deliver_later
     redirect_to orders_url, notice: 'Tu pedido fue cancelado.'
   end

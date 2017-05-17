@@ -5,6 +5,9 @@
 <% end %>
 
 <div class="message-list">
+  <% if @order.messages.count == 0 %>
+    <p class="empty-messages">...</p>
+  <% end %>
   <% @order.messages.each do |msg| %>
     <div class="media">
       <%= image_tag msg.user.gravatar_url(size: 20, default: 'mm'), class: 'd-flex mr-3' %>
@@ -40,5 +43,13 @@
  <script>
   $(document).ready(function() {
     $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
+  
+    // Don't let the user submit empty messages
+    $('form.reply').on('submit', function() {
+      if ( $(this).find('textarea').val() == '' ) {
+        $(this).find('textarea').focus();
+        return false;
+      }
+    });
   });
  </script> 

@@ -28,7 +28,7 @@ class Order < ApplicationRecord
     elsif canceled
       'Cancelada'
     elsif submitted
-      'Pendiente'
+      'En proceso de revisión'
     elsif expired
       'Expirado'
     else

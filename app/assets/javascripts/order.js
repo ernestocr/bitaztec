@@ -23,11 +23,13 @@ $(document).on('ready', function() {
     
     if ( btc_address == '' ) {
       alert('Debes ingresar el domicilio de tu wallet.');
+      $('.wallet').focus();
       return false;
     }
 
     if ( !WAValidator.validate(btc_address) ) {
       alert('El domiclio ingresado no es válido.');
+      $('.wallet').focus();
       return false;
     }
 
