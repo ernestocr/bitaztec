@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   match '/comprar', to: 'orders#new', as: :new_order, via: :get
 
   # message creation route
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :index]
 
   # notifications
   resources :notifications do

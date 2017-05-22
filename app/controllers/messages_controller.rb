@@ -24,8 +24,17 @@ class MessagesController < ApplicationController
       AdminMailer.new_message(message).deliver_later
     end
 
-    # quick reload
-    redirect_to :back
+    if request.xhr?
+      render partial: 'shared/message', locals: { msg: message }
+    else
+      # quick reload
+      redirect_to :back
+    end
+  end
+
+  def index
+    @order = Order.find(params[:order])
+    render partial: 'shared/message_feed'
   end
 
   private
