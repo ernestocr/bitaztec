@@ -21,7 +21,8 @@ class OrdersController < ApplicationController
         action: 'expired',
         notifiable: @order
       )
-      @order.destroy
+      #@order.destroy
+      @order.update_attributes(removed: true)
       @order = nil
     end
   end
@@ -71,7 +72,8 @@ class OrdersController < ApplicationController
     Notification.where(notifiable_id: @order.id).delete_all
     
     # destroy order
-    @order.destroy
+    #@order.destroy
+    @order.update_attributes(removed: true)
     
     # notify the admin that the order was cancelled
     AdminMailer.order_cancelled().deliver_later

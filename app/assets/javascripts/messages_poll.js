@@ -1,12 +1,20 @@
+/*
+ * CHAT/MESSAGES
+ * - polling
+ * - new message
+*/
+
 function rescrollChat() {
   $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
 }
 
 $(document).ready(function() {
+  // Only run if there is a chatbox
   if ( $('.messages').length == 0 ) { return false; }
   
   var order_id = $('.msgs').data('order');
   var prev_count = 0;
+  var seconds = 5000;
 
   setInterval(function() {
     $.ajax({
@@ -27,12 +35,13 @@ $(document).ready(function() {
         prev_count = msg_count;
         $('.msgs').replaceWith(data);
         rescrollChat();
-      }
+      } // else don't update DOM
     }).error(function(data, request) {
       alert('Existe un error de connexión, por favor recargue la página...');
     });
-  }, 5000);
-  
+  }, seconds);
+ 
+  // Submit new message 
   $('form.reply').on('submit', function() {
     var form = $(this);
     if ( form.find('textarea').val() == '' ) {

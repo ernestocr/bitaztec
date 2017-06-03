@@ -12,16 +12,15 @@ Built by: github.com/ernestocr
 
 - cron job for btc price update
 - cron job 30 minutes
-- chat “tiempo real”
 - limites compra (2 versiones)
 - más asistencia visual a la hora de compra
 - opción de deposito en tiendas
-- don’t delete order on cancel
-- 505 on admin user page
 - check different payment methods ui
 
 ### DONE:
 
+* don’t delete order on cancel
+* chat “tiempo real”
 * delete notification on click
 * On rejection, add an hour for expiration limit
 * Put address on completion

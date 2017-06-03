@@ -25,12 +25,12 @@ class Order < ApplicationRecord
   def status
     if completed
       'Completado'
-    elsif canceled
-      'Cancelada'
     elsif submitted
       'En proceso de revisión'
     elsif expired
       'Expirado'
+    elsif removed
+      'Cancelada'
     else
       'Esperando el pago y/o evidencia'
     end
@@ -43,7 +43,7 @@ class Order < ApplicationRecord
 
   # is it canceled?
   def canceled
-    false
+    removed
   end
 
   # Messages

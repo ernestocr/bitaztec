@@ -1,3 +1,9 @@
+/*
+ * USER home page
+ * - click handler for marking notifications
+ *   as read
+*/
+
 $(document).ready(function() {
   $('.mark-as-read').on('click', function() {
     $.ajax({

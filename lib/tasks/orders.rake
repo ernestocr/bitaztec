@@ -15,8 +15,11 @@ namespace :orders do
           notifiable: order
         )
         puts "User #{order.user.email} has been notified."
+        
         # delete the order
-        order.destroy
+        #order.destroy
+        order.update_attributes(removed: true)
+         
         puts "Order ##{order.id} has been destroyed."
       end 
     end

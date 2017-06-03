@@ -1,6 +1,6 @@
 <% title 'Crear pedido nuevo' %>
 
-<div class="buy">
+<div class="buy" id="new-order">
   <div class="container">
     <h1>Comprar</h1>
 
@@ -21,9 +21,9 @@
           <input type="number" placeholder="Bitcoin..." step="any" id="order_amount" autofocus>
           
           <span class="icon s"></span>
-          <input type="number" placeholder="Pesos..." id="order_amount_m">
+          <input type="text" placeholder="Pesos..." id="order_amount_m">
         </div>
-      </div>
+      </div> <!-- END STEP 1 -->
 
       <div class="step step-2">
         <h3>Escoja su método de pago</h3>
@@ -46,7 +46,7 @@
           
           <input type="hidden" id="order_payment_method"> 
         </div>
-      </div>
+      </div> <!-- END STEP 2 -->
 
       <div class="step step-3">
         <h3>Verifique su pedido</h3>
@@ -59,7 +59,7 @@
             para un total de $<span class="verify-total">20348394</span>
           </p>
         </div>
-      </div>
+      </div> <!-- END STEP 3 -->
 
       <div class="navigation">
         <div class="buttons">

@@ -35,7 +35,7 @@
     <% @user.orders.each do |order| %>
       <tr>
         <td><%= order.id %></td>
-        <td><%= link_to order.created_at_formatted, admin_order_path(order) %></td>
+        <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
         <td><%= order.amount %></td>
         <td><%= number_to_currency order.price, precision: 0 %></td>
         <td><%= order.address %></td>

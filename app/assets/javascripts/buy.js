@@ -1,4 +1,7 @@
-/* Flow control for the buy page */
+/*
+ * BUY PAGE (orders/new)
+ * - flow control
+*/
 
 /* Currency format */
 Number.prototype.formatMoney = function(c, d, t){
@@ -45,8 +48,11 @@ function submitForm() {
   $('.buy form').submit();
 }
 
-/* Initiate script */
+/* Initiate flow */
 $(document).ready(function() {
+  
+  // Only run on the buy page
+  if ( !$('#new-order').length ) { return false; }
 
   var CURRENT_STEP         = 1;
   var SELECTED_METHOD      = '';
@@ -63,7 +69,6 @@ $(document).ready(function() {
       $('.step').hide();
       $('.step-2').show();
       $('.prev').show();
-
       CURRENT_STEP = 2;
     
     } else if ( CURRENT_STEP == 2) {
@@ -73,15 +78,13 @@ $(document).ready(function() {
         $('.step-3').show();
         $('.next').hide();
         $('.make-order').show();
-
         confirmBuy();
         CURRENT_STEP = 3;
+      
       }
-
     }
-    
     changeTab(CURRENT_STEP); 
-  });
+  }); // END NEXT STEP
   
   // GO BACK
   $('.prev').on('click', function() {
@@ -107,7 +110,7 @@ $(document).ready(function() {
     changeTab(CURRENT_STEP); 
   });
 
-  // SHOW METHOD OPTIONS
+  // SHOW PAYMENT METHOD SUB-OPTIONS
   $('.types div').on('click', function() {
     $('.types div').removeClass('selected');
     $(this).addClass('selected');

@@ -46,7 +46,8 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def destroy
-    @order.destroy
+    #@order.destroy
+    @order.update_attributes(removed: true)
     Notification.create(recipient: @order.user, action: 'cancelled', notifiable: @order)
     redirect_to admin_orders_path, flash: { notice: 'El pedido fue cancelado.' }
   end
