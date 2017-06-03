@@ -12,13 +12,13 @@ Built by: github.com/ernestocr
 
 - cron job for btc price update
 - cron job 30 minutes
-- limites compra (2 versiones)
 - más asistencia visual a la hora de compra
 - opción de deposito en tiendas
 - check different payment methods ui
 
 ### DONE:
 
+* limites compra (2 versiones)
 * don’t delete order on cancel
 * chat “tiempo real”
 * delete notification on click

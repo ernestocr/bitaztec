@@ -74,3 +74,17 @@
     <%= render 'form', order: @order %>
   </div>  
 </div>
+
+<script charset="utf-8">
+  if ( <%= current_user.orders.where(completed: true).count == 0 %> ) {
+    var LIMIT = {
+      size: 5000,
+      reason: 'first'
+    }
+  } else {
+    var LIMIT = {
+      size: 50000,
+      reason: null
+    }
+  }
+</script>

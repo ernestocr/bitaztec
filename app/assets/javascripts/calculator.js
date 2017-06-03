@@ -73,12 +73,21 @@ $(document).on('ready', function() {
 
     // make sure it is a whole number
     input = input ? parseInt( input, 10 ) : 0;
+
+    if ( input > LIMIT.size ) {
+      if ( LIMIT.reason === 'first' ) {
+        alert('Solo puedes comprar hasta $' + LIMIT.size + ' pesos ya que es tu primera compra.');
+      } else {
+        alert('Solo puedes comprar hasta $' + LIMIT.size + ' pesos.');
+      }
+      var s = $this.val();
+      $this.val( s.substr(0, s.length - 1) );
+      return false;
+    }
     
     var formatted = input.toLocaleString( "en-US" );
     if ( formatted === '0' ) { formatted = ''; }
     $this.val( formatted );
-    
-    // NOW CHANGE BITCOIN AMOUNT
     
     if ( $.isNumeric(input) && input >= 0 ) {
       var amount = input/price;
