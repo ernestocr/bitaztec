@@ -39,16 +39,17 @@
     <%= render 'shared/nav' %>
     <%= render 'shared/flash' %> 
     
-    <% if controller_name.in? ['sessions', 'registrations', 'passwords', 'confirmations'] %>
-      <div class="devise">
-    <% end %>
+    <main>
+      <% if controller_name.in? ['sessions', 'registrations', 'passwords', 'confirmations'] %>
+        <div class="devise">
+      <% end %>
 
-        <%= yield %>
+          <%= yield %>
 
-    <% if controller_name.in? ['sessions', 'registrations', 'passwords', 'confirmations'] %>
-      </div>
-    <% end %>
-      
+      <% if controller_name.in? ['sessions', 'registrations', 'passwords', 'confirmations'] %>
+        </div>
+      <% end %>
+    </main>
       
     <%= render 'shared/footer' %>
   </body>

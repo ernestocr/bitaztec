@@ -4,6 +4,14 @@
 body {
   font-family: 'Open Sans', sans-serif;
   background: $white;
+
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 .container {
@@ -11,20 +19,29 @@ body {
   max-width: 960px;
 }
 
+.flash {
+  width: 100%;
+}
+
 .alert {
   font-weight: 300;
-  max-width: 960px;
   margin: 0 auto;
   padding: 10px;
+  
   background: $grey;
   box-shadow: 0px 1px 5px $grey;
-
-  button {
-    outline: none;
-    position: relative;
-    top: -10px;
-    font-size: 1.5em;
+  overflow: auto;
+  
+  p {
+    padding-top: 3px;
+    float: left;
+    max-width: 90%;
+  }
+  
+  span {
     float: right;
+    outline: none;
+    font-size: 1.5em;
     border: none;
     background: none;
     font-weight: lighter;
