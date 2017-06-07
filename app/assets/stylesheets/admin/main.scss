@@ -78,6 +78,14 @@ form {
   overflow: scroll;
 }
 
+.flash .container {
+  padding: 0 !important;
+}
+
+.alert p {
+  margin-bottom: 0 !important;
+}
+
 // DESKTOP
 @media (min-width: 728px) {
   body {

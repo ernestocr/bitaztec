@@ -20,7 +20,7 @@
         
         <div class="invoice">
           <p class="quantity"><%= @order.amount %> BTC <span><%= number_to_currency @order.price, precision: 0 %> &times; BTC</span></p>
-          <p class="total"><b>Total</b> <span><b><%= number_to_currency @order.amount * @order.price, precision: 0 %></b></span></p>
+          <p class="total"><b>Total</b> <span><b><%= number_to_currency @order.total, precision: 0 %></b></span></p>
         </div>  
         
         <div class="method"> 
@@ -32,6 +32,20 @@
         <% if !@order.submitted and !@order.expired %>
           <div class="follow-through">
             <p><b>1.</b> <%= @order.payment_method.instructions %></p><br/>
+
+            <% if ['Depósito', 'Tienda'].include? @order.payment_method.method %>
+              <div class="accounts">
+                <ul>
+                  <% @order.payment_method.banks.each do |bank| %>
+                    <li><b><%= bank.name %></b>
+                      <% bank.accounts.each do |account| %>
+                        <span><%= account.value %></span>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div></br>
+            <% end %>
             
             <p><b>2.</b> Sube tu recibo para comprobar el pago:</p><br/>
 

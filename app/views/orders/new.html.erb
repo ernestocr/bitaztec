@@ -33,7 +33,7 @@
           <div class="types">
             <div data-type="Depósito"><span>Depósito Bancario</span></div> 
             <div data-type="Transferencia"><span>Transferencia Electrónica</span></div> 
-            <div data-type="pendiente"><span>ATM</span></div> 
+            <div data-type="Tienda"><span>Tienda (OXXO, 7/11)</span></div> 
           </div>
 
           <div class="options">
@@ -76,14 +76,23 @@
 </div>
 
 <script charset="utf-8">
-  if ( <%= current_user.orders.where(completed: true).count == 0 %> ) {
+
+  <% if @min and @max %>
+    var MIN = parseFloat( <%= @min %> );
+    var MAX = parseFloat( <%= @max %> );
+  <% else %>
+    var MIN = 500;
+    var MAX = 50000;
+  <% end %>
+
+if ( <%= current_user.orders.where(completed: true).count == 0 %> ) {
     var LIMIT = {
-      size: 5000,
+      size: MAX/10,
       reason: 'first'
     }
   } else {
     var LIMIT = {
-      size: 50000,
+      size: MAX,
       reason: null
     }
   }

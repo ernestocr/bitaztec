@@ -10,8 +10,8 @@ class OrdersController < ApplicationController
 
   # user's main page
   def index
-    @history = current_user.orders.where(completed: true)
-    @order = current_user.orders.where(completed: false).first
+    @history = current_user.orders.where(completed: true, removed: false)
+    @order = current_user.orders.where(completed: false, removed: false).first
 
     # if the user has a pending order, has not submitted evidence
     # and is expired, then delete the order, and notify the user
@@ -40,6 +40,9 @@ class OrdersController < ApplicationController
   def new
     @order = current_user.orders.new
     @methods = PaymentMethod.where(active: true, deprecated: false)
+  
+    @min = Setting.min
+    @max = Setting.max
   end
 
   def create

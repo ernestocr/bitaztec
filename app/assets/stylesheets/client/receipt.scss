@@ -81,6 +81,20 @@ b {
         }
       }
 
+      .accounts {
+        padding: 10px;
+
+        li {
+          margin-bottom: 10px;
+        
+          span {
+            background: $lgrey;
+            padding: 0 3px;
+            border-radius: 3px;
+          }
+        }
+      }
+
       .evidence-preview {
         margin: 10px 0;
         
@@ -159,6 +173,7 @@ b {
     .message-list {
       max-height: 200px;
       overflow: scroll;
+      overflow-x: hidden;
       border-top: 1px solid $grey;
       padding-top: 10px;
 

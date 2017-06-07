@@ -36,6 +36,11 @@ class Order < ApplicationRecord
     end
   end
 
+  # rounded price
+  def total
+    (amount * price).round
+  end
+
   # true/false if expired
   def expired
     return DateTime.now.utc > expires_at.utc

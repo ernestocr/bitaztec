@@ -63,12 +63,19 @@ $(document).ready(function() {
     if ( $('#order_amount').val() == '' ) { return false; }
     
     $('.make-order').hide();
+    
+    var amount = parseFloat( $('#order_amount_m').val().replace(',', '') );
+    if ( amount < MIN ) {
+      alert('La cantidad minima es $' + MIN + ' pesos.');
+      $('#order_amount_m').focus();
+      return false;
+    }
 
     if ( CURRENT_STEP == 1 ) {
       
       $('.step').hide();
       $('.step-2').show();
-      $('.prev').show();
+      $('.prev').css('display', 'inline-block');
       CURRENT_STEP = 2;
     
     } else if ( CURRENT_STEP == 2) {
@@ -77,7 +84,7 @@ $(document).ready(function() {
         $('.step').hide();
         $('.step-3').show();
         $('.next').hide();
-        $('.make-order').show();
+        $('.make-order').css('display', 'inline-block');
         confirmBuy();
         CURRENT_STEP = 3;
       

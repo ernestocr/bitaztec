@@ -20,4 +20,14 @@ class Account < ApplicationRecord
     end
   end
 
+  def value
+    if !card.blank?
+      card
+    elsif !clabe.blank?
+      clabe
+    else
+      number
+    end
+  end
+
 end
