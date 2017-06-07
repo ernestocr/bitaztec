@@ -3,7 +3,7 @@ namespace :orders do
   desc "Check and notify user of expired orders"
   task notify_expiration: :environment do
     count = 0
-    Order.where(submitted: false).each do |order|
+    Order.where(submitted: false, removed: false).each do |order|
       if order.expired
         count += 1
 
