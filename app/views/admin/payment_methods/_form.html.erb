@@ -1,28 +1,28 @@
 <%= simple_form_for([:admin, payment_method],
-                    defaults: { wrapper_html: { class: 'field' } }, 
+                    defaults: { wrapper_html: { class: 'field' } },
                     html: { class: 'form' }) do |f| %>
-  <div class="form-group"> 
+  <div class="form-group">
     <%= f.input :name, autofocus: true, input_html: { class: 'form-control' } %>
   </div>
-  <div class="form-group"> 
-    <%= f.input :method, collection: ['Depósito', 'Transferencia', 'Tienda'], input_html: { class: 'form-control' } %>
+  <div class="form-group">
+    <%= f.input :method, collection: ['Depósito', 'Transferencia', 'Tienda', 'ATM'], input_html: { class: 'form-control' } %>
   </div>
-  <div class="form-group"> 
+  <div class="form-group">
     <%= f.association :banks, as: :select, input_html: { class: 'form-control' } %>
   </div>
-  <div class="form-group"> 
+  <div class="form-group">
     <%= f.input :instructions, input_html: { class: 'form-control' } %>
   </div>
-  <div class="form-group"> 
+  <div class="form-group">
     <%= f.input :schedule, input_html: { class: 'form-control' } %>
   </div>
-  <div class="form-group"> 
+  <div class="form-group">
     <%= f.input :expires, input_html: { class: 'form-control' } %>
   </div>
-  <div class="form-group"> 
+  <div class="form-group">
     <%= f.input :details, input_html: { class: 'form-control' } %>
   </div>
-  <div class="form-group"> 
+  <div class="form-group">
     <%= f.input :image, as: :file, input_html: { class: 'form-control' } %>
   </div>
 
@@ -33,7 +33,7 @@
     </label>
   </div>
 
-  <div class="form-group"> 
+  <div class="form-group">
     <%= f.submit 'Guardar', class: 'btn btn-primary' %>
   </div>
 

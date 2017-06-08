@@ -9,7 +9,7 @@
   form {
     display: none;
   }
-  
+
   .container {
     h1 {
       font-size: 2em;
@@ -103,7 +103,7 @@
 
         p {
           margin-top: 20px;
-          color: $yellow; 
+          color: $yellow;
         }
 
         #order_price {
@@ -130,7 +130,7 @@
             margin: 5px;
             box-shadow: 0px 2px 2px $mgrey;
             border: 1px solid rgba(0, 0, 0, 0);
-            font-size: 1.3em;
+            font-size: 1.1em;
             transition: all .2s;
             display: flex;
 
@@ -147,6 +147,10 @@
             background: $blue;
           }
 
+          div:nth-child(3) {
+            background: $green;
+          }
+
           div:last-child {
             background: $red;
           }
@@ -161,7 +165,7 @@
         .options {
           max-width: 98%;
           margin: 20px auto;
-          
+
           div {
             display: none;
             cursor: pointer;
@@ -184,6 +188,13 @@
 
         span {
           font-weight: bold;
+        }
+
+        .final-details {
+          p {
+            // line-height: 1em;
+            margin-bottom: 10px;
+          }
         }
       }
 
@@ -230,7 +241,7 @@
           }
         }
       }
-    }  
+    }
   }
 }
 

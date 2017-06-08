@@ -15,11 +15,11 @@
       <div class="step step-1 active">
         <h3>Ingrese la cantidad deseada</h3>
         <p>Precio actual 1 BTC: <span data-value="<%= @btc_price %>" id="order_price"><%= number_to_currency @btc_price, separator: '.', precision: 0 %></span></p>
-        
+
         <div class="content">
           <span class="icon btc"></span>
           <input type="number" placeholder="Bitcoin..." step="any" id="order_amount" autofocus>
-          
+
           <span class="icon s"></span>
           <input type="text" placeholder="Pesos..." id="order_amount_m">
         </div>
@@ -29,35 +29,37 @@
         <h3>Escoja su método de pago</h3>
 
         <div class="content">
-          
+
           <div class="types">
-            <div data-type="Depósito"><span>Depósito Bancario</span></div> 
-            <div data-type="Transferencia"><span>Transferencia Electrónica</span></div> 
-            <div data-type="Tienda"><span>Tienda (OXXO, 7/11)</span></div> 
+            <div data-type="Depósito"><span>Depósito Bancario</span></div>
+            <div data-type="Transferencia"><span>Transferencia Electrónica</span></div>
+            <div data-type="ATM"><span>ATM</span></div>
+            <div data-type="Tienda"><span>Tiendas <br>(OXXO, 7/11)</span></div>
           </div>
 
           <div class="options">
             <% @methods.each do |method| %>
               <div data-value="<%= method.id %>" data-type="<%= method.method %>">
-                <%= method.name %> | <%= method.schedule %>
+                <span><%= method.name %></span> | <%= method.schedule %>
               </div>
             <% end %>
           </div>
-          
-          <input type="hidden" id="order_payment_method"> 
+
+          <input type="hidden" id="order_payment_method">
         </div>
       </div> <!-- END STEP 2 -->
 
       <div class="step step-3">
         <h3>Verifique su pedido</h3>
 
-        <div class="content">
+        <div class="content final-details">
           <p>
-            Usted quiere comprar 
+            Usted quiere comprar
             <span class="verify-amount">1</span> BTC
             a $<span class="verify-price"><%= @btc_price %></span>
-            para un total de $<span class="verify-total">20348394</span>
+            para un total de $<span class="verify-total">20348394</span>.
           </p>
+          <p>Método de pago elegido: <span class="payment-method-chosen">...</span></p>
         </div>
       </div> <!-- END STEP 3 -->
 
@@ -66,34 +68,33 @@
           <button class="prev">Regresar</button>
           <button class="next">Continuar</button>
           <button class="make-order">Comprar!</button>
-        </div>  
+        </div>
       </div>
 
     </div>
 
     <%= render 'form', order: @order %>
-  </div>  
+  </div>
 </div>
 
 <script charset="utf-8">
-
-  <% if @min and @max %>
-    var MIN = parseFloat( <%= @min %> );
-    var MAX = parseFloat( <%= @max %> );
-  <% else %>
-    var MIN = 500;
-    var MAX = 50000;
-  <% end %>
+<% if @min and @max %>
+  var MIN = parseFloat( <%= @min %> );
+  var MAX = parseFloat( <%= @max %> );
+<% else %>
+  var MIN = 500;
+  var MAX = 50000;
+<% end %>
 
 if ( <%= current_user.orders.where(completed: true).count == 0 %> ) {
-    var LIMIT = {
-      size: MAX/10,
-      reason: 'first'
-    }
-  } else {
-    var LIMIT = {
-      size: MAX,
-      reason: null
-    }
+  var LIMIT = {
+    size: MAX/10,
+    reason: 'first'
   }
+} else {
+  var LIMIT = {
+    size: MAX,
+    reason: null
+  }
+}
 </script>
