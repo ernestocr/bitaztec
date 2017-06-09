@@ -14,20 +14,20 @@
   <div class="col-sm-2">
     <p><b>Estado</b></p>
     <p>
-      <%= 
-        render 'admin/shared/status_toggle', 
-        object: @payment_method, 
+      <%=
+        render 'admin/shared/status_toggle',
+        object: @payment_method,
         path: toggle_admin_payment_methods_path(@payment_method)
       %>
     </p>
   </div>
   <div class="col-sm-5">
     <p><b>Instrucciones:</b></p>
-    <p><%= @payment_method.instructions %></p> 
+    <p><%= @payment_method.instructions %></p>
   </div>
   <div class="col-sm-5">
     <p><b>Detalles:</b></p>
-    <p><%= @payment_method.details %></p> 
+    <p><%= @payment_method.details %></p>
   </div>
 </div>
 
@@ -59,7 +59,7 @@
             <td><%= account.holder %></td>
             <td>
               <%= render 'admin/shared/status_toggle',
-                object: account, 
+                object: account,
                 path: toggle_admin_bank_accounts_path(account) %>
             </td>
             <td><%= link_to 'edit', edit_admin_bank_account_path(account) %></td>
@@ -68,4 +68,4 @@
       </table>
     </div>
   </div>
-<% end %> 
+<% end %>

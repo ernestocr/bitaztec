@@ -5,8 +5,8 @@ class Admin::DashboardController < Admin::BaseController
     @btc_price = Setting.where(key: 'btc_price')[0]
 
     # grab both pending and new orders
-    @pending_orders = Order.where(submitted: true, completed: false)
-    @new_orders = Order.where(submitted: false, completed: false)
+    @pending_orders = Order.where(submitted: true, completed: false, removed: false)
+    @new_orders = Order.where(submitted: false, completed: false, removed: false)
 
     # select all messages that the admin has not read
     @messages = Message.where(admin_read: false)

@@ -10,10 +10,10 @@ class Admin::BaseController < ApplicationController
   private
 
     def set_notifications
-      pending_orders = Order.where(submitted: true, completed: false).count
-      new_orders = Order.where(submitted: false, completed: false).count
+      pending_orders = Order.where(submitted: true, completed: false, removed: false).count
+      new_orders = Order.where(submitted: false, completed: false, removed: false).count
       messages = Message.where(admin_read: false).count
-      
+
       # simple notification count
       @notifications = pending_orders + new_orders + messages
     end

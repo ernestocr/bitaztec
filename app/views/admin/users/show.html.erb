@@ -20,6 +20,19 @@
   <% end %>
 </nav>
 
+<div class="edit-user">
+  <p>
+    Derechos de administrador:
+    <a href="<%= admin_user_path(@user) %>" data-method="put">
+      <% if @user.admin? %>
+        <i class="fa fa-toggle-on"></i> activo
+      <% else %>
+        <i class="fa fa-toggle-off"></i> inactivo
+      <% end %>
+    </a>
+  </p>
+</div>
+
 <table class="table table-bordered table-sm">
   <thead>
     <tr>

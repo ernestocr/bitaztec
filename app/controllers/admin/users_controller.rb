@@ -8,6 +8,12 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
   end
 
+  def update
+    @user = User.find(params[:id])
+    @user.toggle!(:admin)
+    redirect_to :back
+  end
+
   def destroy
     @user = User.find(params[:id])
     if @user.destroy

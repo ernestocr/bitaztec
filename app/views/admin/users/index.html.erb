@@ -23,11 +23,11 @@
         <td>Hace <%= time_ago_in_words user.created_at %></td>
         <td>
           <% if !user.admin? %>
-            <%= link_to 'Borrar', admin_user_path(user), 
+            <%= link_to 'Borrar', admin_user_path(user),
               method: :delete, data: { confirm: 'Estás seguro? Esta acción no puede ser revocada.' } %>
           <% end %>
         </td>
       </tr>
-    <% end %> 
+    <% end %>
   </tbody>
 </table>

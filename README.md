@@ -11,13 +11,13 @@ Built by: github.com/ernestocr
 ### TODO:
 
 - cron job for btc price update
-- cron job 30 minutes
-- más asistencia visual a la hora de compra
-- opción de deposito en tiendas
-- check different payment methods ui
+- cron job 30 minutes ? i forgot what this was...
 
 ### DONE:
 
+* check different payment methods ui
+* opción de deposito en tiendas
+* más asistencia visual a la hora de compra
 * limites compra (2 versiones)
 * don’t delete order on cancel
 * chat “tiempo real”
