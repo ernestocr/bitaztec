@@ -128,8 +128,8 @@ $(document).ready(function() {
 
     var method_type = $(this).data('type');
 
-    $('.options div').hide();
-    $('.options div[data-type="' + method_type + '"]').show();
+    $('.options div').removeClass('visible');
+    $('.options div[data-type="' + method_type + '"]').addClass('visible');
   });
 
   // CHOOSE METHOD OPTION
