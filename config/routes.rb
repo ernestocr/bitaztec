@@ -50,9 +50,9 @@ Rails.application.routes.draw do
     end
   end
   
-  authenticated :user do
-    root to: 'orders#index'
-  end
+  #authenticated :user do
+    #root to: 'orders#index'
+  #end
 
   root to: 'pages#home'
 
