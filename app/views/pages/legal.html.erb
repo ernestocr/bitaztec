@@ -2,12 +2,23 @@
 
 <div class="legal">
   <div class="container">
-    <h2>Acuerdo legal y Aviso de Privacidad</h2>
-    
-    <div class="terms">
-      <p>BITAZTEC (el “Responsable”), con domicilio en la calle Av. Moliere 50 Polanco, Granada Ciudad de México, CDMX, México, con código postal 11550, es responsable de los datos personales sensibles y no sensibles que por este medio pudieran ser recabados, los cuales tendrán la finalidad de servir como base para el registro y alta de sus Usuarios, y así estar en posibilidad de ofrecer sus productos y servicios de manera efectiva.</p>
-      
-      <p>Usted puede en cualquier momento consultar el Aviso de Privacidad completo a dando click <%= link_to 'aqui', '/privacidad.pdf' %>.</p> 
+    <h2>Acuerdo <b>legal</b></h2>
+
+    <div class="tabs">
+      <button class="active" data-tab="terms">Terminos y condiciones de uso</button>
+      <button data-tab="privacy">Aviso de privacidad</button>
+    </div>
+
+    <%= render 'pages/terms' %>
+    <%= render 'pages/privacy' %>
+
+    <div class="download">
+      <hr>
+      <p>Descargar archivo PDF de:</p>
+      <ul>
+        <li><a href="/terminos.pdf" download>Terminos y condiciones de uso</a></li>
+        <li><a href="/privacidad.pdf" download>Aviso de privacidad</a></li>
+      </ul>
     </div>
   </div>
 </div>

@@ -3,11 +3,11 @@
 <div class="account">
 
   <h2>Mi cuenta</h2>
-  
+
   <div class="container">
     <center><div class="icon"></div></center>
-    
-    <div class="data"> 
+
+    <div class="data">
       <p>Miembro desde hace <%= time_ago_in_words current_user.created_at %></p>
       <p><b><%= current_user.orders.where(completed: true).count %></b> transacciones completadas</p>
     </div>
@@ -31,7 +31,7 @@
 
       <div class="pending">
         <h2>Pedido activo</h2>
-        
+
         <% if @order %>
           <div class="order">
             <p>Cantidad: <span><%= @order.amount  %></span></p>
@@ -46,14 +46,14 @@
             <%= link_to 'Crea uno', new_order_path %>
           </p>
         <% end %>
-      </div> 
-      
+      </div>
+
       </div> <!-- End grid -->
-        
+
       <div class="history">
         <h2>Historial</h2>
 
-        <div class="table-container">      
+        <div class="table-container">
           <table>
             <thead>
               <tr>
@@ -84,4 +84,3 @@
       </div> <!-- end history -->
   </div> <!-- end container -->
 </div>
-

@@ -4,28 +4,93 @@
   margin: 50px 0 100px;
 
   .container {
-    max-width: 650px;
+    // max-width: 650px;
+  }
+
+  .download {
+    max-width: 600px;
+
+    hr {
+      border: none;
+      border-top: 2px solid $grey;
+    }
+
+    ul {
+      margin-top: 1em;
+
+      li {
+        margin-bottom: 1em;
+
+        a {
+          color: $blue;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .tabs {
+    button {
+      background: none;
+      border: none;
+      margin: 0;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      border-bottom: 2px solid $grey;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        border-color: $yellow;
+      }
+
+      &.active {
+        font-weight: bold;
+        border-color: $blue;
+      }
+    }
   }
 
   h2 {
-    text-align: center;
+    // text-align: center;
     font-size: 1.5em;
     margin-bottom: 40px;
   }
 
-  .terms {
-    h3 {
-      font-size: 1.1em;
-      font-weight: bold;
-      text-align: center;
-      color: $yellow;
+  .text {
+    margin-top: 2em;
+    max-width: 600px;
+    display: none;
+
+    &.active {
+      display: block;
     }
 
     p {
       text-align: justify;
-      text-indent: 2em;
       margin: 10px 0 30px;
       line-height: 1.5em;
+
+      &.indented {
+        padding-left: 2em;
+      }
+    }
+
+    ul {
+      list-style: lower-alpha;
+      padding-left: 4em;
+
+      &.roman {
+        list-style: upper-roman;
+      }
+
+      li {
+        margin-bottom: 1em;
+      }
     }
   }
 }

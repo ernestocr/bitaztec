@@ -1,6 +1,12 @@
 @import 'colors';
 
+main {
+  display: flex;
+  flex-direction: column;
+}
+
 .buy {
+  flex: 1;
   background: $lgrey;
   //background-image: image-url('aztec.png');
   background-size: cover;
