@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :orders
   has_many :notifications, foreign_key: :recipient_id
 
+  validates :agreed_to_terms, presence: true
+
   include Gravtastic
   gravtastic
 

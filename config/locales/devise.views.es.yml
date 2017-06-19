@@ -9,6 +9,7 @@ es:
         remember_me: Recordarme
         reset_password_token: Restablecer token contraseña
         unlock_token: Desbloquear token
+        agreed_to_terms: Acepto los terminos
     models:
       user: Usuario
   devise:

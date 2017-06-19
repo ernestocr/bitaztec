@@ -40,8 +40,12 @@
 
     margin-bottom: 20px;
 
-    .field {
+    .field, .input {
       margin-bottom: 20px;
+    
+      a {
+        display: inline;
+      }
     }
 
     input[type=email],
