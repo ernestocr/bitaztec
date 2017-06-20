@@ -30,7 +30,7 @@ class Order < ApplicationRecord
     elsif expired
       'Expirado'
     elsif removed
-      'Cancelada'
+      'Cancelado'
     else
       'Esperando el pago y/o evidencia'
     end

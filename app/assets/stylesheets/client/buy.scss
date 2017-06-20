@@ -266,6 +266,16 @@ main {
   }
 }
 
+.not-active {
+  max-width: 400px;
+  margin: auto;
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+}
+
 @media (max-width: 760px) {
   .buy {
     .step-2 {

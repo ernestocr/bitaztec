@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
 
   # can't access new, create if they have a pending order
   before_action :has_pending_order, only: [:new, :create]
+  # check if active
+  before_action :system_ok, only: [:new, :create, :update]
 
   # user's main page
   def index
@@ -31,7 +33,7 @@ class OrdersController < ApplicationController
   def show
     # if the GET request came from a notification click
     if params[:clear_notifs]
-      Notification.where(notifiable_id: @order.id).update_all(read_at: Time.zone.now) 
+      Notification.where(notifiable_id: @order.id).update_all(read_at: Time.zone.now)
     end
     # mark all messages as read
     read_msgs @order
@@ -40,7 +42,7 @@ class OrdersController < ApplicationController
   def new
     @order = current_user.orders.new
     @methods = PaymentMethod.where(active: true, deprecated: false)
-  
+
     @min = Setting.min
     @max = Setting.max
   end
@@ -73,11 +75,11 @@ class OrdersController < ApplicationController
   def destroy
     # destroy all current notifications
     Notification.where(notifiable_id: @order.id).delete_all
-    
+
     # destroy order
     #@order.destroy
     @order.update_attributes(removed: true)
-    
+
     # notify the admin that the order was cancelled
     AdminMailer.order_cancelled().deliver_later
     redirect_to orders_url, notice: 'Tu pedido fue cancelado.'
@@ -114,6 +116,13 @@ class OrdersController < ApplicationController
       last_msgs = order.messages.where(user_read: false)
       last_msgs.each do |msg|
         msg.update_attributes(user_read: true)
+      end
+    end
+
+    def system_ok
+      if Setting.where(key: 'activo')[0].value != 'activo'
+        # raise ActionController::RoutingError.new('Not Found')
+        render 'orders/not_active'
       end
     end
 

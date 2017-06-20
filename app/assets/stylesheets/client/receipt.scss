@@ -67,7 +67,7 @@ b {
           &:first-child {
             border-top: 1px solid $lgrey;
           }
-          
+
           span {
             color: $green;
             float: right;
@@ -86,7 +86,7 @@ b {
 
         li {
           margin-bottom: 10px;
-        
+
           span {
             background: $lgrey;
             padding: 0 3px;
@@ -97,10 +97,14 @@ b {
 
       .evidence-preview {
         margin: 10px 0;
-        
+
         img {
           max-width: 150px;
         }
+      }
+
+      .re-upload-evidence {
+        display: none;
       }
 
       .wallet {
@@ -160,7 +164,7 @@ b {
     margin-left: 20px;
     max-width: 300px;
     min-width: 250px;
-  
+
     h5 {
       margin-bottom: 10px;
       font-size: 1em;
@@ -188,7 +192,7 @@ b {
         &:last-child {
           padding-bottom: 0;
         }
-        
+
         img {
           width: 20px;
           height: 20px; float: left;

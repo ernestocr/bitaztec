@@ -21,7 +21,7 @@ class User < ApplicationRecord
   # return number of active orders (pending/waiting)
   def active_orders_count
     count = 0
-    self.orders.where(completed: false).each do |order|
+    self.orders.where(completed: false, removed: false).each do |order|
       if !order.expired or order.submitted
         count += 1
       end
