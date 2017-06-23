@@ -3,6 +3,7 @@ class Admin::BaseController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_only
   before_action :btc_price_set?
+  before_action :system_active_set?
   before_action :set_notifications, except: [:create, :update, :destroy]
 
   layout 'admin'
@@ -19,8 +20,16 @@ class Admin::BaseController < ApplicationController
     end
 
     def btc_price_set?
-      if !Setting.btc_price
-        flash[:alert] = 'El precio del Bitcoin no está! Ve a configuración y agrega "btc_price".'
+      if !Setting.precio
+        flash[:alert] = 'El precio del Bitcoin no está! Ve a configuración y agrega "precio".'
+      end
+    end
+
+    def system_active_set?
+      if !Setting.activo
+        flash[:alert] = 'El sitio está activo por default, vaya a configuración para asegurarse de esto.'
+      elsif Setting.activo == 'inactivo'
+        flash[:alert] = 'El sitio está inactivo. Puedes activarlo en el panel de configuración.'
       end
     end
 

@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   # static pages
 
   def home
-    @btc_price = Setting.btc_price
+    @btc_price = Setting.precio
   end
 
   def howto

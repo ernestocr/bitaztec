@@ -24,7 +24,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def update
     if @setting.update(setting_params)
-      # admin can update "btc_price" from dashboard
+      # admin can update "precio" from dashboard
       if params[:dashboard] == 'true'
         redirect_to admin_path
       else
