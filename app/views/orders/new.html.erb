@@ -41,9 +41,7 @@
             <% @methods.each do |method| %>
               <div data-value="<%= method.id %>" data-type="<%= method.method %>">
                 <span><%= method.name %></span> | <%= method.schedule %>
-                <% method.banks.each do |bank| %>
-                  <%= image_tag bank.image %>
-                <% end %>
+                <%= image_tag method.image %>
               </div>
             <% end %>
           </div>

@@ -17,7 +17,12 @@
 
   #error_explanation {
     margin-bottom: 20px;
-    
+
+    .captcha {
+      color: $red;
+      margin-bottom: 1em;
+    }
+
     h2 {
       font-size: 1em;
       color: $red;
@@ -42,7 +47,7 @@
 
     .field, .input {
       margin-bottom: 20px;
-    
+
       a {
         display: inline;
       }

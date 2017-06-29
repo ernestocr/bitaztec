@@ -100,4 +100,4 @@ gem 'whenever', :require => false
 # don't re-invent the wheel
 gem 'mail_form', '~> 1.6'
 
-
+gem "recaptcha", require: "recaptcha/rails"

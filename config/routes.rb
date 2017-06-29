@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users
- 
-  # buy route 
+  devise_for :users, controllers: { registrations: 'registrations' }
+
+  # buy route
   resources :orders, except: :new
   match '/comprar', to: 'orders#new', as: :new_order, via: :get
 
@@ -13,24 +13,24 @@ Rails.application.routes.draw do
   resources :notifications do
     collection do
       post :mark_as_read
-      get :count  
+      get :count
     end
   end
 
   # .../admin/...
   namespace :admin do
     match '/', to: 'dashboard#index', via: :get
-    
+
     resources :users
     resources :settings
     resources :account_holders
-    
+
     resources :payment_methods do
       collection do
         get 'toggle/:id' => :toggle, as: :toggle
       end
     end
-    
+
     resources :orders do
       collection do
         get 'history' => :history, as: :history
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       collection do
         get 'toggle/:id' => :toggle, as: :toggle
       end
-      
+
       resources :accounts do
         collection do
           get 'toggle/:id' => :toggle, as: :toggle
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
   #authenticated :user do
     #root to: 'orders#index'
   #end

@@ -1,5 +1,8 @@
 ---
 es:
+  recaptcha:
+    errors:
+      verification_failed: 'La verficación de reCaptcha falló. Intente de nuevo.'
   simple_form:
     required:
       text: ''
