@@ -1,3 +1,7 @@
+/*
+  FAQ page
+*/
+
 @import "colors";
 
 .faq {
@@ -6,7 +10,7 @@
   h2 {
     font-size: 1.5em;
     margin-bottom: 40px;
-    
+
     b {
       font-weight: bold;
     }
@@ -28,7 +32,7 @@
     p {
       line-height: 1.5em;
       color: $black;
-    
+
       a {
         color: $blue;
       }

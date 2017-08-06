@@ -1,18 +1,14 @@
+/*
+  ADMIN panel style, in addition to
+  basic bootstrap 4 styling.
+ */
+
 body {
   background: rgb(250, 250, 250) !important;
 }
 
 .navbar {
   z-index: 1;
-}
-
-.no-mg {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.nav-link {
-  padding-left: 0;
 }
 
 .sidebar {

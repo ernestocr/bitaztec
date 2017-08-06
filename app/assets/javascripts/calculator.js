@@ -38,6 +38,21 @@ $(document).on('ready', function() {
   // amount -> money
   $input1.on('input', function(e) {
     var val = $input1.val();
+    var input = parseFloat(val);
+
+    if ( input*price > LIMIT.size ) {
+      if ( LIMIT.reason === 'first' ) {
+        alert('Solo puedes comprar hasta $' + LIMIT.size + ' pesos ya que es tu primera compra.');
+      } else {
+        alert('Solo puedes comprar hasta $' + LIMIT.size + ' pesos.');
+      }
+
+      var s = $(this).val();
+      var s = parseFloat( s.substr(0, s.length - 1) );
+      $(this).val(s);
+      return false;
+    }
+
     if ( $.isNumeric(val) && val >= 0 ) {
       var money = price*val;
 
@@ -48,12 +63,13 @@ $(document).on('ready', function() {
     } else {
       $input2.val('');
     }
+
     updateFinalCost(price, result, val);
   });
 
   // money -> amount
   $input2.on('input', function(event) {
-    
+
     // makes a selection within the input
     var selection = window.getSelection().toString();
     if ( selection !== '' ) {
@@ -84,11 +100,11 @@ $(document).on('ready', function() {
       $this.val( s.substr(0, s.length - 1) );
       return false;
     }
-    
+
     var formatted = input.toLocaleString( "en-US" );
     if ( formatted === '0' ) { formatted = ''; }
     $this.val( formatted );
-    
+
     if ( $.isNumeric(input) && input >= 0 ) {
       var amount = input/price;
       amount = Math.round( (1000000*amount) )/1000000;
@@ -101,5 +117,3 @@ $(document).on('ready', function() {
   });
 
 });
-
-

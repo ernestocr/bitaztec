@@ -1,7 +1,8 @@
 /*
- * Show file before actual upload
- * and BTC address validation
- * permit re-upload of evidence
+ * ORDER flow control
+  - Show file before actual upload
+  - and BTC address validation
+  - permit re-upload of evidence
  */
 
 $(document).on('ready', function() {

@@ -1,8 +1,8 @@
 /*
- *= require 'admin/bootstrap'
- *= require 'admin/ekko-lightbox'
- *= require 'admin/font-awesome'
  *= require 'admin/main'
  *= require_self
  */
 
+@import "bootstrap";
+@import "ekko-lightbox";
+@import "font-awesome";

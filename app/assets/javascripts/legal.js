@@ -1,3 +1,8 @@
+/*
+ * LEGAL page
+ * - click handler for changing between content
+*/
+
 $(document).ready(function() {
   if ( $('.legal').length == 0 ) { return false; }
 
