@@ -6,23 +6,23 @@
     <% if controller_name == 'registrations' %>
       <% title 'Registro' %>
     <% elsif controller_name == 'sessions' %>
-      <% title 'Inicia sesión' %> 
+      <% title 'Inicia sesión' %>
     <% elsif controller_name == 'passwords' %>
-      <% title 'Contraseña' %> 
+      <% title 'Contraseña' %>
     <% elsif controller_name == 'confirmations' %>
-      <% title 'Confirmación' %> 
+      <% title 'Confirmación' %>
     <% end %>
 
     <title>
       <%= if content_for?(:title) then yield(:title) + ' | ' end %>
       BitAztec
     </title>
-    
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application', async: Rails.env.production? %>  
-    
+    <%= javascript_include_tag 'application', async: Rails.env.production? %>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon.png">
@@ -37,8 +37,8 @@
   <body>
 
     <%= render 'shared/nav' %>
-    <%= render 'shared/flash' %> 
-    
+    <%= render 'shared/flash' %>
+
     <main>
       <% if controller_name.in? ['sessions', 'registrations', 'passwords', 'confirmations'] %>
         <div class="devise">
@@ -50,7 +50,18 @@
         </div>
       <% end %>
     </main>
-      
+
     <%= render 'shared/footer' %>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-31527523-13', 'auto');
+      ga('send', 'pageview');
+
+    </script>
   </body>
 </html>
