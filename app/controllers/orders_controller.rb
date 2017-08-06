@@ -100,7 +100,7 @@ class OrdersController < ApplicationController
     end
 
     def set_btc_price
-      @btc_price = Setting.precio
+      @btc_price = Setting.price
     end
 
     # if he has a pending order, redirect to it
@@ -120,7 +120,7 @@ class OrdersController < ApplicationController
     end
 
     def system_ok
-      if Setting.activo and Setting.activo != 'activo'
+      if Setting.active != '1'
         # raise ActionController::RoutingError.new('Not Found')
         render 'orders/not_active'
       end

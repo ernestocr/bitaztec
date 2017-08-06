@@ -8,43 +8,107 @@
 </p>
 
 <div class="alert alert-info">
-  Claves requeridas:
-  (escritas tal cual aparecen)
-
-  <ul>
-    <li>clave: <b>precio</b> - valor: <b>número sin comas</b></li>
-    <li>clave: <b>activo</b> - valor: <b>activo ó inactivo</b></li>
-    <li>clave: <b>max</b> - valor: <b>número sin comas</b> (valor máximo)</li>
-    <li>clave: <b>min</b> - valor: <b>número sin comas</b> (valor mínimo)</li>
-  </ul>
+  <p>Todos los campos siguientes deben estar llenados, son fundamental para el funcionamiento correcto del sitio.</p>
 </div>
 
-<table class="table table-responsive">
-  <thead>
-    <tr>
-      <th>Clave</th>
-      <th>Valor</th>
-      <th></th>
-    </tr>
-  </thead>
+<table class="table settings">
   <tbody>
-    <% @settings.each do |setting| %>
-      <tr>
-        <%= simple_form_for([:admin, setting], html: { class: 'form-inline' }) do |f| %>
-          <td><%= f.text_field :key, class: 'form-control' %></td>
-          <td><%= f.text_field :value, class: 'form-control' %></td>
-          <td>
-            <center style='position: relative; top: 6px;'>
-              <button style="display: none;"></button>
-              <%= link_to 'Borrar',
-                admin_setting_path(setting),
-                method: :delete,
-                class: 'btn btn-sm btn-danger',
-                data: { confirm: '¿Estás seguro?' } %>
-            </center>
-          </td>
+    <tr>
+      <td>
+        Precio de <b>1.0</b> Bitcoin<br/>
+        <small class="text-muted">
+          Si tiene activado la <b>actualización automatica</b>,
+          el precio que modifique aquí estará cambiando y sujeto al mercado.
+          Desactive la act. auto. si desea fijar un precio específico.
+        </small>
+      </td>
+      <td>
+        <%= form_for([:admin, @price]) do |f| %>
+          <%= f.text_field :value, placeholder: 'e.g. 25000', class: 'form-control' %>
         <% end %>
-      </tr>
-    <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Estado del sitio<br/>
+        <small class="text-muted">
+          Si el sitio está inactivo, el usuario solo no podrá hacer pedidos nuevos,
+          pero todas las demás funciones, incluyendo acceso a las páginas de información seguirán activas.
+        </small>
+      </td>
+      <td>
+        <%= form_for([:admin, @active]) do |f| %>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :value %> Activo
+            </label>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Tamaño máximo del pedido<br/>
+        <small class="text-muted">
+          El usuario no podrá realizar pedidos mayores a la cantidad especificada.
+          (Si no quiere tener un limite máximo, solo ponga un valor muy alto)
+        </small>
+      </td>
+      <td>
+        <%= form_for([:admin, @max]) do |f| %>
+          <%= f.text_field :value, placeholder: 'e.g. 50000', class: 'form-control' %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Tamaño mínimo del pedido<br/>
+        <small class="text-muted">
+          El usuario no podrá realizar pedidos menores a la cantidad especificada.
+          (Si no quiere un limit inferior, ponga 0).
+        </small>
+      </td>
+      <td>
+        <%= form_for([:admin, @min]) do |f| %>
+          <%= f.text_field :value, placeholder: 'e.g. 1000', class: 'form-control' %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Actualización del precio automático?<br/>
+        <small class="text-muted">Se actualiza el precio segun el <a href="https://www.coindesk.com/api/">Price Index de CoinDesk</a>.</small>
+      </td>
+      <td>
+        <%= form_for([:admin, @auto]) do |f| %>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :value %> Activo
+            </label>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Premio al precio del mercado (0.10 es 10%)<br/>
+        <small class="text-muted">
+          Dado el precio actual en mercado, se le suma un premio.
+          Por ejemplo si el precio es de $100 dólares, y el premio es de 10%,
+          el precio al que se vende en el sitio es de $110.
+        </small>
+      </td>
+      <td>
+        <%= form_for([:admin, @premium]) do |f| %>
+          <%= f.text_field :value, placeholder: '0.10', class: 'form-control' %>
+        <% end %>
+      </td>
+    </tr>
   </tbody>
 </table>
+
+
+
+<p class="float-right">
+  <button class="save-all btn btn-success">Guardar todos los cambios</button>
+</p>

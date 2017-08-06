@@ -20,15 +20,13 @@ class Admin::BaseController < ApplicationController
     end
 
     def btc_price_set?
-      if !Setting.precio
+      if !Setting.price
         flash[:alert] = 'El precio del Bitcoin no está! Ve a configuración y agrega "precio".'
       end
     end
 
     def system_active_set?
-      if !Setting.activo
-        flash[:alert] = 'El sitio está activo por default, vaya a configuración para asegurarse de esto.'
-      elsif Setting.activo == 'inactivo'
+      if Setting.active == '0'
         flash[:alert] = 'El sitio está inactivo. Puedes activarlo en el panel de configuración.'
       end
     end

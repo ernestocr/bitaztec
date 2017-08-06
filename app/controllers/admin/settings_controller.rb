@@ -2,7 +2,12 @@ class Admin::SettingsController < Admin::BaseController
   before_action :set_setting, only: [:edit, :update, :destroy]
 
   def index
-    @settings = Setting.all
+    @price = Setting.where(key: 'price').first
+    @active = Setting.where(key: 'active').first
+    @max = Setting.where(key: 'max').first
+    @min = Setting.where(key: 'min').first
+    @premium = Setting.where(key: 'premium').first
+    @auto = Setting.where(key: 'auto').first
   end
 
   def new

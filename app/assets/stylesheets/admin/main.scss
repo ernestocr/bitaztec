@@ -82,6 +82,11 @@ form {
   margin-bottom: 0 !important;
 }
 
+small {
+  display: inline-block;
+  max-width: 500px;
+}
+
 // DESKTOP
 @media (min-width: 728px) {
   body {
