@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require wallet-address-validator.min
 //= require_tree .

@@ -15,5 +15,5 @@
 //= require settings
 //= require atether.min
 //= require bootstrap
-//= ekko-lightbox
-//= wallet-address-validator
+//= require ekko-lightbox
+//= require wallet-address-validator.min
