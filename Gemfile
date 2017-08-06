@@ -50,6 +50,7 @@ gem 'figaro'
 gem 'whenever', :require => false
 gem 'mail_form', '~> 1.6'
 gem "recaptcha", require: "recaptcha/rails"
+gem 'newrelic_rpm'
 
 group :development do
   gem 'capistrano', '~> 3.8'
