@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require settings
-//= require_tree ../../../vendor/assets/javascripts/.
+//= require atether.min
+//= require bootstrap
+//= ekko-lightbox
+//= wallet-address-validator
