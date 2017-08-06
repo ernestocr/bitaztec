@@ -27,7 +27,7 @@
     <a class="brand" href="<%= root_path %>">
       <%= image_tag 'logo.png' %>
     </a>
-    
+
     <ul>
       <li>
         <%= link_to 'Mi cuenta', orders_path, class: "#{'active' if page == 'index'}" %>
@@ -36,16 +36,16 @@
         <%= link_to 'Comprar', new_order_path, class: "#{'active' if page == 'new' and controller_name == 'orders'}" %>
       </li>
       <li>
-        <%= link_to 'Como funciona', howto_path, class: "#{'active' if page == 'howto'}" %>
+        <%= link_to '¿Cómo funciona?', howto_path, class: "#{'active' if page == 'howto'}" %>
       </li>
       <li>
         <%= link_to 'FAQ', faq_path, class: "#{'active' if page == 'faq'}" %>
       </li>
       <li>
-        <%= link_to 'Acuerdo Legal', legal_path, class: "#{'active' if page == 'legal'}" %>
+        <%= link_to 'Acuerdo legal', legal_path, class: "#{'active' if page == 'legal'}" %>
       </li>
       <li>
-        <%= link_to 'Contacto', contact_path, class: "#{'active' if page == 'contact'}" %>    
+        <%= link_to 'Contacto', contact_path, class: "#{'active' if page == 'contact'}" %>
       </li>
     </ul>
 
@@ -54,6 +54,6 @@
         <span class="hamburger-inner"></span>
       </span>
     </button>
-  
+
   </div>
 </div>
