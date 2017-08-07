@@ -10,11 +10,10 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- cron job for btc price update
-- cron job 30 minutes ? i forgot what this was...
 
 ### DONE:
 
+* cron job for btc price update
 * check different payment methods ui
 * opción de deposito en tiendas
 * más asistencia visual a la hora de compra
@@ -24,7 +23,7 @@ Built by: github.com/ernestocr
 * delete notification on click
 * On rejection, add an hour for expiration limit
 * Put address on completion
-* Address and receipt validation in browser 
+* Address and receipt validation in browser
 * simple notification system
 * setup domain email and use smtp
 * add favicon
@@ -57,5 +56,3 @@ Built by: github.com/ernestocr
 * restructure payment method list
 * add date display method
 * change user facing route names to spanish
-
-

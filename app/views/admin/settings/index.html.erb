@@ -77,7 +77,7 @@
     <tr>
       <td>
         Actualización del precio automático?<br/>
-        <small class="text-muted">Se actualiza el precio segun el <a href="https://www.coindesk.com/api/">Price Index de CoinDesk</a>.</small>
+        <small class="text-muted">Se actualiza el precio segun el <a href="https://www.coindesk.com/api/">Price Index de CoinDesk</a>, cada 10 minutos.</small>
       </td>
       <td>
         <%= form_for([:admin, @auto]) do |f| %>
@@ -91,10 +91,10 @@
     </tr>
     <tr>
       <td>
-        Premio al precio del mercado (0.10 es 10%)<br/>
+        Prima del precio del mercado (0.05 es 5%)<br/>
         <small class="text-muted">
-          Dado el precio actual en mercado, se le suma un premio.
-          Por ejemplo si el precio es de $100 dólares, y el premio es de 10%,
+          Dado el precio actual en mercado, se le suma una prima.
+          Por ejemplo si el precio es de $100 dólares, y la prima es de 10%,
           el precio al que se vende en el sitio es de $110.
         </small>
       </td>
