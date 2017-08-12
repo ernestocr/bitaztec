@@ -180,6 +180,7 @@ main {
             max-width: 30px;
             float: right;
             margin-left: 0.5em;
+            background: $white;
           }
 
           div {
@@ -198,7 +199,8 @@ main {
             transition: all .2s;
 
             &.selected {
-              background: $white;
+              background: $blue;
+              color: $white;
             }
 
             &.visible {

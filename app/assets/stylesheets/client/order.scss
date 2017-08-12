@@ -166,7 +166,7 @@ b {
 
   .messages {
     margin-left: 20px;
-    max-width: 300px;
+    max-width: 400px;
     min-width: 250px;
 
     h5 {
@@ -179,7 +179,7 @@ b {
     }
 
     .message-list {
-      max-height: 200px;
+      max-height: 300px;
       overflow: scroll;
       overflow-x: hidden;
       border-top: 1px solid $grey;
