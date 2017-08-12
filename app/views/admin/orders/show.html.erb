@@ -21,7 +21,7 @@
       <p>Se expira <%= formatted_date(@order.expires_at) %> <small>falta <%= distance_of_time_in_words DateTime.current, @order.expires_at %></small></p>
     <% end %>  
     <p>Cantidad solicitada: <b><%= @order.amount %> BTC</b> a <b><%= number_to_currency @order.price, precision: 0 %></b></p>
-    <p>Total: <b class="text-success"><%= number_to_currency @order.amount * @order.price, precision: 2, separator: '.' %></b></p> 
+    <p>Total: <b class="text-success"><%= number_to_currency @order.total, precision: 2, separator: '.' %></b></p> 
 
     <hr>
 

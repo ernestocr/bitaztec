@@ -77,7 +77,6 @@ class OrdersController < ApplicationController
     Notification.where(notifiable_id: @order.id).delete_all
 
     # destroy order
-    #@order.destroy
     @order.update_attributes(removed: true)
 
     # notify the admin that the order was cancelled

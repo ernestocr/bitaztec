@@ -4,6 +4,7 @@ class Order < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
   # default_scope { where('expires_at > ? OR submitted = true', DateTime.now.utc) }
+  
   has_many :messages, dependent: :delete_all
 
   belongs_to :payment_method
