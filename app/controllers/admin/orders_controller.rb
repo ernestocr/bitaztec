@@ -3,8 +3,8 @@ class Admin::OrdersController < Admin::BaseController
 
   def index
     # only get new/pending orders
-    @new_orders = Order.where(submitted: false, completed: false)
-    @pending_orders = Order.where(submitted: true, completed: false)
+    @new_orders = Order.where(submitted: false, completed: false, removed: false)
+    @pending_orders = Order.where(submitted: true, completed: false, removed: false)
   end
 
   def history
