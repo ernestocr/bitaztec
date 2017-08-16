@@ -4,36 +4,38 @@
 
 <p><b><i class="fa fa-folder-o text-danger"></i> Pendientes</b></p>
 
-<table class="table table-responsive">
-  <thead>
-    <tr>
-      <th>Cuando</th>
-      <th>Usuario</th>
-      <th>Cantidad</th>
-      <th>Precio</th>
-      <th>Método de pago</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pending_orders.each do |order| %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
-        <td><%= order.user.email %></td>
-        <td><%= order.amount %></td>
-        <td><%= order.price %></td>
-        <td><%= order.payment_method.name %></td>
-        <td><%= render 'admin/orders/message_count', order: order %></td>
-        <td>
-          <center>
-            <%= link_to 'Revisar', admin_order_path(order), class: 'ui mini button' %>
-          </center>
-        </td>
+        <th>Cuando</th>
+        <th>Usuario</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Método de pago</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @pending_orders.each do |order| %>
+        <tr>
+          <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
+          <td><%= order.user.email %></td>
+          <td><%= order.amount %></td>
+          <td><%= order.price %></td>
+          <td><%= order.payment_method.name %></td>
+          <td><%= render 'admin/orders/message_count', order: order %></td>
+          <td>
+            <center>
+              <%= link_to 'Revisar', admin_order_path(order), class: 'ui mini button' %>
+            </center>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <% if @pending_orders.count == 0 %>
   <div class="alert alert-info">
     No tienes pedidos pendientes.
@@ -45,36 +47,37 @@
 
 <p><b><i class="fa fa-folder-o text-primary"></i> Nuevos</b></p>
 
-<table class="table table-responsive">
-  <thead>
-    <tr>
-      <th>Cuando</th>
-      <th>Usuario</th>
-      <th>Cantidad</th>
-      <th>Precio</th>
-      <th>Método de pago</th>
-      <th>Se expira</th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Cuando</th>
+        <th>Usuario</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Método de pago</th>
+        <th>Se expira</th>
+        <th></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @new_orders.each do |order| %>
-      <% if !order.expired %>
-        <tr>
-          <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
-          <td><%= order.user.email %></td>
-          <td><%= order.amount %></td>
-          <td><%= order.price %></td>
-          <td><%= order.payment_method.name %></td>
-          <td><%= formatted_date(order.expires_at) %></td>
-          <td><%= render 'admin/orders/message_count', order: order %></td>
-        </tr>
+    <tbody>
+      <% @new_orders.each do |order| %>
+        <% if !order.expired %>
+          <tr>
+            <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
+            <td><%= order.user.email %></td>
+            <td><%= order.amount %></td>
+            <td><%= order.price %></td>
+            <td><%= order.payment_method.name %></td>
+            <td><%= formatted_date(order.expires_at) %></td>
+            <td><%= render 'admin/orders/message_count', order: order %></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
-
+    </tbody>
+  </table>
+</div>
 <% if @new_orders.map.count == 0 %>
   <div class="alert alert-info">
     No tienes pedidos nuevos.

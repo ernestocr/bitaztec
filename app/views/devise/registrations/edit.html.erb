@@ -1,4 +1,5 @@
-<h2><%= t(".title", resource: resource_class.model_name.human) %></h2>
+<!-- <h2><%= t(".title", resource: resource_class.model_name.human) %></h2> -->
+<h2>Editar mis datos</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -7,23 +8,19 @@
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>
+      <small>
         <%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %>
-      </p>
+      </small>
     <% end %>
 
-    <%= f.input :password, autocomplete: "off", hint: t(".leave_blank_if_you_don_t_want_to_change_it"), required: false %>
+    <%= f.input :password, autocomplete: "off", required: false %>
+    <small>(Dejar en blanco si no desea cambiarla)</small>
     <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: t(".we_need_your_current_password_to_confirm_your_changes"), required: true %>
+    <%= f.input :current_password, required: true %>
+    <small>(Necesitamos su contraseña actual para confirmar los cambios)</small>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, t(".update") %>
   </div>
 <% end %>
-
-<h3><%= t(".cancel_my_account") %></h3>
-
-<p><%= t(".unhappy") %> <%= link_to t(".cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete %></p>
-
-<%= link_to t("devise.shared.links.back"), :back %>

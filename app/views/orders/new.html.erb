@@ -82,14 +82,18 @@
 <% if @min and @max %>
   var MIN = parseFloat( <%= @min %> );
   var MAX = parseFloat( <%= @max %> );
+  var FIRST_MIN = parseFloat( <%= @first_min %> );
+  var FIRST_MAX = parseFloat( <%= @first_max %> );
 <% else %>
   var MIN = 500;
   var MAX = 50000;
+  var FIRST_MIN = 500;
+  var FIRST_MAX = 50000;
 <% end %>
 
 if ( <%= current_user.orders.where(completed: true).count == 0 %> ) {
   var LIMIT = {
-    size: MAX/10,
+    size: FIRST_MAX,
     reason: 'first'
   }
 } else {

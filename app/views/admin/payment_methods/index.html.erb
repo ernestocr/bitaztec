@@ -7,41 +7,43 @@
   </a>
 </p>
 
-<table class="table table-responsive">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Método</th>
-      <th>Estado</th>
-      <th>Ordenes</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @payment_methods.each do |payment_method| %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to payment_method.name, admin_payment_method_path(payment_method) %></td>
-        <td><%= payment_method.method %></td>
-        <td>
-          <%= 
-            render 'admin/shared/status_toggle', 
-              object: payment_method, 
-              path: toggle_admin_payment_methods_path(payment_method) %>
-        </td>
-        <td>
-          <%= payment_method.orders.count %>
-        </td>
-        <td>
-          <center style="position: relative; top: 6px;">
-            <%= link_to 'Borrar', 
-                  admin_payment_method_path(payment_method), 
-                  method: :delete, 
-                  class: 'btn btn-sm btn-danger',
-                  data: { confirm: 'Estás seguro?' } %>
-          </center>
-        </td>
+        <th>Nombre</th>
+        <th>Método</th>
+        <th>Estado</th>
+        <th>Ordenes</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @payment_methods.each do |payment_method| %>
+        <tr>
+          <td><%= link_to payment_method.name, admin_payment_method_path(payment_method) %></td>
+          <td><%= payment_method.method %></td>
+          <td>
+            <%=
+              render 'admin/shared/status_toggle',
+                object: payment_method,
+                path: toggle_admin_payment_methods_path(payment_method) %>
+          </td>
+          <td>
+            <%= payment_method.orders.count %>
+          </td>
+          <td>
+            <center style="position: relative; top: 6px;">
+              <%= link_to 'Borrar',
+                    admin_payment_method_path(payment_method),
+                    method: :delete,
+                    class: 'btn btn-sm btn-danger',
+                    data: { confirm: 'Estás seguro?' } %>
+            </center>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

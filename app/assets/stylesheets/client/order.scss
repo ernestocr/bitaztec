@@ -89,12 +89,28 @@ b {
         padding: 10px;
 
         li {
-          margin-bottom: 10px;
+          margin-bottom: 20px;
 
-          span {
-            background: $lgrey;
-            padding: 0 3px;
-            border-radius: 3px;
+          & > b {
+            display: block;
+          }
+
+          .accounts-list {
+            margin-top: 20px;
+            margin-left: 10px;
+
+            p {
+              background: $lgrey;
+              color: $dgrey;
+              border-radius: 3px;
+              padding: 0.5em;
+              margin-bottom: 0.2em;
+
+              span {
+                font-weight: 500;
+                color: $black;
+              }
+            }
           }
         }
       }

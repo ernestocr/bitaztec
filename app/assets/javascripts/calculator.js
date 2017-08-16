@@ -96,6 +96,7 @@ $(document).on('ready', function() {
       } else {
         alert('Solo puedes comprar hasta $' + LIMIT.size + ' pesos.');
       }
+      
       var s = $this.val();
       $this.val( s.substr(0, s.length - 1) );
       return false;

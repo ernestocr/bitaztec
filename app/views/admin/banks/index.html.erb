@@ -7,45 +7,47 @@
   </a>
 </p>
 
-<table class="table table-responsive">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Estado</th>
-      <th>Imagen</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @banks.each do |bank| %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to bank.name, admin_bank_accounts_path(bank) %></td>
-        <td>
-          <%= 
-            render 'admin/shared/status_toggle', 
-              object: bank, 
-              path: toggle_admin_banks_path(bank) %>
-        </td>
-        <td>
-          <%= image_tag bank.image.thumb %>
-        </td>
-        <td>
-          <div class="btn-group">
-            <a href="<%= edit_admin_bank_path(bank) %>" 
-               class="btn btn-sm btn-secondary">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a class="btn btn-sm btn-danger"
-               href="<%= admin_bank_path(bank) %>"
-               data-confirm="Estás seguro?"
-               rel="nofollow"
-               data-method="delete">
-              <i class="fa fa-trash"></i>
-            </a>
-          </div>
-        </td>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th>Imagen</th>
+        <th colspan="1"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @banks.each do |bank| %>
+        <tr>
+          <td><%= link_to bank.name, admin_bank_accounts_path(bank) %></td>
+          <td>
+            <%=
+              render 'admin/shared/status_toggle',
+                object: bank,
+                path: toggle_admin_banks_path(bank) %>
+          </td>
+          <td>
+            <%= image_tag bank.image.thumb %>
+          </td>
+          <td>
+            <div class="btn-group">
+              <a href="<%= edit_admin_bank_path(bank) %>"
+                 class="btn btn-sm btn-secondary">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a class="btn btn-sm btn-danger"
+                 href="<%= admin_bank_path(bank) %>"
+                 data-confirm="Estás seguro?"
+                 rel="nofollow"
+                 data-method="delete">
+                <i class="fa fa-trash"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

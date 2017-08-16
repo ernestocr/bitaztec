@@ -6,6 +6,8 @@ class Admin::SettingsController < Admin::BaseController
     @active = Setting.where(key: 'active').first
     @max = Setting.where(key: 'max').first
     @min = Setting.where(key: 'min').first
+    @first_max = Setting.where(key: 'first_max').first
+    @first_min = Setting.where(key: 'first_min').first
     @premium = Setting.where(key: 'premium').first
     @auto = Setting.where(key: 'auto').first
   end

@@ -45,6 +45,8 @@ class OrdersController < ApplicationController
 
     @min = Setting.min
     @max = Setting.max
+    @first_min = Setting.first_min
+    @first_max = Setting.first_max
   end
 
   def create

@@ -10,9 +10,10 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-
 ### DONE:
 
+* specific account dealing
+* edit password
 * cron job for btc price update
 * check different payment methods ui
 * opción de deposito en tiendas

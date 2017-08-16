@@ -54,7 +54,7 @@ class Admin::AccountsController < Admin::BaseController
     end
 
     def account_params
-      params.require(:account).permit(:number, :holder, :bank_id, :active)
+      params.require(:account).permit(:number, :card, :clabe, :holder, :bank_id, :active)
     end
 
 end

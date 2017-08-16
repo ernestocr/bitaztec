@@ -10,6 +10,7 @@
     <div class="data">
       <p>Miembro desde hace <%= time_ago_in_words current_user.created_at %></p>
       <p><b><%= current_user.orders.where(completed: true).count %></b> transacciones completadas</p>
+      <p><%= link_to 'Cambiar contraseña', edit_user_registration_path %></p>
     </div>
 
     <div class="grid">

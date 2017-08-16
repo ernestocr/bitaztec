@@ -44,28 +44,30 @@
       </p>
     </div>
     <div class="col">
-      <table class="table table-responsive">
-        <thead>
-          <tr>
-            <th>Número</th>
-            <th>Holder</th>
-            <th>Estado</th>
-            <th></th>
-          </tr>
-        </thead>
-        <% bank.accounts.each do |account| %>
-          <tr>
-            <td><%= account.number %></td>
-            <td><%= account.holder %></td>
-            <td>
-              <%= render 'admin/shared/status_toggle',
-                object: account,
-                path: toggle_admin_bank_accounts_path(account) %>
-            </td>
-            <td><%= link_to 'edit', edit_admin_bank_account_path(account) %></td>
-          </tr>
-        <% end %>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Número</th>
+              <th>Holder</th>
+              <th>Estado</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% bank.accounts.each do |account| %>
+            <tr>
+              <td><%= account.number %></td>
+              <td><%= account.holder %></td>
+              <td>
+                <%= render 'admin/shared/status_toggle',
+                  object: account,
+                  path: toggle_admin_bank_accounts_path(account) %>
+              </td>
+              <td><%= link_to 'edit', edit_admin_bank_account_path(account) %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
 <% end %>

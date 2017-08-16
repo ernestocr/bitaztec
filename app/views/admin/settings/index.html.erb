@@ -2,9 +2,6 @@
 
 <p>
   <span class="page"><i class="fa fa-gears"></i> Configuración</span>
-  <a href="<%= new_admin_setting_path %>" class="nav-link float-right no-mg">
-    <i class="fa fa-plus"></i> Configuración nueva
-  </a>
 </p>
 
 <div class="alert alert-info">
@@ -70,6 +67,32 @@
       </td>
       <td>
         <%= form_for([:admin, @min]) do |f| %>
+          <%= f.text_field :value, placeholder: 'e.g. 1000', class: 'form-control' %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Tamaño máximo del pedido para <em>usuario nuevo</em><br/>
+        <small class="text-muted">
+          Funciona igual que el máximo anterior, solo que este se aplica para los usuarios nuevos.
+        </small>
+      </td>
+      <td>
+        <%= form_for([:admin, @first_max]) do |f| %>
+          <%= f.text_field :value, placeholder: 'e.g. 50000', class: 'form-control' %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Tamaño mínimo del pedido para <em>usuario nuevo</em><br/>
+        <small class="text-muted">
+          Funciona igual que el mínimo anterior, solo que este se aplica para los usuarios nuevos.
+        </small>
+      </td>
+      <td>
+        <%= form_for([:admin, @first_min]) do |f| %>
           <%= f.text_field :value, placeholder: 'e.g. 1000', class: 'form-control' %>
         <% end %>
       </td>
