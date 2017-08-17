@@ -61,9 +61,9 @@
               <td>
                 <%= render 'admin/shared/status_toggle',
                   object: account,
-                  path: toggle_admin_bank_accounts_path(account) %>
+                  path: toggle_admin_bank_accounts_path(bank, account) %>
               </td>
-              <td><%= link_to 'edit', edit_admin_bank_account_path(account) %></td>
+              <td><%= link_to 'edit', edit_admin_bank_account_path(bank, account) %></td>
             </tr>
           <% end %>
         </table>
