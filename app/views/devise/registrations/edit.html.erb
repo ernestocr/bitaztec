@@ -16,6 +16,8 @@
   <% end %>
 
   <div class="form-inputs">
+    <%= f.hidden_field :agreed_to_terms %>
+    
     <div class="field">
       <label>Correo electrónico</label>
       <%= f.email_field :email, required: true, autofocus: true %>
