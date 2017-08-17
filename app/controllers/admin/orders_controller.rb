@@ -5,6 +5,9 @@ class Admin::OrdersController < Admin::BaseController
     # only get new/pending orders
     @new_orders = Order.where(submitted: false, completed: false, removed: false)
     @pending_orders = Order.where(submitted: true, completed: false, removed: false)
+    @expired_orders = Order.
+                        where(submitted: false, completed: false, removed: true).
+                        where('created_at > ?', Time.now - 1.day)
   end
 
   def history

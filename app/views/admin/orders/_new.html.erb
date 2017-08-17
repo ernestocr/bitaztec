@@ -1,0 +1,37 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Cuando</th>
+        <th>Usuario</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Método de pago</th>
+        <th>Se expira</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @new_orders.each do |order| %>
+        <% if !order.expired %>
+          <tr>
+            <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
+            <td><%= order.user.email %></td>
+            <td><%= order.amount %></td>
+            <td><%= order.price %></td>
+            <td><%= order.payment_method.name %></td>
+            <td><%= formatted_date(order.expires_at) %></td>
+            <td><%= render 'admin/orders/message_count', order: order %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% if @new_orders.map.count == 0 %>
+  <div class="alert alert-info">
+    No tienes pedidos nuevos.
+  </div>
+<% end %>
+

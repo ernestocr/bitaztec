@@ -60,4 +60,5 @@ end
 
 group :development do
   gem 'irbtools', require: 'irbtools/binding'
+  gem 'awesome_print'
 end
