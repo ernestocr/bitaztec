@@ -2,22 +2,47 @@
 <h2>Editar mis datos</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+  <%#= f.error_notification %>
+
+  <% if f.error_notification %>
+    <div id="error_explanation">
+      <h2>Hubo errores:</h2>
+      <ul>
+        <% resource.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
+    <div class="field">
+      <label>Correo electrónico</label>
+      <%= f.email_field :email, required: true, autofocus: true %>
+    </div>
+    
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <small>
         <%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %>
       </small>
     <% end %>
 
-    <%= f.input :password, autocomplete: "off", required: false %>
-    <small>(Dejar en blanco si no desea cambiarla)</small>
-    <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, required: true %>
-    <small>(Necesitamos su contraseña actual para confirmar los cambios)</small>
+    <div class="field">
+      <label>Contraseña nueva</label>
+      <%= f.password_field :password, autocomplete: "off", required: false %>
+      <small>(Dejar en blanco si no desea cambiarla)</small>
+    </div>
+
+    <div class="field">
+      <label>Confirmación de contraseña nueva</label>
+      <%= f.password_field :password_confirmation, required: false %>
+    </div>
+
+    <div class="field">
+      <label>Contraseña actual</label>
+      <%= f.password_field :current_password, required: true %>
+      <small>(Necesitamos su contraseña actual para confirmar los cambios)</small>
+    </div>
   </div>
 
   <div class="form-actions">
