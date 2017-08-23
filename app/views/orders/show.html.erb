@@ -20,6 +20,7 @@
       <%= render 'orders/steps/evidence' %>
       <!-- Add Wallet -->
       <%= render 'orders/steps/wallet' %>
+
     <% elsif @order.submitted and !@order.completed %>
       <div class="notification">
         <p>Gracias por comprar en BitAztec, tu pedido está en proceso de validación.</p>
@@ -29,7 +30,16 @@
         <p>Puedes verficar esta transacción en el
         <a target="_blank" href="https://blockchain.info/address/<%= @order.address %>">blockchain</a> al domicilio: <b><%= @order.address %></b></p>
       </div>
-    <% end %> 
+    <% end %>
+
+    <div class="cancel-order">
+      <p>
+        <%= link_to 'Cancelar pedido',
+                    @order,
+                    method: :delete,
+                    data: { confirm: 'Estás seguro?' } %>
+      </p>
+    </div> 
 
     <div class="chatbox hidden">
       <div class="head">
