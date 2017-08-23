@@ -1,16 +1,16 @@
 <div class="msg media">
   <%= image_tag msg.user.gravatar_url(size: 20, default: 'mm'), class: 'd-flex mr-3' %>
   <div class="media-body">
-    <% if current_user == msg.user %>
+    <span class="who"><% if current_user == msg.user %>
       Tú
     <% elsif msg.user.admin? %>
       admin
     <% else %>
       <%= msg.user.email %>
-    <% end %>
-    <span class="small text-muted">Hace <%= time_ago_in_words msg.created_at %></span>
-    <div class="content">
+    <% end %></span>
+    <div class="content <%= 'user' if current_user == msg.user %>">
       <%= msg.body %>
+      <span class="small text-muted">Hace <%= time_ago_in_words msg.created_at %></span>
     </div>
   </div>
 </div>

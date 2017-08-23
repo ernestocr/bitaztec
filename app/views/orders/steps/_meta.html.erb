@@ -1,0 +1,37 @@
+<div class="meta">
+
+  <div class="cost">
+    <h3>Desglose del pago</h3>
+    <table>
+      <tbody>
+        <tr>
+          <td>Costo de 1 BTC</td>
+          <td><%= number_to_currency @order.price, separator: '.' %></td>
+        </tr>
+        <tr>
+          <td>Compra</td>
+          <td class="amount"><%= @order.amount %></td>
+        </tr>
+        <tr>
+          <td>Pago total</td>
+          <td class="total"><%= number_to_currency @order.total, separator: '.' %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- end cost -->
+
+  <div class="time">
+    <h3>Detalles de la compra</h3>
+    <p>Método de pago elegido: <b><%= @order.payment_method.name %></b></p>
+    <p class="bought-at">Compra: <%= formatted_date(@order.created_at) %></p>
+    <p class="expires-at"><b>Expira: <%= formatted_date(@order.expires_at) %></b></p>
+    <% if !@order.expired and !@order.completed %>
+      <p class="time-left">Quedan <%= distance_of_time_in_words DateTime.current, @order.expires_at %></p>
+    <% elsif @order.completed %>
+      <p class="time-left">Tu pedido ha sido completado.</p>
+    <% else %>
+      <p class="time-left">Tu pedido ha expirado.</p>
+    <% end %>
+  </div> <!-- end time -->
+
+</div> <!-- end meta -->

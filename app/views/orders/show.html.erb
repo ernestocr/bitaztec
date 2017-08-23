@@ -5,150 +5,40 @@
 
   <div class="container">
 
-    <p class="alert alert-info">Estado: <b><%= @order.status %></b></p>
+    <!-- Status -->
+    <div class="status">
+      <p>Estatus de compra: <b><%= @order.status %></b></p>
+    </div>
 
-    <div class="structure">
-      <div class="paper">
-        <h3>Datos e instrucciones</h3>
-        <div class="data">
-          <p><%= formatted_date(@order.created_at) %></p>
-          <p>
-            Se expira el <b><%= formatted_date(@order.expires_at) %></b>
-            <span>Te quedan <%= distance_of_time_in_words DateTime.current, @order.expires_at %></span>
-          </p>
-        </div>
-
-        <div class="invoice">
-          <p class="quantity">
-            <%= @order.amount %> BTC
-            <span>
-              <%= number_to_currency @order.price, precision: 0 %>
-               &times; BTC
-             </span>
-          </p>
-          <p class="total">
-            <b>Total</b>
-            <span>
-              <b><%= number_to_currency @order.total, precision: 0 %></b>
-            </span>
-          </p>
-        </div>
-
-        <div class="method">
-          <p>Método de pago: <b><%= @order.payment_method.name %></b></p>
-        </div>
-
-
-        <!-- waiting on user submit evidence -->
-        <% if !@order.submitted and !@order.expired %>
-          <div class="follow-through">
-            <p><b>1.</b> <%= @order.payment_method.instructions %></p><br/>
-
-            <div class="accounts">
-              <ul>
-                <% @pm = @order.payment_method %>
-                <% @pm.banks.each do |bank| %>
-                  <li>
-                    <b><%= bank.name %></b>
-                    <% bank.accounts.each do |account| %>
-                      <div class="accounts-list">
-
-                        <% if !account.number.blank? and (['Depósito', 'Transferencia'].include? @pm.method) %>
-                          <p>No. de cuenta: <span><%= account.number %></span></p>
-                        <% end %>
-
-                        <% if !account.card.blank? %>
-                          <p>No. de tarjeta: <span><%= account.card %></span></p>
-                        <% end %>
-
-                        <% if !account.clabe.blank? and @pm.method == 'Transferencia' %>
-                          <p>CLABE interbancaria: <span><%= account.clabe %></span></p>
-                        <% end %>
-
-                        <p>Nombre de referencia: <span><%= account.holder %></span></p>
-
-                      </div>
-                    <% end %>
-                  </li>
-                <% end %>
-              </ul>
-            </div></br>
-
-            <p><b>2.</b> Sube tu recibo para comprobar el pago:</p><br/>
-
-            <%= simple_form_for(@order, html: { class: 'complete-order' }) do |f| %>
-              <%= f.file_field :attachments, multiple: true %>
-              <div class="evidence-preview">
-                <img />
-              </div>
-              <%= f.hidden_field :submitted, value: true %>
-              <p><b>3.</b> Introduce el domicilio de tu wallet</p>
-              <div class="field">
-                <%= f.text_field :address,
-                      placeholder: 'Poner domicilio que recibirá los bitcoins...',
-                      class: 'wallet' %>
-              </div>
-              <div class="field">
-                <%= f.submit 'Pago liquidado', class: 'btn btn-success' %>
-              </div>
-            </div>
-          <% end %>
-
-          <hr />
-          <%= link_to 'Quieres cancelar?',
-              order_path(@order), class: 'cancel-order',
-              method: :delete, data: { confirm: 'Estás seguro?' } %>
-        <% end %>
-
-
-        <!-- user has submitted evidence -->
-        <% if @order.attachments.count != 0 and @order.submitted %>
-          <div class="evidence">
-            <p class="text-muted">Evidencia presentada:</p>
-            <% @order.attachments.each do |attachment| %>
-              <% if attachment.file.extension == 'pdf' %>
-                <p class="pdf-file attachment">
-                  <%= link_to 'PDF', attachment.url %>
-                </p>
-              <% else %>
-                <%= image_tag attachment, class: 'img-thumbnail' %>
-              <% end %>
-            <% end %>
-
-            <p>
-              Si deseas cambiar la evidencia,
-              <a href="#" class="start-re-upload">haz click aquí.</a>
-            </p>
-            <div class="re-upload-evidence">
-              <%= simple_form_for(@order, html: { class: 'complete-order' }) do |f| %>
-                <%= f.file_field :attachments, multiple: true %>
-                <div class="evidence-preview">
-                  <img />
-                </div>
-                <%= f.hidden_field :address, class: 'wallet' %>
-                <%= f.hidden_field :submitted, value: true %>
-                <div class="field">
-                  <%= f.submit 'Subir nueva evidencia', class: 'btn btn-success' %>
-                </div>
-              <% end %>
-            </div>
-
-            <p class="address">
-            <b>Domicilio del wallet:</b> <span><%= @order.address %></span>
-            </p>
-          </div>
-        <% end %>
-
-        <!-- helper message for user -->
-        <%= render 'orders/step' %>
+    <!-- Receipt data -->
+    <%= render 'orders/steps/meta' %>
+    
+    <% if !@order.completed and !@order.submitted %>
+      <!-- Payment method data -->
+      <%= render 'orders/steps/methods_list' %>
+      <!-- Evidence (image upload) -->
+      <%= render 'orders/steps/evidence' %>
+      <!-- Add Wallet -->
+      <%= render 'orders/steps/wallet' %>
+    <% elsif @order.submitted and !@order.completed %>
+      <div class="notification">
+        <p>Gracias por comprar en BitAztec, tu pedido está en proceso de validación.</p>
       </div>
-
-      <div class="messages">
-        <h3>Tienes alguna duda?</h3>
-        <div class="partial">
-          <%= render 'shared/message_feed' %>
-        </div>
+    <% elsif @order.completed %>
+      <div class="notification">
+        <p>Puedes verficar esta transacción en el
+        <a target="_blank" href="https://blockchain.info/address/<%= @order.address %>">blockchain</a> al domicilio: <b><%= @order.address %></b></p>
       </div>
-    </div> <!-- end structure -->
+    <% end %> 
+
+    <div class="chatbox hidden">
+      <div class="head">
+        <h3>Chat en linea <button class="close">&times;</button></h3>
+      </div>
+      <div class="partial">
+        <%= render 'shared/message_feed' %>
+      </div>
+    </div>
+
   </div> <!-- end container -->
 </div>

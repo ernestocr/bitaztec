@@ -9,9 +9,10 @@ function rescrollChat() {
 }
 
 $(document).ready(function() {
+  //return false;
   // Only run if there is a chatbox
-  if ( $('.messages').length == 0 ) { return false; }
-  
+  if ( $('.messages, .chatbox').length == 0 ) { return false; }
+
   var order_id = $('.msgs').data('order');
   var prev_count = 0;
   var seconds = 5000;

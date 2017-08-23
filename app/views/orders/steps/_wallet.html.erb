@@ -1,0 +1,15 @@
+<div class="add-wallet">
+  <h5 class="step">3.</h5>
+
+  <h2>Agrega el domicilio</h2>
+  <p class="description">Escribe el domicilio del wallet que recibirá los Bitcoins.</p>
+
+  <%= simple_form_for(@order, html: { class: 'complete-order' }) do |f| %>
+    <%= f.hidden_field :submitted, value: true %>
+    <%= f.text_field :address,
+            placeholder: 'domicilio wallet...',
+            class: 'wallet' %>
+    <button type="submit">Pago liquidado!</button>      
+  <% end %>
+
+</div>

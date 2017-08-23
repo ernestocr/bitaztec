@@ -1,0 +1,34 @@
+<div class="method">
+  <h5 class="step">1.</h5>
+
+  <h2>Instrucciones de pago</h2>
+
+  <p class="description"><%= @order.payment_method.instructions %></p>
+
+  <div class="methods">
+    <% @pm.banks.each do |bank| %>
+      <div class="bank">
+        <p class="bank-name"><%= image_tag bank.image %></p>
+        <% bank.accounts.each do |account| %>
+          <div class="accounts-list">
+
+            <% if !account.number.blank? and (['Depósito', 'Transferencia'].include? @pm.method) %>
+              <p>No. de cuenta: <span><%= account.number %></span></p>
+            <% end %>
+
+            <% if !account.card.blank? %>
+              <p>No. de tarjeta: <span><%= account.card %></span></p>
+            <% end %>
+
+            <% if !account.clabe.blank? and @pm.method == 'Transferencia' %>
+              <p>CLABE interbancaria: <span><%= account.clabe %></span></p>
+            <% end %>
+
+            <p>Nombre de referencia: <span><%= account.holder %></span></p>
+
+          </div>
+        <% end %>
+      </div>
+    <% end%>
+  </div>
+</div>

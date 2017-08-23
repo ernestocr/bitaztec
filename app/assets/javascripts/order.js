@@ -9,32 +9,41 @@ $(document).on('ready', function() {
   if ( !$('.receipt').length ) { return false; }
 
   // re-upload-evidence
-  $('.start-re-upload').on('click', function(e) {
+  $('.re-upload').on('click', function(e) {
     e.preventDefault();
-    $('.re-upload-evidence').toggle();
+    
+    $('.file-upload').toggleClass('hidden');
+    $('.current-evidence-wrap').toggle();
+
+    var tmp = $(this).text();
+    $(this).text($(this).attr('text'));
+    $(this).attr('text', tmp);
   });
 
   // evidence preview
   $('#order_attachments').on('change', function() {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-      $('.evidence-preview img').attr('src', e.target.result);
-    };
-
-    reader.readAsDataURL(this.files[0]);
+    try {
+      var reader = new FileReader();
+      reader.onload = function(e) { $('.evidence-preview img').attr('src', e.target.result);
+        $('.evidence-preview').removeClass('hidden');
+      };
+      reader.readAsDataURL(this.files[0]);
+    } catch (e) {
+      $('.evidence-preview').addClass('hidden');
+    }
   });
 
   // validate form before form submit
   $('.complete-order').on('submit', function(e) {
     var btc_address = $('.wallet').val();
 
-    if ( typeof $('.evidence-preview img').attr('src') == 'undefined' ) {
+    if ( typeof $('.current-evidence img').attr('src') == 'undefined' ) {
       alert('Debes subir una imagen o un pdf de tu recibo.');
       return false;
     }
 
-    if ( btc_address == '' ) { alert('Debes ingresar el domicilio de tu wallet.');
+    if ( btc_address == '' ) {
+      alert('Debes ingresar el domicilio de tu wallet.');
       $('.wallet').focus();
       return false;
     }
@@ -54,5 +63,14 @@ $(document).on('ready', function() {
     // }
 
     return true;
+  });
+
+  // Toggle Chatbox
+  $('.chatbox .head').on('click', function(e) {
+    if ( $(e.target).hasClass('close') ) {
+      $('.chatbox').addClass('hidden');
+    } else {
+      $('.chatbox').removeClass('hidden');
+    }
   });
 });

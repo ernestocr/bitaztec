@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
       Notification.where(notifiable_id: @order.id).update_all(read_at: Time.zone.now)
     end
     # mark all messages as read
+    @pm = @order.payment_method
     read_msgs @order
   end
 
@@ -63,14 +64,20 @@ class OrdersController < ApplicationController
   end
 
   def update
-    # called only after image upload and address submition
-    if order_params[:attachments] == nil
-      redirect_to @order, alert: 'Debes subir la evidencia de pago.'
-    elsif order_params[:address] == nil
-      redirect_to @order, alert: 'Debes poner un domicilio válido.'
-    elsif @order.update(order_params)
-      AdminMailer.order_submitted(@order).deliver_later
-      redirect_to @order, notice: 'Tu pedido fue actualizado exitosamente.'
+    if params[:step] == 'image'
+      if order_params[:attachments] == nil
+        redirect_to @order, alert: 'Debes subir la evidencia de pago en un formato válido.'
+      else
+        @order.update(order_params)
+        redirect_to @order, alert: 'Excelente. Ahora solo agrega tu domicilio wallet para completar el pedido.'
+      end 
+    else
+      if order_params[:address] == nil
+        redirect_to @order, alert: 'Debes poner un domicilio válido.'
+      elsif @order.update(order_params)
+        AdminMailer.order_submitted(@order).deliver_later
+        redirect_to @order, notice: 'Tu pedido fue actualizado exitosamente.'
+      end
     end
   end
 

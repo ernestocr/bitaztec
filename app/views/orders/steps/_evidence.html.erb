@@ -1,0 +1,40 @@
+<div class="evidence">
+<h5 class="step">2.</h5>
+
+<h2>Comprobante de pago</h2>
+<p class="description">Sube tu recibo para comprobar el pago. <em>(pdf, jpg, png)</em></p>
+
+<%= simple_form_for(@order, html: { multipart: true }) do |f| %>
+  <% if @order.attachments.count != 0 %>
+    <div class="current-evidence-wrap">
+      <p>Comprobante(s) de pago presentado:</p>
+      <div class="current-evidence">
+        <% @order.attachments.each do |attachment| %>
+          <div>
+            <% if attachment.file.extension == 'pdf' %>
+              <p class="pdf-file attachment">
+                <%= link_to 'PDF', attachment.url %>
+              </p>
+            <% else %>
+              <%= image_tag attachment, class: 'img-thumbnail' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="file-upload <%= 'hidden' if @order.attachments.count != 0 %>">
+    <input type="hidden" name="step" value="image" />
+    <%= f.file_field :attachments, multiple: true %>
+    <div class="evidence-preview hidden">
+      <img />
+      <button type="submit">Subir &#10004;</button>
+    </div>
+  </div>
+
+  <% if @order.attachments.count != 0 %>
+    <a href="#" text="Cancelar" class="re-upload">Cambiar evidencia.</a>
+  <% end %>
+<% end %>  
+</div>
