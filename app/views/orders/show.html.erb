@@ -20,6 +20,15 @@
       <%= render 'orders/steps/evidence' %>
       <!-- Add Wallet -->
       <%= render 'orders/steps/wallet' %>
+      
+      <div class="cancel-order">
+        <p>
+          <%= link_to 'Cancelar pedido',
+                      @order,
+                      method: :delete,
+                      data: { confirm: 'Estás seguro?' } %>
+        </p>
+      </div>
 
     <% elsif @order.submitted and !@order.completed %>
       <div class="notification">
@@ -31,15 +40,6 @@
         <a target="_blank" href="https://blockchain.info/address/<%= @order.address %>">blockchain</a> al domicilio: <b><%= @order.address %></b></p>
       </div>
     <% end %>
-
-    <div class="cancel-order">
-      <p>
-        <%= link_to 'Cancelar pedido',
-                    @order,
-                    method: :delete,
-                    data: { confirm: 'Estás seguro?' } %>
-      </p>
-    </div> 
 
     <div class="chatbox hidden">
       <div class="head">

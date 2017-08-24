@@ -48,6 +48,8 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    resources :cards
   end
 
   #authenticated :user do

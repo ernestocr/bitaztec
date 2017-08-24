@@ -1,4 +1,4 @@
-<%= simple_form_for([:admin, :bank, account],
+<%= simple_form_for([:admin, account.bank, account],
                     defaults: { wrapper_html: { class: 'field' } }, 
                     html: { class: 'form' }) do |f| %>
 
@@ -6,9 +6,6 @@
 
   <div class="form-group">                  
     <%= f.input :number, autofocus: true, input_html: { class: 'form-control' } %>
-  </div>
-  <div class="form-group">                  
-    <%= f.input :card, input_html: { class: 'form-control' } %>
   </div>
   <div class="form-group">                  
     <%= f.input :clabe, input_html: { class: 'form-control' } %>

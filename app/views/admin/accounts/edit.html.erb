@@ -14,4 +14,13 @@
   <div class="col-lg-6">
     <%= render 'form', account: @account %>
   </div>
+
+  <div class="col-lg-6">
+    <p>Tarjetas asociadas</p>
+    <hr />
+
+    <div class="cards">
+      <%= render 'admin/accounts/cards' %>
+    </div>
+  </div>
 </div>

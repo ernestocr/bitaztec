@@ -18,7 +18,8 @@ class Admin::AccountsController < Admin::BaseController
   def create
     @account = @bank.accounts.create(account_params)
     if @account.save
-      redirect_to admin_bank_accounts_path @bank
+      flash[:notice] = "La cuenta fue creada exitosamente."
+      redirect_to edit_admin_bank_account_path @account 
     else
       render :new
     end
@@ -26,7 +27,8 @@ class Admin::AccountsController < Admin::BaseController
 
   def update
     if @account.update_attributes(account_params)
-      redirect_to admin_bank_accounts_path @bank
+      flash[:notice] = "Los cambios fueron guardados."
+      redirect_to edit_admin_bank_account_path @bank, @account 
     else
       render :edit
     end
@@ -54,7 +56,7 @@ class Admin::AccountsController < Admin::BaseController
     end
 
     def account_params
-      params.require(:account).permit(:number, :card, :clabe, :holder, :bank_id, :active)
+      params.require(:account).permit(:number, :clabe, :holder, :bank_id, :active)
     end
 
 end

@@ -1,0 +1,49 @@
+<% @account.cards.each do |card| %>
+
+  <%= form_for [:admin, card] do |f| %>
+    <div class="form-group">
+      <label>Número</label>
+      <%= f.text_field :number, class: 'form-control' %>
+    </div>
+
+    <div class="actions">
+      <div class="checkbox" style="display: inline">
+        <label>
+          <%= f.check_box :active %>
+          <label>Activo</label>
+        </label>
+      </div>
+      <div class="btn-group float-right">
+        <%= f.submit 'Guardar', class: 'btn btn-sm btn-success' %>
+        <%= link_to 'Eliminar', admin_card_path(card), method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: 'Estás seguro?' } %>
+    </div>
+    <br />
+  <% end %>
+
+<% end %>
+
+<% if @account.cards.count == 0 %>
+  <small class="muted">Actualmente ésta cuenta no tiene tarjetas asociadas.</small>
+<% end %>
+
+<hr />
+<p>Agregar tarjeta asociada</p>
+
+<%= form_for [:admin, @account.cards.new] do |f| %>
+  <%= f.hidden_field :account_id %>
+
+  <div class="form-group">
+    <label>Número</label>
+    <%= f.text_field :number, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <div class="checkbox" style="display: inline">
+      <label>
+        <%= f.check_box :active %>
+        <label>Activo</label>
+      </label>
+    </div>
+    <%= f.submit 'Guardar', class: 'btn btn-sm btn-success float-right' %>
+  </div>
+<% end %>

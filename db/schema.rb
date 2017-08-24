@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619001859) do
+ActiveRecord::Schema.define(version: 20170824014351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20170619001859) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "clabe"
-    t.string   "card"
     t.index ["bank_id"], name: "index_accounts_on_bank_id", using: :btree
   end
 
@@ -44,6 +43,15 @@ ActiveRecord::Schema.define(version: 20170619001859) do
   create_table "banks_payment_methods", id: false, force: :cascade do |t|
     t.integer "payment_method_id", null: false
     t.integer "bank_id",           null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string   "number"
+    t.boolean  "active",     default: false
+    t.integer  "account_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["account_id"], name: "index_cards_on_account_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -134,6 +142,7 @@ ActiveRecord::Schema.define(version: 20170619001859) do
   end
 
   add_foreign_key "accounts", "banks"
+  add_foreign_key "cards", "accounts"
   add_foreign_key "messages", "orders"
   add_foreign_key "messages", "users"
   add_foreign_key "orders", "payment_methods"
