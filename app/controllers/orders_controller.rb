@@ -5,18 +5,19 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :set_btc_price, only: [:new, :create]
 
-  # can't access new, create if they have a pending order
-  before_action :has_pending_order, only: [:new, :create]
-  # check if active
+  # check if SITE is live and selling
   before_action :system_ok, only: [:new, :create, :update]
+  
+  # redirect to order if the user has an open order
+  before_action :has_pending_order, only: [:new, :create]
 
-  # user's main page
+  # user's account page
   def index
     @history = current_user.orders.where(completed: true, removed: false)
     @order = current_user.orders.where(completed: false, removed: false).first
 
     # if the user has a pending order, has not submitted evidence
-    # and is expired, then delete the order, and notify the user
+    # and is expired, then 'delete' the order, and notify the user
     if @order and @order.expired and !@order.submitted
       Notification.create(
         recipient: @order.user,
@@ -35,15 +36,19 @@ class OrdersController < ApplicationController
     if params[:clear_notifs]
       Notification.where(notifiable_id: @order.id).update_all(read_at: Time.zone.now)
     end
+
     # mark all messages as read
-    @pm = @order.payment_method
     read_msgs @order
+    
+    # it's annoying having to write @order.payment_methods.each...
+    @pm = @order.payment_method
   end
 
   def new
     @order = current_user.orders.new
+    
+    # set the current global variables and options
     @methods = PaymentMethod.where(active: true, deprecated: false)
-
     @min = Setting.min
     @max = Setting.max
     @first_min = Setting.first_min
@@ -52,7 +57,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.new(order_params)
-    # set price from db, not from a form
+    # set price from db always
     @order.price = @btc_price
 
     if @order.save
@@ -64,7 +69,9 @@ class OrdersController < ApplicationController
   end
 
   def update
+    # not pretty but the most user intuitive way I could come up with...
     if params[:step] == 'image'
+      # user uploaded an image, just save and reload
       if order_params[:attachments] == nil
         redirect_to @order, alert: 'Debes subir la evidencia de pago en un formato válido.'
       else
@@ -72,11 +79,12 @@ class OrdersController < ApplicationController
         redirect_to @order, alert: 'Excelente. Ahora solo agrega tu domicilio wallet para completar el pedido.'
       end 
     else
+      # user added his wallet address and therefore completed his payment
       if order_params[:address] == nil
         redirect_to @order, alert: 'Debes poner un domicilio válido.'
       elsif @order.update(order_params)
         AdminMailer.order_submitted(@order).deliver_later
-        redirect_to @order, notice: 'Tu pedido fue actualizado exitosamente.'
+        redirect_to @order, notice: 'Tu pago ahora está en proceso de revisión.'
       end
     end
   end
@@ -129,7 +137,6 @@ class OrdersController < ApplicationController
 
     def system_ok
       if Setting.active != '1'
-        # raise ActionController::RoutingError.new('Not Found')
         render 'orders/not_active'
       end
     end

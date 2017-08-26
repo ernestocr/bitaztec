@@ -10,23 +10,24 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-Hola Ernesto:
+- Al escoger un pago solamente hay que mostrar un Solo numero numero de Cuenta con la informacion.
 
-Te paso los cambios cualquier duda me dices
+- Cuando halla varias cuentas asociadas a un metodo de pago en el panel de administracion hay que poner la opcion para escoger cual sea la cuenta activo por default
 
-1-toda cuenta Bancaria tiene un numero de Cuenta y un Numero de Cuenta Clabe estos no ya no se podran cambiar pero puede llegar 
-a tener varios numeros de tarjeta a lo largo del tiempo pero solo uno debe estar activo.
-2-Al escoger un pago solamente hay que mostrar un Solo numero numero de Cuenta con la informacion.
-3-Cuando halla varias cuentas asociadas a un metodo de pago en el panel de administracion hay que poner la opcion para escoger cual sea la cuenta activa
-  por default
-4-A La hora que que se muestran los pagos realizados hace falta que se vea el numero de Cuenta o Tarjeta asi como el wallet
-5-Hay que conservar en la historia de los pedidos con que numero de cuenta se realizo y con que tarjeta si es el caso
-6-Que no se puedan borrar numero de cuenta que tengan histora 
-7-hay qu poner decimales a la hora de mostrar los pedidos a los usuarios
-8-para cuando el metodo de pago sea por Oxxo no mostrar el nombre de referencia
+- A La hora que que se muestran los pagos realizados hace falta que se vea el numero de Cuenta o Tarjeta asi como el wallet - Registrar la cuenta default en el registro del pedido (wallet interfaz)
+
+- Hay que conservar en la historia de los pedidos con que numero de cuenta se realizo y con que tarjeta
+
+- Que no se puedan borrar numero de cuenta que tengan histora 
+
+- para cuando el metodo de pago sea por Tienda solo mostrar TARJETA
+
+- flexibilidad individual en los metodos de pago sobre los bancos y cuentas
 
 ### DONE:
 
+* hay que poner decimales a la hora de mostrar los pedidos a los usuarios
+* toda cuenta Bancaria tiene un numero de Cuenta y un Numero de Cuenta Clabe estos no ya no se podran cambiar
 * specific account dealing
 * edit password
 * cron job for btc price update

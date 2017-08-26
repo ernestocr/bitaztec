@@ -11,6 +11,6 @@ every 30.minutes do
   rake "orders:notify_expiration"
 end
 
-every 10.minutes do
+every 3.minutes do
   rake "price:update"
 end

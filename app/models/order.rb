@@ -3,7 +3,6 @@ require 'bitcoin'
 class Order < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
-  # default_scope { where('expires_at > ? OR submitted = true', DateTime.now.utc) }
   
   has_many :messages, dependent: :delete_all
 
@@ -14,7 +13,6 @@ class Order < ApplicationRecord
   validates :payment_method_id, presence: true
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :price, presence: true
-  # validates :address, presence: true
 
   validate :valid_btc_address
 

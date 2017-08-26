@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824014351) do
+ActiveRecord::Schema.define(version: 20170826045515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,17 +32,18 @@ ActiveRecord::Schema.define(version: 20170824014351) do
     t.index ["bank_id"], name: "index_accounts_on_bank_id", using: :btree
   end
 
+  create_table "accounts_payment_methods", id: false, force: :cascade do |t|
+    t.integer "payment_method_id", null: false
+    t.integer "account_id",        null: false
+    t.index ["payment_method_id", "account_id"], name: "index_payment_methods_accounts", using: :btree
+  end
+
   create_table "banks", force: :cascade do |t|
     t.string   "name"
     t.boolean  "active",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "image"
-  end
-
-  create_table "banks_payment_methods", id: false, force: :cascade do |t|
-    t.integer "payment_method_id", null: false
-    t.integer "bank_id",           null: false
   end
 
   create_table "cards", force: :cascade do |t|
@@ -52,6 +53,11 @@ ActiveRecord::Schema.define(version: 20170824014351) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["account_id"], name: "index_cards_on_account_id", using: :btree
+  end
+
+  create_table "cards_payment_methods", id: false, force: :cascade do |t|
+    t.integer "payment_method_id", null: false
+    t.integer "card_id",           null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -92,6 +98,12 @@ ActiveRecord::Schema.define(version: 20170824014351) do
     t.integer  "authorized_by"
     t.datetime "expires_at"
     t.boolean  "removed",           default: false
+    t.integer  "account_id"
+    t.integer  "card_id"
+    t.string   "confirmed_account"
+    t.string   "confirmed_card"
+    t.index ["account_id"], name: "index_orders_on_account_id", using: :btree
+    t.index ["card_id"], name: "index_orders_on_card_id", using: :btree
     t.index ["payment_method_id"], name: "index_orders_on_payment_method_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
@@ -145,6 +157,8 @@ ActiveRecord::Schema.define(version: 20170824014351) do
   add_foreign_key "cards", "accounts"
   add_foreign_key "messages", "orders"
   add_foreign_key "messages", "users"
+  add_foreign_key "orders", "accounts"
+  add_foreign_key "orders", "cards"
   add_foreign_key "orders", "payment_methods"
   add_foreign_key "orders", "users"
 end

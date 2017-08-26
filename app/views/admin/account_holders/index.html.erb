@@ -2,36 +2,42 @@
 
 <p class="page"><i class="fa fa-money"></i> Dueños de cuentas</p>
 
-<table class="table table-responsive">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @account_holders.each do |account_h| %>
-      <%= simple_form_for([:admin, account_h]) do |f| %>
-        <tr>
-          <td><%= f.input_field :name, class: 'form-control' %></td>
-          <td>
-            <div class="btn-group">
-              <%= f.submit 'Guardar', class: 'btn btn-sm btn-primary' %>
-              <%= link_to 'Borrar', 
-                    admin_account_holder_path(account_h), 
-                    method: :delete, data: { confirm: 'Estás seguro?' },
-                    class: 'btn btn-sm btn-secondary' %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-
 <div class="row">
-  <div class="col-sm-4" style="margin-left: 10px;">
+  
+  <div class="col-sm-8">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @account_holders.each do |account_h| %>
+            <%= simple_form_for([:admin, account_h]) do |f| %>
+              <tr>
+                <td><%= f.input_field :name, class: 'form-control' %></td>
+                <td>
+                  <div class="btn-group">
+                    <%= f.submit 'Guardar', class: 'btn btn-sm btn-primary' %>
+                    <%= link_to 'Borrar', 
+                          admin_account_holder_path(account_h), 
+                          method: :delete, data: { confirm: 'Estás seguro?' },
+                          class: 'btn btn-sm btn-secondary' %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <p>Agregar un nuevo dueño de cuenta a la lista de dueños:</p>
     <%= simple_form_for([:admin, @account_holder]) do |f| %>
       <div class="form-group" >
         <%= f.input_field :name, class: 'form-control', placeholder: 'nombre del dueño' %>
@@ -40,5 +46,6 @@
       <%= f.submit 'Agregar', class: 'btn btn-sm btn-success' %>
     <% end %> 
   </div>
+
 </div>
 

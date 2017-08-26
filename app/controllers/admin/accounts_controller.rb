@@ -19,7 +19,7 @@ class Admin::AccountsController < Admin::BaseController
     @account = @bank.accounts.create(account_params)
     if @account.save
       flash[:notice] = "La cuenta fue creada exitosamente."
-      redirect_to edit_admin_bank_account_path @account 
+      redirect_to edit_admin_bank_account_path @bank.id, @account.id 
     else
       render :new
     end

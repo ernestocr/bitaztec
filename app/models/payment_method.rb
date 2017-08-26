@@ -10,7 +10,8 @@ class PaymentMethod < ApplicationRecord
   validates :banks, presence: true
 
   has_many :orders
-  has_and_belongs_to_many :banks
+  has_and_belongs_to_many :accounts
+  has_and_belongs_to_many :cards
 
   mount_uploader :image, ImageUploader
 

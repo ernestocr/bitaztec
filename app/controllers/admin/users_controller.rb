@@ -9,6 +9,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
+    # assuming only the admin status is modifiable!
     @user = User.find(params[:id])
     @user.toggle!(:admin)
     redirect_to :back

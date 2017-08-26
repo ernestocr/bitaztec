@@ -8,7 +8,7 @@
     <%= f.input :method, collection: ['Depósito', 'Transferencia', 'Tienda', 'ATM'], input_html: { class: 'form-control' } %>
   </div>
   <div class="form-group">
-    <%= f.association :banks, as: :select, input_html: { class: 'form-control' } %>
+    <%= f.association :accounts, as: :select, input_html: { class: 'form-control' } %>
   </div>
   <div class="form-group">
     <%= f.input :instructions, input_html: { class: 'form-control' } %>
