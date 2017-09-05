@@ -30,6 +30,7 @@ $(document).ready(function() {
       
       if ( msg_count > 0 ) {
         $('.empty-messages').remove();
+        $('.zero-msgs').remove();
       }
 
       if ( msg_count > prev_count ) {
@@ -38,7 +39,7 @@ $(document).ready(function() {
         rescrollChat();
       } // else don't update DOM
     }).error(function(data, request) {
-      alert('Existe un error de connexión, por favor recargue la página...');
+      //alert('Existe un error de connexión, por favor recargue la página...');
     });
   }, seconds);
  

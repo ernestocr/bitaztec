@@ -21,14 +21,16 @@
       <!-- Add Wallet -->
       <%= render 'orders/steps/wallet' %>
       
-      <div class="cancel-order">
-        <p>
-          <%= link_to 'Cancelar pedido',
-                      @order,
-                      method: :delete,
-                      data: { confirm: 'Estás seguro?' } %>
-        </p>
-      </div>
+      <% if !@order.completed or !@order.submitted %>
+        <div class="cancel-order">
+          <p>
+            <%= link_to 'Cancelar pedido',
+                        @order,
+                        method: :delete,
+                        data: { confirm: 'Estás seguro?' } %>
+          </p>
+        </div>
+      <% end %>
 
     <% elsif @order.submitted and !@order.completed %>
       <div class="notification">

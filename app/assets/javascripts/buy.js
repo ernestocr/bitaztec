@@ -20,14 +20,14 @@ Number.prototype.formatMoney = function(c, d, t){
 function confirmBuy() {
   var price = $('#order_price').data('value');
   var amount = $('#order_amount').val();
-  var total = price * amount;
+  var total = Math.ceil(price * amount);
   var method = $('.options div[data-value="' +
                 $('#order_payment_method').val() +
                  '"] span').text();
 
-  $('.verify-price').text(price.formatMoney(0));
+  $('.verify-price').text(price.formatMoney(2));
   $('.verify-amount').text(amount);
-  $('.verify-total').text(total.formatMoney(0));
+  $('.verify-total').text(total.formatMoney(2));
   $('.payment-method-chosen').text(method)
 }
 
