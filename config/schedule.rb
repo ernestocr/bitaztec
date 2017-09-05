@@ -1,4 +1,5 @@
 #require File.expand_path('../config/environment', __FILE__)
+require "./"+ File.dirname(__FILE__) + "/environment.rb"
 
 set :output, "log/cron_log.log"
 
