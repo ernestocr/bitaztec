@@ -161,6 +161,7 @@ b {
 
       div {
         flex: 1;
+        margin: 0 0.5em;
 
         img {
           max-width: 100%;
@@ -260,6 +261,22 @@ b {
 
         &:hover {
           opacity: 0.8;
+        }
+      }
+
+      .small {
+        font-size: 0.9em;
+        color: $dgrey;
+        text-align: center;
+        margin-top: 0.5em;
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

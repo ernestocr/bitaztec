@@ -15,6 +15,8 @@ class Notification < ApplicationRecord
       "Tienes un nuevo mensaje."
     elsif self.action == 'rejected'
       "Tu pedido ha sido rechazado."
+    elsif self.action == 'cancelled'
+      "Tu pedido ha sido cancelado y eliminado."
     else
       "Missing notification message. <#{self.action}>"
     end

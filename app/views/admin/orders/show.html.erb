@@ -86,9 +86,8 @@
       <% end %>
     </div>
 
-    <hr>
-
     <% if @order.submitted and !@order.completed %>
+      <hr>
       <div class="">
         <p>Ya transferiste los Bitcoins?</p>
         <%= link_to 'Listo', admin_order_path(complete: true), method: :put, class: 'btn btn-success' %>
@@ -101,9 +100,16 @@
     <% end %>
 
     <% if @order.completed %>
-        <p>
-          Verficación: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
-        </p>
+      <p>
+        Verficación: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
+      </p>
+    <% end %>
+    
+    <% if !@order.completed %>
+      <hr />
+      <%= link_to 'Eliminar pedido', admin_order_path(@order),
+          method: :delete, data: { confirm: 'El pedido será borrado de la base de datos' },
+          class: 'btn btn-sm btn-danger' %>
     <% end %>
   </div>
 
