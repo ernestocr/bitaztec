@@ -127,6 +127,19 @@
         <% end %>
       </td>
     </tr>
+    <tr>
+      <td>
+        Intervalo de actualización automatica<br/>
+        <small class="text-muted">
+          El retraso de la actualización de precios en minutos. Por default está en dos minutos.
+        </small> 
+      </td>
+      <td>
+        <%= form_for([:admin, @interval]) do |f| %>
+          <%= f.text_field :value, placeholder: '2', class: 'form-control' %>
+        <% end %>
+      </td>
+    </tr>
   </tbody>
 </table>
 

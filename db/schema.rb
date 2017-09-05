@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826045515) do
+ActiveRecord::Schema.define(version: 20170904234737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,10 @@ ActiveRecord::Schema.define(version: 20170826045515) do
     t.string   "holder"
     t.integer  "bank_id"
     t.boolean  "active",     default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "clabe"
+    t.boolean  "deprecated", default: false
     t.index ["bank_id"], name: "index_accounts_on_bank_id", using: :btree
   end
 
@@ -60,6 +61,21 @@ ActiveRecord::Schema.define(version: 20170826045515) do
     t.integer "card_id",           null: false
   end
 
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "order_id"
@@ -87,23 +103,25 @@ ActiveRecord::Schema.define(version: 20170826045515) do
     t.integer  "payment_method_id"
     t.decimal  "amount"
     t.integer  "price"
-    t.boolean  "submitted",         default: false
-    t.integer  "expires_in",        default: 3
-    t.boolean  "completed",         default: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.boolean  "submitted",            default: false
+    t.integer  "expires_in",           default: 3
+    t.boolean  "completed",            default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "address"
-    t.string   "attachments",       default: [],                 array: true
+    t.string   "attachments",          default: [],                 array: true
     t.datetime "completed_at"
     t.integer  "authorized_by"
     t.datetime "expires_at"
-    t.boolean  "removed",           default: false
+    t.boolean  "removed",              default: false
     t.integer  "account_id"
     t.integer  "card_id"
-    t.string   "confirmed_account"
-    t.string   "confirmed_card"
+    t.integer  "confirmed_account_id"
+    t.integer  "confirmed_card_id"
     t.index ["account_id"], name: "index_orders_on_account_id", using: :btree
     t.index ["card_id"], name: "index_orders_on_card_id", using: :btree
+    t.index ["confirmed_account_id"], name: "index_orders_on_confirmed_account_id", using: :btree
+    t.index ["confirmed_card_id"], name: "index_orders_on_confirmed_card_id", using: :btree
     t.index ["payment_method_id"], name: "index_orders_on_payment_method_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end

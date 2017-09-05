@@ -10,22 +10,16 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- Al escoger un pago solamente hay que mostrar un Solo numero numero de Cuenta con la informacion.
-
-- Cuando halla varias cuentas asociadas a un metodo de pago en el panel de administracion hay que poner la opcion para escoger cual sea la cuenta activo por default
-
-- A La hora que que se muestran los pagos realizados hace falta que se vea el numero de Cuenta o Tarjeta asi como el wallet - Registrar la cuenta default en el registro del pedido (wallet interfaz)
-
-- Hay que conservar en la historia de los pedidos con que numero de cuenta se realizo y con que tarjeta
-
-- Que no se puedan borrar numero de cuenta que tengan histora 
-
-- para cuando el metodo de pago sea por Tienda solo mostrar TARJETA
-
-- flexibilidad individual en los metodos de pago sobre los bancos y cuentas
 
 ### DONE:
 
+* Hay que conservar en la historia de los pedidos con que numero de cuenta se realizo y con que tarjeta
+* A La hora que que se muestran los pagos realizados hace falta que se vea el numero de Cuenta o Tarjeta asi como el wallet
+* para cuando el metodo de pago sea por Tienda solo mostrar TARJETA
+* Que no se puedan borrar numero de cuenta que tengan histora 
+* flexibilidad individual en los metodos de pago sobre los bancos y cuentas
+* Cuando haya varias cuentas asociadas a un metodo de pago en el panel de administracion hay que poner la opcion para escoger cual sea la cuenta activo por default
+* Al escoger un pago solamente hay que mostrar un solo numero de Cuenta con la informacion.
 * hay que poner decimales a la hora de mostrar los pedidos a los usuarios
 * toda cuenta Bancaria tiene un numero de Cuenta y un Numero de Cuenta Clabe estos no ya no se podran cambiar
 * specific account dealing

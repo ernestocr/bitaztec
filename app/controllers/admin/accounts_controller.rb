@@ -26,6 +26,11 @@ class Admin::AccountsController < Admin::BaseController
   end
 
   def update
+    if params[:account][:deprecated] == "true"
+      @account.update_attributes(deprecated: true)
+      return redirect_to admin_banks_path(@bank), notice: 'La cuenta ya no aparecerá'
+    end
+    
     if @account.update_attributes(account_params)
       flash[:notice] = "Los cambios fueron guardados."
       redirect_to edit_admin_bank_account_path @bank, @account 
@@ -56,7 +61,7 @@ class Admin::AccountsController < Admin::BaseController
     end
 
     def account_params
-      params.require(:account).permit(:number, :clabe, :holder, :bank_id, :active)
+      params.require(:account).permit(:number, :clabe, :holder, :bank_id, :active, :deprecated)
     end
 
 end

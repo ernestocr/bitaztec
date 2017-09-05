@@ -62,3 +62,5 @@ group :development do
   gem 'irbtools', require: 'irbtools/binding'
   gem 'awesome_print'
 end
+
+gem 'delayed_job_active_record'

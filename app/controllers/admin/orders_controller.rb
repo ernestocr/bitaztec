@@ -17,6 +17,10 @@ class Admin::OrdersController < Admin::BaseController
   def show
     # mark all messages as admin_read
     read_msgs @order
+    if !@order.account_id.blank?
+      @account = Account.unscoped.find(@order.account_id)
+      @card    = Card.unscoped.find(@order.card_id)
+    end
   end
 
   def update
@@ -45,6 +49,9 @@ class Admin::OrdersController < Admin::BaseController
       UserMailer.order_denied(@order).deliver_later
 
       redirect_to admin_order_path(@order)
+    else
+      @order.update_attributes(order_params)
+      redirect_to admin_order_path(@order)
     end
   end
 
@@ -67,6 +74,10 @@ class Admin::OrdersController < Admin::BaseController
       last_msgs.each do |msg|
         msg.update_attributes(admin_read: true)
       end
+    end
+
+    def order_params
+      params.require(:order).permit(:confirmed_account_id, :confirmed_card_id)
     end
 
 end

@@ -17,9 +17,9 @@ class Admin::PaymentMethodsController < Admin::BaseController
 
   def create
     @payment_method = PaymentMethod.new(payment_method_params)
-
+    
     if @payment_method.save
-      redirect_to admin_payment_methods_path, notice: 'El método de pago fue creado.'
+      redirect_to admin_payment_method_path(@payment_method), notice: 'El método de pago fue creado.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::PaymentMethodsController < Admin::BaseController
 
   def update
     if @payment_method.update(payment_method_params)
-      redirect_to admin_payment_methods_path, notice: 'El método de pago fue actualizado.'
+      redirect_to admin_payment_method_path(@payment_method), notice: 'El método de pago fue actualizado.'
     else
       render :edit
     end
@@ -53,7 +53,7 @@ class Admin::PaymentMethodsController < Admin::BaseController
     def payment_method_params
       params.require(:payment_method).permit(
         :name, :method, :schedule, :instructions, :notice,
-        :active, :details, :expires, :image, bank_ids: []
+        :active, :details, :expires, :image, :account_ids, :card_ids
       )
     end
 

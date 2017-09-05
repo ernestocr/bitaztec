@@ -5,6 +5,7 @@
 @import 'colors';
 
 .howto {
+  flex: 1;
   background-color: $lgrey;
   background-image: image-url('aztec.png');
   background-size: cover;

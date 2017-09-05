@@ -5,6 +5,14 @@
   <p class="description">Escribe el domicilio del wallet que recibirá los Bitcoins.</p>
 
   <%= simple_form_for(@order, html: { class: 'complete-order' }) do |f| %>
+    <%= f.hidden_field :account_id, value: @pm.accounts.first.id %>
+    
+    <% @pm.cards.each do |card| %>
+      <% if card.active and @pm.accounts.first.cards.include?(card) %>
+        <%= f.hidden_field :card_id, value: @pm.accounts.first.cards.first.id %>
+      <% end %>
+    <% end %>
+
     <%= f.hidden_field :submitted, value: true %>
     <%= f.text_field :address,
             placeholder: 'domicilio wallet...',

@@ -7,7 +7,6 @@ class PaymentMethod < ApplicationRecord
   validates :method, presence: true
   validates :instructions, presence: true
   validates :schedule, presence: true
-  validates :banks, presence: true
 
   has_many :orders
   has_and_belongs_to_many :accounts

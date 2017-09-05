@@ -122,10 +122,20 @@ b {
         img {
           max-width: 50px;
         }
+
+        span {
+          font-weight: bold;
+          color: $blue;
+        }
+
+        .bank-name {
+          font-size: 1.2em;
+          font-weight: 200;
+        }
       }
 
-      .accounts-list {
-        margin-bottom: 1.5em;
+      .cards-list {
+        //margin-bottom: 1.5em;
 
         span {
           color: $blue;

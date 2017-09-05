@@ -18,7 +18,7 @@
         <th>Holder</th>
         <th>Activo</th>
         <th># de tarjetas</th>
-        <th>Pedidos</th>
+        <th># de pedidos</th>
       </tr>
     </thead>
 
@@ -34,7 +34,7 @@
                 path: toggle_admin_bank_accounts_path(bank_id: @bank.id, id: account.id) %>
           </td>
           <td><%= account.cards.count %></td>
-          <td><%= 'static 3' %></td>
+          <td><%= account.number_of_orders %></td>
         </tr>
       <% end %>
     </tbody>

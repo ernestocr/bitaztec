@@ -2,7 +2,12 @@
 
   <%= form_for [:admin, card] do |f| %>
     <div class="form-group">
-      <label>Número</label>
+      <label>
+        Número
+        <% if card.is_being_used %>
+          <small class="text-muted">En uso</small>
+        <% end %>
+      </label>
       <%= f.text_field :number, class: 'form-control' %>
     </div>
 
@@ -15,9 +20,16 @@
       </div>
       <div class="btn-group float-right">
         <%= f.submit 'Guardar', class: 'btn btn-sm btn-success' %>
-        <%= link_to 'Eliminar', admin_card_path(card), method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: 'Estás seguro?' } %>
+        <% if !card.is_being_used and card.number_of_orders == 0 %>
+          <%= link_to 'Eliminar', admin_card_path(card),
+              method: :delete, class: 'btn btn-sm btn-danger',
+              data: { confirm: 'Estás seguro?' } %>
+        <% elsif !card.is_being_used %>
+          <%= link_to 'Desaprobar', '#', class: 'btn btn-sm btn-secondary' %>
+        <% end %>
+      </div>
+      <br />
     </div>
-    <br />
   <% end %>
 
 <% end %>

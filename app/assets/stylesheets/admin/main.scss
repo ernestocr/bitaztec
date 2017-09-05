@@ -127,6 +127,14 @@ small {
   .table {
     width: 100%;
     display: table;
+  
+    tr.inactive {
+      color: rgba(0, 0, 0, 0.3) !important;
+    }
+
+    td span.inactive {
+      color: rgba(0, 0, 0, 0.3) !important;
+    }
   }
 }
 

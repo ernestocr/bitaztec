@@ -18,3 +18,4 @@
 //= require ekko-lightbox
 //= require wallet-address-validator.min
 //= require messages_poll
+//= require payment_methods

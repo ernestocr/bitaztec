@@ -10,6 +10,7 @@ class Admin::SettingsController < Admin::BaseController
     @first_min = Setting.where(key: 'first_min').first
     @premium = Setting.where(key: 'premium').first
     @auto = Setting.where(key: 'auto').first
+    @interval = Setting.where(key: 'interval').first
   end
 
   def update

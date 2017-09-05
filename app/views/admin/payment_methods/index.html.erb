@@ -34,13 +34,15 @@
             <%= payment_method.orders.count %>
           </td>
           <td>
-            <center style="position: relative; top: 6px;">
-              <%= link_to 'Borrar',
-                    admin_payment_method_path(payment_method),
-                    method: :delete,
-                    class: 'btn btn-sm btn-danger',
-                    data: { confirm: 'Estás seguro?' } %>
-            </center>
+            <% if payment_method.orders.count == 0 %>
+              <center style="position: relative; top: 6px;">
+                <%= link_to 'Borrar',
+                      admin_payment_method_path(payment_method),
+                      method: :delete,
+                      class: 'btn btn-sm btn-danger',
+                      data: { confirm: 'Estás seguro?' } %>
+              </center>
+            <% end %>
           </td>
         </tr>
       <% end %>

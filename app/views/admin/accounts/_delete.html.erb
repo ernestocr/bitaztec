@@ -1,0 +1,17 @@
+<hr />
+
+<small><p class="text-muted"><b>Eliminación de la cuenta</b></p></small>
+<% if account.number_of_orders == 0 and !account.is_being_used %>
+  <p><%= link_to 'Eliminar cuenta', admin_bank_account_path(account.bank, account),
+    method: :delete, class: 'btn btn-sm btn-danger', data: { confirm: 'Estás seguro?' } %></p> 
+<% elsif !account.is_being_used %>
+  <small>
+    <p>Esta cuenta ya tiene pedidos realizados, no se puede eliminar de la base de datos pero se puede esconder de las cuentas disponibles.</p>
+  </small> 
+  <%= link_to 'Esconder cuenta', admin_bank_account_path(account.bank, account, account: { deprecated: true }),
+      method: :put, class: 'btn btn-sm btn-secondary' %>
+<% else %>
+  <small>
+    <p>Esta cuenta está asociada a un método de pago, y por lo tanto no se puede eliminar ni esconder.</p>
+  </small>        
+<% end %>

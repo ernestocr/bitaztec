@@ -25,49 +25,34 @@
     <p><b>Instrucciones:</b></p>
     <p><%= @payment_method.instructions %></p>
   </div>
-  <div class="col-sm-5">
-    <p><b>Detalles:</b></p>
-    <p><%= @payment_method.details %></p>
-  </div>
 </div>
 
 <hr>
-<h5>Bancos y cuentas asociadas</h5>
+<h5>Bancos, cuentas y tarjetas asociadas</h5>
 <hr>
 
-<% @payment_method.banks.each do |bank| %>
-  <div class="row">
-    <div class="col-4">
-      <p>
-        <b><%= bank.name %></b>
-        <%= render 'admin/shared/status_toggle', object: bank, path: toggle_admin_banks_path(bank) %>
-      </p>
-    </div>
-    <div class="col">
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Número</th>
-              <th>Holder</th>
-              <th>Estado</th>
-              <th></th>
-            </tr>
-          </thead>
-          <% bank.accounts.each do |account| %>
-            <tr>
-              <td><%= account.number %></td>
-              <td><%= account.holder %></td>
-              <td>
-                <%= render 'admin/shared/status_toggle',
-                  object: account,
-                  path: toggle_admin_bank_accounts_path(bank, account) %>
-              </td>
-              <td><%= link_to 'edit', edit_admin_bank_account_path(bank, account) %></td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
-  </div>
-<% end %>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Cuenta asociada</td>
+        <td>Tarjetas asociadas y activas</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payment_method.accounts.each do |account| %>
+        <tr class="<%= 'inactive' if !account.active or !account.bank.active %>">
+          <td><%= account.name %></td>
+          <td>
+            <% account.cards.each do |card| %>
+              <% if @payment_method.cards.include? card %>
+                <span class="<%= 'inactive' if !card.active %>"><%= card.number %></span> <br />
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div> 

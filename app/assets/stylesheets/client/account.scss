@@ -5,6 +5,7 @@
 @import 'colors';
 
 .account {
+  flex: 1;
   background-color: $lgrey;
   background-image: image-url('face.png');
   background-size: cover;

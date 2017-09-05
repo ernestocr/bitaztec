@@ -1,3 +1,5 @@
+require File.expand_path('../config/environment', __FILE__)
+
 set :output, "log/cron_log.log"
 
 env :PATH, ENV["PATH"]
@@ -11,6 +13,7 @@ every 30.minutes do
   rake "orders:notify_expiration"
 end
 
-every 3.minutes do
+update_interval = Setting.interval || 2
+every update_interval.to_i.minutes do
   rake "price:update"
 end

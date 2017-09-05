@@ -8,7 +8,20 @@
     <%= f.input :method, collection: ['Depósito', 'Transferencia', 'Tienda', 'ATM'], input_html: { class: 'form-control' } %>
   </div>
   <div class="form-group">
-    <%= f.association :accounts, as: :select, input_html: { class: 'form-control' } %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.association :accounts,
+            as: :select,
+            input_html: { class: 'form-control', multiple: false },
+            label: 'Cuentas' %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.association :cards,
+            as: :select,
+            input_html: { class: 'form-control', multiple: false },
+            label: 'Tarjetas asociadas' %>
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <%= f.input :instructions, input_html: { class: 'form-control' } %>
@@ -36,5 +49,10 @@
   <div class="form-group">
     <%= f.submit 'Guardar', class: 'btn btn-primary' %>
   </div>
+
+  <input
+    type="hidden"
+    value="<%= Account.all.to_json(include: [cards: { methods: :name }]) %>"
+    class="pm_accounts" />
 
 <% end %>

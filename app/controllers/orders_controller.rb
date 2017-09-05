@@ -111,7 +111,7 @@ class OrdersController < ApplicationController
       params.require(:order).permit(
         :amount, :price, :address,
         :submitted, :payment_method_id,
-        {attachments: []}
+        {attachments: []}, :account_id, :card_id
       )
     end
 

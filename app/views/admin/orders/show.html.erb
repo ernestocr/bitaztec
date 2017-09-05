@@ -13,22 +13,61 @@
   <div class="col-sm-6">
     <div class="alert alert-info">Estado: <b><%= @order.status %></b></div>
 
-    <p>Pedido hecho por <%= link_to @order.user.email, admin_user_path(@order.user) %></p>
+    
+    
+    <dl class="row">
+      <dt class="col-sm-5">Pedido realizado por</dt>
+      <dd class="col-sm-7"><%= link_to @order.user.email, admin_user_path(@order.user) %></dd>
+    
+      <dt class="col-sm-5">Creado el</dt>
+      <dd class="col-sm-7">
+        <%= formatted_date(@order.created_at) %> <small class="text-muted">hace <%= time_ago_in_words @order.created_at %></small>
+      </dd>
+      <dd class="col-sm-7 offset-sm-5">
+        <% if @order.expired %>
+          El pedido está expirado <small class="text-muted">Se expiró hace <%= time_ago_in_words @order.expires_at %></small>
+        <% else %>
+          Se expira <%= formatted_date(@order.expires_at) %> <small class="text-muted">falta <%= distance_of_time_in_words DateTime.current, @order.expires_at %></small>
+        <% end %>
+      </dd>
 
-    <p>Creado el <%= formatted_date(@order.created_at) %> <small>hace <%= time_ago_in_words @order.created_at %></small></p>
+      <dt class="col-sm-5">Cantidad solicitada</dt>
+      <dd class="col-sm-7"><%= @order.amount %> BTC a <%= number_to_currency @order.price, precision: 0 %></dd>
 
-    <% if @order.expired %>
-      <p>El pedido está expirado <small>Se expiró hace <%= time_ago_in_words @order.expires_at %></small></p>
-    <% else %>
-      <p>Se expira <%= formatted_date(@order.expires_at) %> <small>falta <%= distance_of_time_in_words DateTime.current, @order.expires_at %></small></p>
-    <% end %>
+      <dt class="col-sm-5">Total</dt>
+      <dd class="col-sm-7"><b class="text-success"><%= number_to_currency @order.total, precision: 2, separator: '.' %></b></dd>
+    
+      <dt class="col-sm-5">Método de pago</dt>
+      <dd class="col-sm-7"><%= @order.payment_method.name %></dd> 
+      <% if !@order.account_id.blank? %>
+        <dd class="col-sm-7 offset-sm-5 <%= 'text-muted' if @account.deprecated? %>">
+          <%= @account.name %><br/> 
+          <%= @card.name %>
+          <% if @account.deprecated? %>
+            <small class="text-muted">(La cuenta está obsoleta)</small>
+          <% end %>
+        </dd>
 
-    <p>Cantidad solicitada: <b><%= @order.amount %> BTC</b> a <b><%= number_to_currency @order.price, precision: 0 %></b></p>
-
-    <p>Total: <b class="text-success"><%= number_to_currency @order.total, precision: 2, separator: '.' %></b></p>
-
-    <p>Método de pago: <b><%= @order.payment_method.name %></b></p>
-
+        <dt class="col-sm-5">Cuenta y tarjeta confirmada</dt>
+        <dd class="col-sm-7">
+          <%= simple_form_for [:admin, @order] do |f| %>
+            <%= f.select :confirmed_account_id,
+              Account.all.collect { |a| [a.name, a.id] },
+              selected: @order.confirmed_account_id || @order.account_id %>
+            
+            <%= f.select :confirmed_card_id,
+              Card.all.collect { |a| [a.number, a.id] },
+              selected: @order.confirmed_card_id || @order.card_id %>
+            
+            <%= f.submit 'Guardar cambios', class: 'btn btn-sm btn-secondary' %>
+          <% end %>
+        </dd>
+      <% end %> 
+    </dl>
+    
+    <p><b>Domicilio del wallet:</b></p>
+    <p class="bg-faded"><%= @order.address %></p>
+    
     <hr>
 
     <p>Evidencia presentada:</p>
@@ -50,15 +89,15 @@
     <hr>
 
     <% if @order.submitted and !@order.completed %>
-      <p class="text-muted">Quieres rechazar el pedido?</p>
-      <%= link_to 'Rechazar', admin_order_path(reject: true), method: :put, class: 'btn btn-sm btn-danger' %>
-
-      <hr>
-
       <div class="">
         <p>Ya transferiste los Bitcoins?</p>
         <%= link_to 'Listo', admin_order_path(complete: true), method: :put, class: 'btn btn-success' %>
       </div>
+    
+      <hr />
+
+      <p class="text-muted">Quieres rechazar el pedido?</p>
+      <%= link_to 'Rechazar', admin_order_path(reject: true), method: :put, class: 'btn btn-sm btn-danger' %>
     <% end %>
 
     <% if @order.completed %>

@@ -6,29 +6,37 @@
   <p class="description"><%= @order.payment_method.instructions %></p>
 
   <div class="methods">
-    <% @pm.banks.each do |bank| %>
+    <% @pm.accounts.each do |account| %>
+      <% next if !account.bank.active? or !account.active? %>
+
       <div class="bank">
-        <p class="bank-name"><%= image_tag bank.image %></p>
-        <% bank.accounts.each do |account| %>
-          <div class="accounts-list">
+        <p class="bank-name"><%= image_tag account.bank.image %></p>
+        
+        <p class="bank-name"><%= account.bank.name %></p>
+        
+        <% if !account.number.blank? and (['Depósito', 'Transferencia'].include? @pm.method) %>
+          <p>No. de cuenta: <span><%= account.number %></span></p>
+        <% end %>
 
-            <% if !account.number.blank? and (['Depósito', 'Transferencia'].include? @pm.method) %>
-              <p>No. de cuenta: <span><%= account.number %></span></p>
+        <% if !account.clabe.blank? and @pm.method == 'Transferencia' %>
+          <p>CLABE interbancaria: <span><%= account.clabe %></span></p>
+        <% end %>
+
+        <% if @pm.method != 'Tienda' %>
+          <p>Nombre de referencia: <span><%= account.holder %></span></p>
+        <% end %>
+        
+        <% if @pm.method != 'Transferencia' %>
+          <div class="cards-list">
+            <% @pm.cards.each do |card| %>
+              <% if card.active and account.cards.include?(card) %>
+                <p>No. de tarjeta: <span><%= card.number %></span></p>
+              <% end %>
             <% end %>
-
-            <% if !account.card.blank? %>
-              <p>No. de tarjeta: <span><%= account.card %></span></p>
-            <% end %>
-
-            <% if !account.clabe.blank? and @pm.method == 'Transferencia' %>
-              <p>CLABE interbancaria: <span><%= account.clabe %></span></p>
-            <% end %>
-
-            <p>Nombre de referencia: <span><%= account.holder %></span></p>
-
           </div>
         <% end %>
       </div>
+      <% break %>
     <% end%>
   </div>
 </div>
