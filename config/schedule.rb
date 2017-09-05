@@ -1,3 +1,5 @@
+ENV.each { |k, v| env(k, v) }
+
 require File.expand_path('../config/environment', __FILE__)
 
 set :output, "log/cron_log.log"
