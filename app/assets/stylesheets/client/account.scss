@@ -21,7 +21,6 @@
   .container {
     position: relative;
     background: $white;
-    padding: 20px;
     box-shadow: 0px 2px 2px $mgrey;
 
     .icon {
@@ -49,43 +48,32 @@
   }
 
   .data {
-    position: absolute;
-    top: 15px;
-    right: 20px;
+    background: $blue;
+    padding: 1em;
 
     p {
-      text-align: right;
-      color: $mgrey;
+      text-align: center;
+      color: $white;
       font-weight: 300;
       margin-bottom: 4px;
       font-size: 0.9em;
-    }
-  }
 
-  table {
-    text-align: left;
-    border: 1px solid $ldgrey;
-    border-radius: 3px;
-
-    thead {
-      th {
-        font-weight: 600;
-        background: $lgrey;
+      &:last-child {
+        margin-top: 2em;
       }
-    }
 
-    td, th {
-      padding: 5px;
-      border: 1px solid $ldgrey;
-    }
+      b {
+        font-weight: 600;
+      }
 
-    a {
-      color: $blue;
-      text-decoration: none;
-      transition: all .2s;
+      a {
+        color: $white;
+        font-size: 0.9em;
+        text-decoration: none;
 
-      &:hover {
-        opacity: 0.7;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -94,7 +82,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 20px;
 
     h2 {
       font-size: 1.5em;
@@ -107,22 +94,59 @@
     }
   }
 
-  .notifications {
-    margin-right: 20px;
-    margin-bottom: 40px;
-    max-height: 300px;
-    overflow: auto;
-    overflow-x: hidden;
+  .show-notifications {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background: $white;
+    text-align: right;
+    min-width: 50px !important;
+    padding: 0.5em;
+    font-size: 0.9em;
+    font-weight: 200;
+    cursor: pointer;
+    transition: all .2s;
 
-    h2 {
-      margin-bottom: 20px;
-      position: relative;
+    &:hover {
+      background: $lgrey;
+    }
+
+    button {
+      margin-left: 0.5em;
+    }
+  }
+
+  button {
+    float: right;
+    border: none;
+    border-radius: 3px;
+    background: $white;
+
+    &.active {
+      background: $red;
+      color: $white;
+    }
+  }
+
+  .notifications {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background: $blue;
+    box-shadow: 0px 3px 10px $grey;
+    min-height: 200px;
+    z-index: 999;
+    color: $white;
+    
+    .heading {
+      overflow: auto;
+      padding: 0.5em;
 
       small {
-        font-size: 0.5em;
-        position: absolute;
-        top: 7px;
-        right: 0px;
+        font-size: 0.8em;
         cursor: pointer;
 
         &:hover {
@@ -137,51 +161,95 @@
     }
 
     .notification {
-      border: 1px solid $ldgrey;
-      margin: 10px 0;
-      padding: 5px;
+      padding: 0.5em;
       transition: all .2s;
+      color: $white;
+      font-weight: 200;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 
       &:hover {
-        background: $lgrey;
+        background: $white;
+        color: $black;
       }
 
       span {
-        color: $ldgrey;
         font-size: 0.8em;
+      }
+
+      p {
+        margin-top: 0.5em;
+        font-weight: 400;
       }
     }
 
     .no-notifs {
-      border: 1px solid $ldgrey;
-      padding: 10px;
       text-align: center;
-      color: $ldgrey;
+      color: $white;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      min-height: inherit;
+
+      p {
+        flex: 1;
+      }
     }
   }
 
   .pending {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3em;
+
+    h2 {
+      margin-bottom: 1em;
+    }
+
     .order {
-      margin-top: 20px;
-      border: 1px solid $ldgrey;
-      padding: 10px;
+      flex: 1;
+      padding: 1em;
+      border-top: 2px solid $blue;
+      border-bottom: 2px solid $blue;
 
-      p {
-        margin-bottom: 10px;
+      p b {
+        color: $blue;
+      }
 
-        &:last-child {
-          margin: 0;
+      .expires-at {
+        font-size: 0.8em;
+      }
+
+      table {
+        max-width: 80%;
+        margin: 1em auto;
+        text-align: center;
+
+        th {
+          color: $blue;
+        }
+
+        th, td {
+          padding: 0.5em;
         }
       }
 
       .see-receipt {
         display: inline-block;
-        background: $green;
+        background: $blue;
         padding: 5px 10px;
         font-size: 1em;
         text-decoration: none;
         color: $white;
         transition: all .2s;
+        float: right;
+        position: relative;
+        top: -5px;
+        font-weight: 200;
 
         &:hover {
           opacity: 0.7;
@@ -194,14 +262,11 @@
     }
 
     .no-order {
-      border: 1px solid $ldgrey;
-      padding: 10px;
       text-align: center;
       color: $ldgrey;
-      margin-top: 20px;
 
       a {
-      font-weight: 300;
+        font-weight: 300;
         color: $blue;
         text-decoration: none;
         transition: all .2s;
@@ -214,9 +279,7 @@
   }
 
   .history {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
+    padding: 5em 1em 3em;
 
     .table-container {
       overflow: auto;
@@ -228,26 +291,42 @@
     }
 
     table {
-      width: 100%;
+      width: 90%;
+      margin: 0 auto;
+    
+      thead {
+        tr th {
+          padding: 0.5em 1em;
+          background: $blue;
+          color: $white;
+          text-align: center;
+          font-weight: 200;
+        }
+      }
+
+      tr td {
+        padding: 1em;
+        font-size: 0.9em;
+      }
+
+      a {
+        color: $blue;
+        text-decoration: none;
+
+        &:visited {
+          color: $blue;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
 
 @media (max-width: 768px) {
   .account {
-    .notifications .mark-as-read {
-      float: none !important;
-      display: block !important;
-      position: static !important;
-      margin-top: 5px;
-      position: static;
-      text-align: center;
-    }
-
-    .grid .notifications {
-      margin-right: 0;
-    }
-
     .data {
       position: static !important;
       margin: 10px 0 30px;

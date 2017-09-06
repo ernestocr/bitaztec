@@ -73,4 +73,11 @@ $(document).on('ready', function() {
       $('.chatbox').removeClass('hidden');
     }
   });
+
+  // If url has #newmsg -> show chat box by default
+  if ( window.location.hash == '#newmsg' ) {
+    $('.chatbox').removeClass('hidden');
+  }
+
 });
+

@@ -5,20 +5,28 @@
   <h2>Mi cuenta</h2>
 
   <div class="container">
-    <center><div class="icon"></div></center>
-
-    <div class="data">
-      <p>Miembro desde hace <%= time_ago_in_words current_user.created_at %></p>
-      <p><b><%= current_user.orders.where(completed: true).count %></b> transacciones completadas</p>
-      <p><%= link_to 'Cambiar contraseña', edit_user_registration_path %></p>
-    </div>
-
     <div class="grid">
+      
+      <div class="data">
+        <center><div class="icon"></div></center>
+        
+        <p>Miembro desde hace <%= time_ago_in_words current_user.created_at %></p>
+        <p><b><%= current_user.orders.where(completed: true).count %> transacciones completadas</b></p>
+        <p><%= link_to 'Cambiar contraseña', edit_user_registration_path %></p>
+      </div>
+
+      <div class="show-notifications">
+        Notificaciones
+        <button class="notif-count <%= 'active' if @current_user.get_notifications.count > 0 %>"><%= @current_user.get_notifications.count %></button>
+      </div>
 
       <div class="notifications">
-        <h2>Notificaciones <small class="mark-as-read">Marcar como leidos</small></h2>
+        <div class="heading">
+          <small class="mark-as-read">Marcar como leidos</small>
+          <button class="notif-count <%= 'active' if @current_user.get_notifications.count > 0 %>"><%= @current_user.get_notifications.count %></button>
+        </div>
         <% current_user.get_notifications.each do |notif| %>
-          <a href="<%= notif.link %>?clear_notifs=true">
+          <a href="<%= notif.link %>?clear_notifs=true<%= '#newmsg' if notif.action == 'new message' %>">
             <div class="notification">
               <span><%= formatted_date notif.created_at %></span>
               <p><%= notif.message %></p>
@@ -31,22 +39,41 @@
       </div>
 
       <div class="pending">
-        <h2>Pedido activo</h2>
+        <div class="wrapper">
+          <h2>Pedido activo</h2>
 
-        <% if @order %>
           <div class="order">
-            <p>Cantidad: <span><%= @order.amount  %></span></p>
-            <p>Precio: <span><%= number_to_currency @order.price, precision: 0  %></span></p>
-            <p>Estado: <span><%= @order.status  %></span></p>
-            <p>Expiración: <span><%= formatted_date @order.expires_at  %></span></p>
-            <p><%= link_to 'Ver ficha', @order, class: 'see-receipt' %></p>
+            <% if @order %>
+              <p>Estatus de compra: <b><%= @order.status %></b></p>
+              
+              <table>
+                <thead>
+                  <tr>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= @order.amount %></td>
+                    <td><%= number_to_currency @order.price, precision: 2, seperator: '.' %></td>
+                    <td><%= number_to_currency @order.total, precision: 2, seperator: '.' %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="expires-at">
+                Expiración: <span><%= formatted_date @order.expires_at  %></span>
+                <%= link_to 'Ver ficha', @order, class: 'see-receipt' %>
+              </p>
+            <% else %>
+              <p class="no-order">
+                No tienes un pedido activo.
+                <%= link_to 'Crea uno', new_order_path %>
+              </p>
+            <% end %>
           </div>
-        <% else %>
-          <p class="no-order">
-            No tienes un pedido activo.
-            <%= link_to 'Crea uno', new_order_path %>
-          </p>
-        <% end %>
+        </div>
       </div>
 
       </div> <!-- End grid -->

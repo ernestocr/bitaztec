@@ -5,6 +5,21 @@
 */
 
 $(document).ready(function() {
+  var dont_close = $('.notifications, .show-notifications');
+  
+  $('.show-notifications').on('click', function() {
+    $('.notifications').toggle();
+  });
+  
+  $(document).on('click', function(e) {
+    if (
+      !dont_close.is(e.target) && 
+      dont_close.has(e.target).length === 0
+    ) {
+      $('.notifications').hide();
+    }
+  });
+  
   $('.mark-as-read').on('click', function() {
     $.ajax({
       url: '/notifications/mark_as_read',
