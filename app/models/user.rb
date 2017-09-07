@@ -38,4 +38,10 @@ class User < ApplicationRecord
     self.notifications.unread
   end
 
+  def authorized_count
+    if self.admin?
+      Order.where(authorized_by: self.id).count
+    end
+  end
+
 end

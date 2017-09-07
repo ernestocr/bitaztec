@@ -9,4 +9,8 @@ class Admin::DashboardController < Admin::BaseController
     @messages = Message.where(admin_read: false)
   end
 
+  def admins
+    @admins = User.where(admin: true)
+  end
+
 end

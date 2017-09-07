@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   # .../admin/...
   namespace :admin do
     match '/', to: 'dashboard#index', via: :get
+    match '/admins', to: 'dashboard#admins', via: :get
 
     # manage Users, Settings, Account Holders
     resources :users

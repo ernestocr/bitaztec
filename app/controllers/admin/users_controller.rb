@@ -11,7 +11,11 @@ class Admin::UsersController < Admin::BaseController
   def update
     # assuming only the admin status is modifiable!
     @user = User.find(params[:id])
-    @user.toggle!(:admin)
+    if params[:toggle] == 'notifs'
+      @user.toggle!(:receives_notifs)
+    else
+      @user.toggle!(:admin)
+    end
     redirect_to :back
   end
 

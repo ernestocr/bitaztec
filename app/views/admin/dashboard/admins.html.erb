@@ -1,0 +1,46 @@
+<% title 'Administradores' %>
+
+<p><i class="fa fa-user-o"></i> Administradores</p>
+
+<div class="table-wrapper">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Correo</th>
+        <th>Pedidos autorizados</th>
+        <th>Derechos de admin?</th>
+        <th>Recibe notificaciones?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @admins.each do |admin| %>
+        <tr>
+          <td><%= admin.email %></td>
+          <td><%= admin.authorized_count %></td>
+          <td>
+            <% if current_user.id != admin.id %>
+              <a href="<%= admin_user_path(admin) %>" data-method="put">
+                <% if admin.admin? %>
+                  <i class="fa fa-toggle-on"></i> activo
+                <% else %>
+                  <i class="fa fa-toggle-off"></i> inactivo
+                <% end %>
+              </a>
+            <% else %>
+              <small class="text-muted">No puedes eliminiar tus propios derechos</small>
+            <% end %>
+          </td>
+          <td>
+            <a href="<%= admin_user_path(admin, toggle: 'notifs') %>" data-method="put">
+              <% if admin.receives_notifs? %>
+                <i class="fa fa-toggle-on"></i> activo
+              <% else %>
+                <i class="fa fa-toggle-off"></i> inactivo
+              <% end %>
+            </a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

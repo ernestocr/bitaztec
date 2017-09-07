@@ -1,7 +1,7 @@
 class AdminMailer < ApplicationMailer
 
   # get list of emails form all admins
-  default to: Proc.new { User.where(admin: true).pluck(:email) },
+  default to: Proc.new { User.where(admin: true, receives_notifs: true).pluck(:email) },
           from: 'BitAztec <admin@bitaztec.com>'
 
   def new_order(order)
