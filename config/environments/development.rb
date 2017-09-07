@@ -58,6 +58,7 @@ Rails.application.configure do
 
   # ActionMailer
   # GMAIL
+=begin
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
    address:              'smtp.gmail.com',
@@ -71,6 +72,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_deliveries = true 
   config.action_mailer.raise_delivery_errors = true
+=end
 
 =begin
   #@username = ENV['godaddy_username']
