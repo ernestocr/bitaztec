@@ -23,7 +23,7 @@ function confirmBuy() {
   var total = Math.ceil(price * amount);
   var method = $('.options div[data-value="' +
                 $('#order_payment_method').val() +
-                 '"] span').text();
+                 '"] .method-name').text();
 
   $('.verify-price').text(price.formatMoney(2));
   $('.verify-amount').text(amount);

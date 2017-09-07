@@ -40,8 +40,9 @@
           <div class="options">
             <% @methods.each do |method| %>
               <div data-value="<%= method.id %>" data-type="<%= method.method %>">
-                <span><%= method.name %></span> | <%= method.schedule %>
-                <%= image_tag method.image %>
+                <p><%= image_tag method.image %></p>
+                <p class="method-name"><%= method.name %></p>
+                <p><small><%= method.schedule %></small></p>
               </div>
             <% end %>
           </div>

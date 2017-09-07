@@ -10,7 +10,7 @@
   <%= link_to 'editar', edit_admin_payment_method_path(@payment_method), class: 'breadcrumb-item' %>
 </nav>
 
-<div class="row">
+<div class="row payment-methods-show">
   <div class="col-sm-2">
     <p><b>Estado</b></p>
     <p>
@@ -24,6 +24,9 @@
   <div class="col-sm-5">
     <p><b>Instrucciones:</b></p>
     <p><%= @payment_method.instructions %></p>
+  </div>
+  <div class="col-sm-5">
+    <%= image_tag @payment_method.image %>
   </div>
 </div>
 

@@ -138,6 +138,10 @@ small {
   }
 }
 
+.payment-methods-show img {
+  max-width: 100%;
+}
+
 // MOBILE
 @media (max-width: 600px) {
   .container-fluid {
