@@ -13,7 +13,6 @@
       <tr>
         <th>Nombre</th>
         <th>Estado</th>
-        <th>Imagen</th>
         <th># de cuentas</th>
         <th colspan="1"></th>
       </tr>
@@ -28,9 +27,6 @@
               render 'admin/shared/status_toggle',
                 object: bank,
                 path: toggle_admin_banks_path(bank) %>
-          </td>
-          <td>
-            <%= image_tag bank.image.thumb %>
           </td>
           <td><%= bank.accounts.count %></td>
           <td>
