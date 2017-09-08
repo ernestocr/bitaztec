@@ -287,6 +287,16 @@ main {
       .types {
         flex-flow: column wrap !important;
       }
+
+      .options {
+        flex-direction: column !important;
+      }
+
+      .options div {
+        margin: 0 !important;
+        margin-bottom: 1em !important;
+        max-width: 100% !important;
+      }
     }
   }
 }
