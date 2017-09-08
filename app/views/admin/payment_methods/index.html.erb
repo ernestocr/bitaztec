@@ -13,6 +13,7 @@
       <tr>
         <th>Nombre</th>
         <th>Método</th>
+        <th>Logo</th>
         <th>Estado</th>
         <th>Ordenes</th>
         <th></th>
@@ -24,6 +25,7 @@
         <tr>
           <td><%= link_to payment_method.name, admin_payment_method_path(payment_method) %></td>
           <td><%= payment_method.method %></td>
+          <td><%= image_tag payment_method.image, width: '80px' %></td>
           <td>
             <%=
               render 'admin/shared/status_toggle',
