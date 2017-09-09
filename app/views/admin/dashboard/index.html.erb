@@ -18,18 +18,13 @@
   <div class="row">
     <div class="col-sm-3">
       <p><i class="fa fa-btc"></i> Precio actual</p>
-      <% if @btc_price %>
-        <%= simple_form_for [:admin, @btc_price] do |f| %>
-          <div class="form-group">
-            <input type="hidden" name="dashboard" value="true">
-            <%= f.input_field :value, class: 'form-control' %>
-          </div>  
-          <%= f.submit 'Actualizar precio', class: 'btn btn-block btn-secondary' %>
-        <% end %>
-      <% end %>
+      <p class="badge badge-primary"><%= number_to_currency Setting.price, separator: '.' %></p>
     </div>
     <div class="col-sm-8 offset-sm-1">
       <p><i class="fa fa-comment"></i> Mensajes nuevos</p>
+      <% if @messages.count == 0 %>
+        <p class="alert alert-info">No hay mensajes nuevos.</p>
+      <% end %>
       <% @messages.reverse.group_by(&:user_id).each do |id, msgs| %>
         <% msg = msgs.first %>
         <a href="<%= admin_order_path(msg.order) %>">

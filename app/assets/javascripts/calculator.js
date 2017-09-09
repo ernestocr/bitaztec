@@ -13,7 +13,7 @@ function updateFinalCost(price, result, val) {
   var n = price*val;
   if ( $.isNumeric(n) && n > 0 ) {
     // round up
-    n = Math.ceil(n);
+    n = Math.round(n);
 
     // add commas and stuff
     var res = n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
@@ -108,7 +108,12 @@ $(document).on('ready', function() {
 
     if ( $.isNumeric(input) && input >= 0 ) {
       var amount = input/price;
-      amount = Math.round( (1000000*amount) )/1000000;
+      var precision = 15;
+      var factor = Math.pow(10, precision);
+      var tmp_amount = amount * factor;
+      var tmp_amount = Math.round(tmp_amount);
+      amount = tmp_amount / factor;
+      
       // update other number input
       $input1.val(amount);
     } else {
