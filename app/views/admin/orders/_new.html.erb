@@ -18,7 +18,7 @@
           <tr>
             <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
             <td><%= order.user.email %></td>
-            <td><%= order.amount %></td>
+            <td><%= btc_amount(order.amount) %></td>
             <td><%= order.price %></td>
             <td><%= order.payment_method.name %></td>
             <td><%= formatted_date(order.expires_at) %></td>

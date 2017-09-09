@@ -28,6 +28,7 @@ $(document).ready(function() {
       if ( data.success == true ) {
         $('.notification').hide();
         $('.no-notifs').show();
+        $('.notif-count').text('0').removeClass('active');
       }
     });
   });

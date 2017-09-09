@@ -26,12 +26,16 @@
           <button class="notif-count <%= 'active' if @current_user.get_notifications.count > 0 %>"><%= @current_user.get_notifications.count %></button>
         </div>
         <% current_user.get_notifications.each do |notif| %>
-          <a href="<%= notif.link %>?clear_notifs=true<%= '#newmsg' if notif.action == 'new message' %>">
-            <div class="notification">
-              <span><%= formatted_date notif.created_at %></span>
-              <p><%= notif.message %></p>
-            </div>
-          </a>
+          <% if notif.action != 'cancelled' %>
+            <a href="<%= notif.link %>?clear_notifs=true<%= '#newmsg' if notif.action == 'new message' %>">
+          <% else %>
+            <a href="#">
+          <% end %>
+              <div class="notification">
+                <span><%= formatted_date notif.created_at %></span>
+                <p><%= notif.message %></p>
+              </div>
+            </a>
         <% end %>
         <div class="no-notifs" style="<%= 'display: none;' if current_user.get_notifications.count > 0 %>">
           <p>No tienes notificaciones :)</p>
@@ -57,8 +61,8 @@
                 <tbody>
                   <tr>
                     <td><%= @order.amount %></td>
-                    <td><%= number_to_currency @order.price, precision: 2, seperator: '.' %></td>
-                    <td><%= number_to_currency @order.total, precision: 2, seperator: '.' %></td>
+                    <td><%= number_to_currency @order.price, precision: 2, separator: '.' %></td>
+                    <td><%= number_to_currency @order.total, precision: 2, separator: '.' %></td>
                   </tr>
                 </tbody>
               </table>

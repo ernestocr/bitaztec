@@ -32,7 +32,7 @@
       </dd>
 
       <dt class="col-sm-5">Cantidad solicitada</dt>
-      <dd class="col-sm-7"><%= @order.amount %> BTC a <%= number_to_currency @order.price, precision: 0 %></dd>
+      <dd class="col-sm-7"><span class="badge badge-default"><%= @order.amount %></span> BTC a <span class="badge badge-primary"><%= number_to_currency @order.price, precision: 0 %></span></dd>
 
       <dt class="col-sm-5">Total</dt>
       <dd class="col-sm-7"><b class="text-success"><%= number_to_currency @order.total, precision: 2, separator: '.' %></b></dd>

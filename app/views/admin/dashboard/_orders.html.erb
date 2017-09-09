@@ -10,7 +10,7 @@
     <% orders.each do |order| %>
       <tr>
         <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
-        <td><%= order.amount %></td>
+        <td><%= btc_amount(order.amount) %></td>
         <td><%= number_to_currency(order.price, precision: 0) %></td>
       </tr>
     <% end %>
