@@ -33,6 +33,7 @@ class MessagesController < ApplicationController
 
   def index
     @order = Order.find(params[:order])
+    Notification.where(notifiable: @order, action: 'new message').destroy_all
     render partial: 'shared/message_feed'
   end
 

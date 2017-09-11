@@ -60,6 +60,9 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def destroy
+    Notification.where(notifiable: @order).each do |notif|
+      notif.destroy
+    end
     @order.destroy
     #@order.update_attributes(removed: true)
     Notification.create(recipient: @order.user, action: 'cancelled', notifiable: @order)
