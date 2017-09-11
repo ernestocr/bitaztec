@@ -108,7 +108,7 @@ $(document).on('ready', function() {
 
     if ( $.isNumeric(input) && input >= 0 ) {
       var amount = input/price;
-      var precision = 15;
+      var precision = 9;
       var factor = Math.pow(10, precision);
       var tmp_amount = amount * factor;
       var tmp_amount = Math.round(tmp_amount);

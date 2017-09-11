@@ -69,6 +69,10 @@ $(document).ready(function() {
     $('.make-order').hide();
 
     var amount = parseFloat( $('#order_amount_m').val().replace(',', '') );
+    if ( isNaN(amount) ) {
+      alert('La cantidad solicitada no es válida.');
+      return false;
+    }
     if ( amount < MIN ) {
       alert('La cantidad minima es $' + MIN + ' pesos.');
       $('#order_amount_m').focus();
