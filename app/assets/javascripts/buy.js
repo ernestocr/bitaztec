@@ -20,7 +20,9 @@ Number.prototype.formatMoney = function(c, d, t){
 function confirmBuy() {
   var price = $('#order_price').data('value');
   var amount = $('#order_amount').val();
-  var total = Math.round(price * amount);
+  amount  = Math.round(Math.pow(10, 9)*amount)/Math.pow(10, 9);
+  // round to two decimals
+  var total = Math.round(price * amount * 100)/100;
   var method = $('.options div[data-value="' +
                 $('#order_payment_method').val() +
                  '"] .method-name').text();

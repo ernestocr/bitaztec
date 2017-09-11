@@ -10,6 +10,8 @@
  */
 
 function updateFinalCost(price, result, val) {
+  var prec = Math.pow(10, 9);
+  val = Math.round(val*prec)/prec;
   var n = price*val;
   if ( $.isNumeric(n) && n > 0 ) {
     // round up
@@ -55,6 +57,7 @@ $(document).on('ready', function() {
 
     if ( $.isNumeric(val) && val >= 0 ) {
       var money = price*val;
+      money = Math.round(100*money)/100;
 
       // update other input
       var formatted = money.toLocaleString( "en-US" );

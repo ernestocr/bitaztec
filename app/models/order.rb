@@ -19,6 +19,7 @@ class Order < ApplicationRecord
   mount_uploaders :attachments, AttachmentUploader
 
   before_create :add_expires_at
+  before_create :round_amount
 
   # order status, depending on a variety of situations
   def status
@@ -37,7 +38,7 @@ class Order < ApplicationRecord
 
   # rounded price
   def total
-    (amount * price).round
+    (amount * price).round(2)
   end
 
   # true/false if expired
@@ -93,6 +94,10 @@ class Order < ApplicationRecord
     def add_expires_at
       self.expires_in = self.payment_method.expires
       self.expires_at = DateTime.now.utc + self.expires_in.hours
+    end
+
+    def round_amount
+      self.amount = self.amount.round(9)
     end
 
 end
