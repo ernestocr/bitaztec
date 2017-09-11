@@ -42,7 +42,7 @@
       <% if !@order.account_id.blank? %>
         <dd class="col-sm-7 offset-sm-5 <%= 'text-muted' if @account.deprecated? %>">
           <%= @account.name %><br/> 
-          <%= @card.name %>
+          <%= @card ? @card.name : "Tarjeta inexistente" %>
           <% if @account.deprecated? %>
             <small class="text-muted">(La cuenta está obsoleta)</small>
           <% end %>

@@ -19,7 +19,11 @@ class Admin::OrdersController < Admin::BaseController
     read_msgs @order
     if !@order.account_id.blank?
       @account = Account.unscoped.find(@order.account_id)
-      @card    = Card.unscoped.find(@order.card_id)
+    end
+    if !@order.card_id.blank?
+      @card = Card.unscoped.find(@order.card_id)
+    else
+      @card = nil
     end
   end
 
