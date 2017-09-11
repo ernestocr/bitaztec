@@ -11,6 +11,7 @@ class Admin::SettingsController < Admin::BaseController
     @premium = Setting.where(key: 'premium').first
     @auto = Setting.where(key: 'auto').first
     @interval = Setting.where(key: 'interval').first
+    @phone = Setting.where(key: 'phone').first
   end
 
   def update

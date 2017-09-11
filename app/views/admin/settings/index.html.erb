@@ -140,6 +140,19 @@
         <% end %>
       </td>
     </tr>
+    <tr>
+      <td>
+        Teléfono de contacto<br/>
+        <small class="text-muted">
+          Aparece en la página de contacto y en el pie de página.
+        </small> 
+      </td>
+      <td>
+        <%= form_for([:admin, @phone]) do |f| %>
+          <%= f.text_field :value, placeholder: '', class: 'form-control' %>
+        <% end %>
+      </td>
+    </tr>
   </tbody>
 </table>
 
