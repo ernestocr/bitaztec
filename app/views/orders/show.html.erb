@@ -12,35 +12,45 @@
 
     <!-- Receipt data -->
     <%= render 'orders/steps/meta' %>
+
+    <% if !@order.expired %>
     
-    <% if !@order.completed and !@order.submitted %>
-      <!-- Payment method data -->
-      <%= render 'orders/steps/methods_list' %>
-      <!-- Evidence (image upload) -->
-      <%= render 'orders/steps/evidence' %>
-      <!-- Add Wallet -->
-      <%= render 'orders/steps/wallet' %>
-      
-      <% if !@order.completed or !@order.submitted %>
-        <div class="cancel-order">
-          <p>
-            <%= link_to 'Cancelar pedido',
-                        @order,
-                        method: :delete,
-                        data: { confirm: 'Estás seguro?' } %>
-          </p>
+      <% if !@order.completed and !@order.submitted %>
+        <!-- Payment method data -->
+        <%= render 'orders/steps/methods_list' %>
+        <!-- Evidence (image upload) -->
+        <%= render 'orders/steps/evidence' %>
+        <!-- Add Wallet -->
+        <%= render 'orders/steps/wallet' %>
+        
+        <% if !@order.completed or !@order.submitted %>
+          <div class="cancel-order">
+            <p>
+              <%= link_to 'Cancelar pedido',
+                          @order,
+                          method: :delete,
+                          data: { confirm: 'Estás seguro?' } %>
+            </p>
+          </div>
+        <% end %>
+
+      <% elsif @order.submitted and !@order.completed %>
+        <div class="notification">
+          <p>Gracias por comprar en BitAztec, tu pedido está en proceso de validación.</p>
+        </div>
+      <% elsif @order.completed %>
+        <div class="notification">
+          <p>Puedes verficar esta transacción en el
+          <a target="_blank" href="https://blockchain.info/address/<%= @order.address %>">blockchain</a> al domicilio: <b><%= @order.address %></b></p>
         </div>
       <% end %>
 
-    <% elsif @order.submitted and !@order.completed %>
+    <% else %>
+
       <div class="notification">
-        <p>Gracias por comprar en BitAztec, tu pedido está en proceso de validación.</p>
+        <p>Puedes solicitar más tiempo para realizar el pago, manda un mensaje por el chat.</p>
       </div>
-    <% elsif @order.completed %>
-      <div class="notification">
-        <p>Puedes verficar esta transacción en el
-        <a target="_blank" href="https://blockchain.info/address/<%= @order.address %>">blockchain</a> al domicilio: <b><%= @order.address %></b></p>
-      </div>
+
     <% end %>
 
     <div class="chatbox hidden">

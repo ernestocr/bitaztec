@@ -11,10 +11,20 @@
 
 <div class="row">
   <div class="col-sm-6">
-    <div class="alert alert-info">Estado: <b><%= @order.status %></b></div>
+    <% if @order.completed %>
+      <div class="alert alert-success">
+    <% elsif @order.submitted %>
+      <div class="alert alert-info">
+    <% elsif @order.removed %>
+      <div class="alert alert-danger">
+    <% elsif @order.expired %>
+      <div class="alert alert-warning">
+    <% else %>
+      <div class="alert alert-info">
+    <% end %>
+        Status: <b><%= @order.status %></b>
+      </div>
 
-    
-    
     <dl class="row">
       <dt class="col-sm-5">Pedido realizado por</dt>
       <dd class="col-sm-7"><%= link_to @order.user.email, admin_user_path(@order.user) %></dd>
@@ -26,6 +36,16 @@
       <dd class="col-sm-7 offset-sm-5">
         <% if @order.expired %>
           El pedido está expirado <small class="text-muted">Se expiró hace <%= time_ago_in_words @order.expires_at %></small>
+          <hr>
+          <%= simple_form_for([:admin, @order]) do |f| %>
+            <div class="form-group">
+            	<%= f.hidden_field :removed, value: false %>
+              <label><small class="text-muted">Modificar el tiempo de expiración</small></label>
+              <%= f.datetime_field :expires_at, class: 'form-control' %>
+            </div>
+            <%= f.submit 'Actualizar pedido', class: 'btn btn-sm btn-secondary' %>
+          <% end %>
+          <hr>
         <% else %>
           Se expira <%= formatted_date(@order.expires_at) %> <small class="text-muted">falta <%= distance_of_time_in_words DateTime.current, @order.expires_at %></small>
         <% end %>

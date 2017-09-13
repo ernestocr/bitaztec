@@ -64,8 +64,10 @@ class Admin::OrdersController < Admin::BaseController
       notif.destroy
     end
     @order.destroy
-    #@order.update_attributes(removed: true)
-    Notification.create(recipient: @order.user, action: 'cancelled', notifiable: @order)
+    if !@order.removed
+      # notify the user if it wasn't previously cancelled by him
+      Notification.create(recipient: @order.user, action: 'cancelled', notifiable: @order)
+    end
     redirect_to admin_orders_path, flash: { notice: 'El pedido fue cancelado.' }
   end
 
@@ -84,7 +86,7 @@ class Admin::OrdersController < Admin::BaseController
     end
 
     def order_params
-      params.require(:order).permit(:confirmed_account_id, :confirmed_card_id)
+      params.require(:order).permit(:confirmed_account_id, :confirmed_card_id, :expires_at, :removed)
     end
 
 end

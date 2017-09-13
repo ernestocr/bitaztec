@@ -27,10 +27,10 @@ class Order < ApplicationRecord
       'Completado'
     elsif submitted
       'En proceso de revisión'
-    elsif expired
-      'Expirado'
     elsif removed
       'Cancelado'
+    elsif expired
+      'Expirado'
     else
       'Esperando el pago y/o evidencia'
     end
