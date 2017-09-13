@@ -33,23 +33,25 @@
       <dd class="col-sm-7">
         <%= formatted_date(@order.created_at) %> <small class="text-muted">hace <%= time_ago_in_words @order.created_at %></small>
       </dd>
-      <dd class="col-sm-7 offset-sm-5">
-        <% if @order.expired %>
-          El pedido está expirado <small class="text-muted">Se expiró hace <%= time_ago_in_words @order.expires_at %></small>
-          <hr>
-          <%= simple_form_for([:admin, @order]) do |f| %>
-            <div class="form-group">
-            	<%= f.hidden_field :removed, value: false %>
-              <label><small class="text-muted">Modificar el tiempo de expiración</small></label>
-              <%= f.datetime_field :expires_at, class: 'form-control' %>
-            </div>
-            <%= f.submit 'Actualizar pedido', class: 'btn btn-sm btn-secondary' %>
+      <% if !@order.completed %>
+        <dd class="col-sm-7 offset-sm-5">
+          <% if @order.expired %>
+            El pedido está expirado <small class="text-muted">Se expiró hace <%= time_ago_in_words @order.expires_at %></small>
+            <hr>
+            <%= simple_form_for([:admin, @order]) do |f| %>
+              <div class="form-group">
+                <%= f.hidden_field :removed, value: false %>
+                <label><small class="text-muted">Modificar el tiempo de expiración</small></label>
+                <%= f.datetime_field :expires_at, class: 'form-control' %>
+              </div>
+              <%= f.submit 'Actualizar pedido', class: 'btn btn-sm btn-secondary' %>
+            <% end %>
+            <hr>
+          <% else %>
+            Se expira <%= formatted_date(@order.expires_at) %> <small class="text-muted">falta <%= distance_of_time_in_words DateTime.current, @order.expires_at %></small>
           <% end %>
-          <hr>
-        <% else %>
-          Se expira <%= formatted_date(@order.expires_at) %> <small class="text-muted">falta <%= distance_of_time_in_words DateTime.current, @order.expires_at %></small>
-        <% end %>
-      </dd>
+        </dd>
+      <% end %>
 
       <dt class="col-sm-5">Cantidad solicitada</dt>
       <dd class="col-sm-7"><span class="badge badge-default"><%= @order.amount %></span> BTC a <span class="badge badge-primary"><%= number_to_currency @order.price, precision: 0 %></span></dd>
