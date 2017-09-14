@@ -10,9 +10,16 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
+- Fix uploading problem
+- Catch 505
+- check performance update
 
 ### DONE:
 
+* contact page 505
+* OTHER option in confirmed account
+* update wallet help link: https://blockchain.info/wallet/
+* Move whatsapp number to contact page (33 2226 1811)
 * Hay que conservar en la historia de los pedidos con que numero de cuenta se realizo y con que tarjeta
 * A La hora que que se muestran los pagos realizados hace falta que se vea el numero de Cuenta o Tarjeta asi como el wallet
 * para cuando el metodo de pago sea por Tienda solo mostrar TARJETA

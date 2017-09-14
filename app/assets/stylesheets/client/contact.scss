@@ -96,4 +96,15 @@
       box-shadow: 0px 5px 15px $dgrey;
     }
   }
+
+  .phone {
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid $grey;
+    font-size: 0.9em;
+
+    span {
+      color: $blue;
+    }
+  }
 }

@@ -5,7 +5,7 @@
     <h2>Contacto</h2>
 
     <div class="contact-form">
-      <%= form_for @contact_form do |f| %>
+      <%= simple_form_for @contact_form do |f| %>
         <div class="field">
           <label class="icon name"></label>
           <%= f.text_field :name, placeholder: 'Nombre', autofocus: true %>
@@ -23,6 +23,27 @@
 
         <center><%= f.submit 'Enviar' %></center>
       <% end %>
+
+      <center class="phone">
+        <p>Manda un mensaje a nuestro Whatsapp: <span><%= Setting.phone %></span></p>
+      </center>
     </div>
   </div>
 </div>
+
+<script>
+  
+  $(document).ready(function() {
+    $('.contact-form form').on('submit', function(e) {
+      if (
+        $('#contact_form_name').val() == '' ||
+        $('#contact_form_email').val() == '' ||
+        $('#contact_form_message').val() == ''
+      ) {
+        alert('Debes llenar todos los campos.');
+        return false;
+      }
+    });
+  });
+
+</script>

@@ -4,9 +4,10 @@ class ContactForm < MailForm::Base
   attribute :message
 
   def headers
+    admin = User.where(admin: true, receives_notifs: true).first.email
     {
       subject: 'BitAztec | Mensaje via Contacto',
-      to: 'lgernestoguitar@gmail.com',
+      to: admin,
       from: %("#{name}" <#{email}>)
     }
   end

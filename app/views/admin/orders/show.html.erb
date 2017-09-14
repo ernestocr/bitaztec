@@ -74,12 +74,12 @@
         <dd class="col-sm-7">
           <%= simple_form_for [:admin, @order] do |f| %>
             <%= f.select :confirmed_account_id,
-              Account.all.collect { |a| [a.name, a.id] },
-              selected: @order.confirmed_account_id || @order.account_id %>
+              accounts_collection(true),
+              selected: @order.confirmed_account_id || '' %>
             
             <%= f.select :confirmed_card_id,
-              Card.all.collect { |a| [a.number, a.id] },
-              selected: @order.confirmed_card_id || @order.card_id %>
+              cards_collection(true),
+              selected: @order.confirmed_card_id || '' %>
             
             <%= f.submit 'Guardar cambios', class: 'btn btn-sm btn-secondary' %>
           <% end %>
@@ -147,5 +147,6 @@ $(document).on('ready', function(){
     event.preventDefault();
     $(this).ekkoLightbox();
   });
+
 });
 </script>

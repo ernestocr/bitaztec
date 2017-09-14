@@ -17,7 +17,7 @@
       </div>
     </div>
     <% if !Setting.phone.blank? %>
-      <p class="phone">Manda un mensaje a nuestro Whatsapp: <b><%= Setting.phone %></b></p>
+      <p class="phone"><%= link_to 'Manda un mensaje a nuestro Whatsapp', contact_path %></p>
     <% end %>
   </div>
 
