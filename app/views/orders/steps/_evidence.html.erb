@@ -10,12 +10,8 @@
       <p>Comprobante(s) de pago presentado:</p>
       <div class="current-evidence">
         <% @order.attachments.each do |attachment| %>
-          <div>
-            <% if attachment.file.extension == 'pdf' %>
-              <p class="pdf-file attachment">
-                <%= link_to 'PDF', attachment.url %>
-              </p>
-            <% else %>
+          <div class="<%= 'pdf-file' if attachment.file.extension == 'pdf' %>">
+            <% if attachment.file.extension != 'pdf' %>
               <%= image_tag attachment, class: 'img-thumbnail' %>
             <% end %>
           </div>
@@ -28,13 +24,19 @@
     <input type="hidden" name="step" value="image" />
     <%= f.file_field :attachments, multiple: true %>
     <div class="evidence-preview hidden">
-      <img />
-      <button type="submit">Subir &#10004;</button>
+      <div class="images">
+      </div>
+      <button type="submit">Subir &#128190;</button>
+      <div class="loader">Loading...</div>
     </div>
   </div>
 
   <% if @order.attachments.count != 0 %>
     <a href="#" text="Cancelar" class="re-upload">Cambiar evidencia.</a>
   <% end %>
+
+  <div class="no-file-api">
+    <p>Lo sentimos, pero debes usar un navegador más moderno para poder subir tu evidencia. Te recomendamos usar <a href="https://www.google.com/chrome/browser/desktop/index.html">Google Chrome</a></p>
+  </div>
 <% end %>  
 </div>

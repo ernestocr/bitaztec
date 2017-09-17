@@ -75,8 +75,16 @@ class OrdersController < ApplicationController
       if order_params[:attachments] == nil
         redirect_to @order, alert: 'Debes subir la evidencia de pago en un formato válido.'
       else
-        @order.update(order_params)
-        redirect_to @order, alert: 'Excelente. Ahora solo agrega tu domicilio wallet para completar el pedido.'
+        if @order.update(order_params)
+          redirect_to @order, alert: 'Excelente. Ahora solo agrega tu domicilio wallet para completar el pedido.'
+        else
+          # redirect_to @order, alert: 'Hubo un error.'
+          if @order.errors[:attachments].count > 0
+            redirect_to @order, alert: 'El archivo es demasiado pesado. Debe ser menos de 2 MB. Intente de nuevo.'
+          else
+            redirect_to @order
+          end  
+        end
       end 
     else
       # user added his wallet address and therefore completed his payment
