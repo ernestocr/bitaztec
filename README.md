@@ -10,10 +10,10 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- check performance update
 
 ### DONE:
 
+* check performance update
 * Catch 505
 * Fix uploading problem
 * contact page 505
