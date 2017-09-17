@@ -10,12 +10,12 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-- Fix uploading problem
-- Catch 505
 - check performance update
 
 ### DONE:
 
+* Catch 505
+* Fix uploading problem
 * contact page 505
 * OTHER option in confirmed account
 * update wallet help link: https://blockchain.info/wallet/

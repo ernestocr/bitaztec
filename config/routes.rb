@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  match '/404', to: 'errors#not_found', via: :all
+  match '/505', to: 'errors#internal_server_error', via: :all
+
   devise_for :users, controllers: { registrations: 'registrations' }
 
   # /comprar (for orders:new)

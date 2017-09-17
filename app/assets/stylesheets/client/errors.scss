@@ -1,0 +1,47 @@
+@import 'colors';
+
+.errors {
+	padding-top: 2em;
+	max-width: 500px;
+	margin: auto;
+	text-align: center;
+
+	.btc {
+		width: 200px;
+		height: 200px;
+		margin: auto;
+		background: image-url('btc.png');
+		background-size: cover;
+		background-position: center;
+		margin-bottom: 1em;
+	}
+
+	h1 {
+		font-size: 2em;
+		font-weight: 200;
+	}
+
+	p {
+		margin-top: 1em;
+		color: $dgrey;
+	}
+
+	a {
+		background: red;
+		padding: 1em;
+		position: relative;
+		top: 2em;
+		border-radius: 3px;
+		text-decoration: none;
+		color: $white;
+		background: $yellow;
+		font-weight: 200;
+		transition: all .2s;
+
+		&:hover {
+			background: $red;
+		}
+	}
+
+	margin-bottom: 10em;
+}

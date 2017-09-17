@@ -26,5 +26,7 @@ module Bitaztec
     config.time_zone = 'Guadalajara'
 
     config.i18n.default_locale = :es
+
+    config.exceptions_app = self.routes
   end
 end
