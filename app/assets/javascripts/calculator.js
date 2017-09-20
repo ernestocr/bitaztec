@@ -10,7 +10,7 @@
  */
 
 function updateFinalCost(price, result, val) {
-  var prec = Math.pow(10, 9);
+  var prec = Math.pow(10, 8);
   val = Math.round(val*prec)/prec;
   var n = price*val;
   if ( $.isNumeric(n) && n > 0 ) {
@@ -111,7 +111,7 @@ $(document).on('ready', function() {
 
     if ( $.isNumeric(input) && input >= 0 ) {
       var amount = input/price;
-      var precision = 9;
+      var precision = 8;
       var factor = Math.pow(10, precision);
       var tmp_amount = amount * factor;
       var tmp_amount = Math.round(tmp_amount);

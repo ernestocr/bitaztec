@@ -10,9 +10,16 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
+* ask alfonso about the home page divider
+* check order status problems
 
 ### DONE:
 
+* horizontal scrolling in windows
+* make chat in mobile more visible
+* homepage two decimals
+* do not show reference name in any method
+* update to 8 decimals not 9
 * check performance update
 * Catch 505
 * Fix uploading problem

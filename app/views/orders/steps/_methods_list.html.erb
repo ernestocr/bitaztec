@@ -22,9 +22,9 @@
           <p>CLABE interbancaria: <span><%= account.clabe %></span></p>
         <% end %>
 
-        <% if @pm.method != 'Tienda' %>
-          <p>Nombre de referencia: <span><%= account.holder %></span></p>
-        <% end %>
+        <%# if @pm.method != 'Tienda' %>
+        <!--<p>Nombre de referencia: <span><%#= account.holder %></span></p>-->
+        <%# end %>
         
         <% if @pm.method != 'Transferencia' %>
           <div class="cards-list">

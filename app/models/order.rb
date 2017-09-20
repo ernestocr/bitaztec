@@ -97,7 +97,7 @@ class Order < ApplicationRecord
     end
 
     def round_amount
-      self.amount = self.amount.round(9)
+      self.amount = self.amount.round(8)
     end
 
 end

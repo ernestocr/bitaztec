@@ -4,7 +4,7 @@
   <div class="leader">
     <div class="container">
       <div class="price">
-        <h1>1 BTC: <span><%= number_to_currency @btc_price, precision: 0 %></span></h1>
+        <h1>1 BTC: <span><%= number_to_currency @btc_price, precision: 2, separator: '.' %></span></h1>
       </div>
 
       <div class="call-to-action">

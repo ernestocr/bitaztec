@@ -71,7 +71,8 @@ form {
   padding-top: 10px;
   border-top: 2px solid #eee;
   max-height: 250px;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .flash .container {
