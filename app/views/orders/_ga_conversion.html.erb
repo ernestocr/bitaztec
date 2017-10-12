@@ -9,6 +9,7 @@ var google_conversion_label = "PJtmCPSb-XUQxOSZjgM";
 var google_conversion_value = <%= @order.total %>;
 var google_conversion_currency = "MXN";
 var google_remarketing_only = false;
+var google_conversion_order_id = <%= @order.id %>;
 /* ]]> */
 </script>
 <script type="text/javascript"
@@ -16,6 +17,6 @@ src="//www.googleadservices.com/pagead/conversion.js">
 </script>
 <noscript>
 <div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/835088964/?value=<%= @order.total %>&amp;currency_code=MXN&amp;label=PJtmCPSb-XUQxOSZjgM&amp;guid=ON&amp;script=0"/>
+  <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/835088964/?value=<%= @order.total %>&amp;currency_code=MXN&amp;label=PJtmCPSb-XUQxOSZjgM&amp;guid=ON&amp;script=0&amp;oid=<%= @order.id %>"/>
 </div>
 </noscript>
