@@ -128,11 +128,11 @@ ActiveRecord::Schema.define(version: 20170907174037) do
 
   create_table "payment_methods", force: :cascade do |t|
     t.string   "name"
+    t.string   "method"
     t.text     "details"
     t.integer  "expires",      default: 3
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.string   "method"
     t.string   "schedule"
     t.text     "instructions"
     t.text     "notice"
