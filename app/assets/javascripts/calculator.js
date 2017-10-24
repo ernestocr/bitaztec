@@ -39,6 +39,8 @@ $(document).on('ready', function() {
 
   // amount -> money
   $input1.on('input', function(e) {
+    $('.price-block').removeClass('active');
+
     var val = $input1.val();
     var input = parseFloat(val);
 

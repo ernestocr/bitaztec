@@ -64,6 +64,19 @@ $(document).ready(function() {
   var SELECTED_METHOD      = '';
   var SELECTED_METHOD_TYPE = '';
 
+  // Price block selection
+  $('.price-block').on('click', function() {
+    var amount = $(this).data('amount');
+    
+    // set the amount in the amount input, then trigger change
+    $('#order_amount').val(amount).trigger('input');
+    // after the amount and total change, trigger the next button
+    $('.next').trigger('click');
+    
+    $('.price-block').removeClass('active');
+    $(this).addClass('active');
+  });
+  
   // NEXT STEP
   $('.next').on('click', function() {
     if ( $('#order_amount').val() == '' ) { return false; }

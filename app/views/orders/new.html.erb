@@ -13,10 +13,24 @@
     <div class="steps">
 
       <div class="step step-1 active">
-        <h3>Ingrese la cantidad deseada</h3>
-        <p>Precio actual 1 BTC: <span data-value="<%= @btc_price %>" id="order_price"><%= number_to_currency @btc_price, separator: '.', precision: 0 %></span></p>
+        <h3>Seleccione o ingrese la cantidad deseada</h3>
+        <p>Precio actual 1 Bitcoin: <span data-value="<%= @btc_price %>" id="order_price"><%= number_to_currency @btc_price, separator: '.', precision: 0 %></span></p>
 
         <div class="content">
+          <div class="price-blocks">
+            <% [0.01, 0.02, 0.04, 0.08].each do |i| %>
+              <% next if @btc_price.to_f*i > @max.to_f %>
+              <div class="price-block" data-amount="<%= i %>">
+                <div class="head"><%= i %> BTC</div>
+                <div class="choose">
+                  <%= number_to_currency @btc_price.to_f*i, separator: '.' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          
+          <p class="divider">ó ingrese una cantidad especifica en bitcoins o en pesos</p>
+          
           <span class="icon btc"></span>
           <input type="number" placeholder="Bitcoin..." step="any" id="order_amount" autofocus>
 

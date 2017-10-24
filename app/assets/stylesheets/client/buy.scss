@@ -119,6 +119,60 @@ main {
         #order_price {
           font-weight: bold;
         }
+
+        hr {
+          border: none;
+          border-top: 1px solid $grey;
+        }
+
+        .price-blocks {
+          margin-bottom: 2em;
+          display: flex;
+
+          .price-block {
+            flex: 1;
+            cursor: pointer;
+            transition: all .2s;
+            text-align: center;
+            border: 2px solid $blue;
+            margin: 0.5em;
+
+            .head {
+              padding: 0.5em;
+              background: $blue;
+              color: $white;
+              transition: all .2s;
+            }
+
+            .choose {
+              padding: 0.5em;
+            }
+          
+            &:hover {
+              background: $lgrey;
+              
+              .head {
+                background: $white;
+                color: $blue;
+              }
+            }
+
+            &.active {
+              border-color: $green;
+
+              .head {
+                background: $green;
+              }
+            }
+          }
+        }
+
+        .divider {
+          color: $dgrey;
+          font-weight: lighter;
+          margin-bottom: 3em;
+          font-size: 0.9em;
+        }
       }
 
       .step-2 {
