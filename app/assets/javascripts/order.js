@@ -25,10 +25,10 @@ $(document).on('ready', function() {
   $('.complete-order').on('submit', function(e) {
     var btc_address = $('.wallet').val();
 
-    if ( typeof $('.current-evidence img').attr('src') == 'undefined' ) {
+    /*if ( typeof $('.current-evidence img').attr('src') == 'undefined' ) {
       alert('Debes subir una imagen o un pdf de tu recibo.');
       return false;
-    }
+    }*/
 
     if ( btc_address == '' ) {
       alert('Debes ingresar el domicilio de tu wallet.');
@@ -43,12 +43,6 @@ $(document).on('ready', function() {
       $('.wallet').focus();
       return false;
     }
-
-    // confirm address
-    // var wallet_confirmation = prompt('Por favor confirme el domicilio receptor')
-    // if ( btc_address == wallet_confirmation.trim() ) {
-    //   return true;
-    // }
 
     return true;
   });

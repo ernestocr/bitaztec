@@ -84,6 +84,19 @@
             <%= f.submit 'Guardar cambios', class: 'btn btn-sm btn-secondary' %>
           <% end %>
         </dd>
+      <% else %>
+        <dd class="col-sm-7 offset-sm-5">
+          <% @order.payment_method.accounts.each do |account| %>
+            <% next if !account.bank.active? or !account.active %>
+
+            <%= account.bank.name %> - <%= account.number %>
+            <% @order.payment_method.cards.each do |card| %>
+              <% if card.active and account.cards.include?(card) %>
+                <p><span class="badge badge-default"><%= card.number %></span></p>
+              <% end %>
+            <% end %> 
+          <% end %>
+        </dd>
       <% end %> 
     </dl>
     

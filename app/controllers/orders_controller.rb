@@ -87,10 +87,18 @@ class OrdersController < ApplicationController
         end
       end 
     else
-      # user added his wallet address and therefore completed his payment
+      # user added his wallet address
       if order_params[:address] == nil
+        # safe checking for empty address
         redirect_to @order, alert: 'Debes poner un domicilio válido.'
+      elsif @order.attachments.count == 0
+        # the user hasn't uploaded an image, but save the address
+        address_params = order_params
+        address_params[:submitted] = false
+        @order.update(address_params)
+        redirect_to @order, alert: 'Debes subir una imagen de tu evidencia (paso 2).'
       elsif @order.update(order_params)
+        # order is completed
         AdminMailer.order_submitted(@order).deliver_later
         redirect_to @order, notice: 'Tu pago ahora está en proceso de revisión.'
       end
