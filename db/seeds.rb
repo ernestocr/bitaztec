@@ -9,6 +9,7 @@
 # Required Settings
 Setting.destroy_all
 Setting.create(key: 'price', value: 30000)
+Setting.create(key: 'packs', value: '0.01, 0.02, 0.05, 0.1')
 Setting.create(key: 'active', value: 1)
 Setting.create(key: 'max', value: 30000)
 Setting.create(key: 'min', value: 1000)

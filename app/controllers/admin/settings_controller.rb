@@ -3,6 +3,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def index
     @price = Setting.where(key: 'price').first
+    @packs = Setting.where(key: 'packs').first
     @active = Setting.where(key: 'active').first
     @max = Setting.where(key: 'max').first
     @min = Setting.where(key: 'min').first

@@ -48,6 +48,8 @@ class OrdersController < ApplicationController
     @order = current_user.orders.new
     
     # set the current global variables and options
+    @packs = Setting.packs || '0.01, 0.02, 0.05, 0.1'
+    @packs = @packs.delete(' ').split(',').map(&:to_f)
     @methods = PaymentMethod.where(active: true, deprecated: false)
     @min = Setting.min
     @max = Setting.max

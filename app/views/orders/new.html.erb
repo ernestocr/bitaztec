@@ -18,7 +18,7 @@
 
         <div class="content">
           <div class="price-blocks">
-            <% [0.01, 0.02, 0.04, 0.08].each do |i| %>
+            <% @packs.take(5).each do |i| %>
               <% next if @btc_price.to_f*i > @max.to_f %>
               <div class="price-block" data-amount="<%= i %>">
                 <div class="head"><%= i %> BTC</div>
