@@ -10,8 +10,7 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-* ask alfonso about the home page divider
-* check order status problems
+* different prices for different volume
 
 ### DONE:
 

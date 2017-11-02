@@ -26,7 +26,7 @@ $(document).ready(function() {
     // wait two seconds till xhr requests return
     setTimeout(function() {
       location.reload();
-    }, 2000);
+    }, 1500);
 
     return false;
   });
