@@ -10,7 +10,12 @@ Built by: github.com/ernestocr
 
 ### TODO:
 
-* different prices for different volume
+Ranges
+  0-500      100000
+  501-1000   90000
+  1001-2000  80000
+  2001+      70000
+
 
 ### DONE:
 
