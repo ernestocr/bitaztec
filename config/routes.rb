@@ -26,9 +26,16 @@ Rails.application.routes.draw do
     match '/admins', to: 'dashboard#admins', via: :get
 
     # manage Users, Settings, Account Holders
+    
     resources :users
+
     resources :settings, only: [:index, :update]
+    resource :settings, only: [] do 
+      post :update_all, on: :member
+    end
+
     resources :account_holders
+    
     resources :cards
 
     # manage Payment Methods + state toggle

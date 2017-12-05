@@ -54,7 +54,10 @@
       <% end %>
 
       <dt class="col-sm-5">Cantidad solicitada</dt>
-      <dd class="col-sm-7"><span class="badge badge-default"><%= @order.amount %></span> BTC a <span class="badge badge-primary"><%= number_to_currency @order.price, precision: 0 %></span></dd>
+      <dd class="col-sm-7">
+        <span class="badge badge-secondary"><%= @order.amount %></span>
+        BTC a <span class="badge badge-primary"><%= number_to_currency @order.price, precision: 0 %></span>
+      </dd>
 
       <dt class="col-sm-5">Total</dt>
       <dd class="col-sm-7"><b class="text-success"><%= number_to_currency @order.total, precision: 2, separator: '.' %></b></dd>
@@ -101,7 +104,7 @@
     </dl>
     
     <p><b>Domicilio del wallet:</b></p>
-    <p class="bg-faded"><%= @order.address %></p>
+    <p class="bg-faded"><code><%= @order.address %></code></p>
     
     <hr>
 
@@ -116,7 +119,9 @@
         <% if attachment.file.extension == 'pdf' %>
           <p class="pdf-file attachment"><%= link_to 'PDF', attachment.url %></p>
         <% else %>
-          <a data-toggle="lightbox" href="<%= attachment.url %>"><%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %></a>
+          <a href="<%= attachment.url %>" data-toggle="modal" data-target="#evidenceModal">
+            <%= image_tag attachment.thumb, class: 'attachment img-thumbnail' %>
+          </a>
         <% end %>
       <% end %>
     </div>
@@ -135,8 +140,9 @@
     <% end %>
 
     <% if @order.completed %>
+      <hr/>
       <p>
-        Verficación: <%= link_to 'Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank' %>
+        <%= link_to 'Wallet en Blockchain.info', "https://blockchain.info/address/#{@order.address}", target: '_blank', class: 'btn btn-sm btn-warning' %>
       </p>
     <% end %>
     
@@ -154,12 +160,10 @@
 </div>
 
 <script>
-$(document).on('ready', function(){
-  $(document).undelegate('[data-toggle="lightbox"]', 'click');
-  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-    event.preventDefault();
-    $(this).ekkoLightbox();
+$(document).ready(function() {
+  $('.evidence a').on('click', function() {
+    var img_src = $(this).prop('href');
+    $('#evidenceModal .modal-body img').prop('src', img_src);
   });
-
 });
 </script>

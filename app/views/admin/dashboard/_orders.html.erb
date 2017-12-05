@@ -14,5 +14,10 @@
         <td><%= number_to_currency(order.price, precision: 0) %></td>
       </tr>
     <% end %>
+    <% if orders.count == 0 %>
+      <tr>
+        <td colspan="3"><center class="alert alert-secondary">No existen pedidos <b><%= type %></b></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

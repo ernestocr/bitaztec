@@ -3,6 +3,17 @@ class Admin::SettingsController < Admin::BaseController
 
   def index
     @price = Setting.where(key: 'price').first
+    
+    @price_range_1 = Setting.where(key: 'price_range_1').first
+    @price_range_2 = Setting.where(key: 'price_range_2').first
+    @price_range_3 = Setting.where(key: 'price_range_3').first
+    @price_range_4 = Setting.where(key: 'price_range_4').first
+    
+    @price_range_1_value = Setting.where(key: 'price_range_1_value').first
+    @price_range_2_value = Setting.where(key: 'price_range_2_value').first
+    @price_range_3_value = Setting.where(key: 'price_range_3_value').first
+    @price_range_4_value = Setting.where(key: 'price_range_4_value').first
+    
     @packs = Setting.where(key: 'packs').first
     @active = Setting.where(key: 'active').first
     @max = Setting.where(key: 'max').first
@@ -21,6 +32,13 @@ class Admin::SettingsController < Admin::BaseController
     else
       render :edit
     end
+  end
+
+  def update_all
+    params[:settings].each do |id, v|
+      Setting.find(id).update_attributes({value: v})
+    end
+    render json: true
   end
 
   private

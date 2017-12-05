@@ -13,9 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require settings
-//= require atether.min
-//= require bootstrap
-//= require ekko-lightbox
+//= require popper.min
+//= require bootstrap.min
 //= require wallet-address-validator.min
 //= require messages_poll
 //= require payment_methods

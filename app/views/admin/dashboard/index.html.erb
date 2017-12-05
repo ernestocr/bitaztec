@@ -5,25 +5,21 @@
 <div class="dashboard">
   <div class="row">
     <div class="col-sm-6">
-      <p><b><i class="fa fa-folder-o text-danger"></i> Pendientes</b></p>
-      <%= render 'admin/dashboard/orders', orders: @pending_orders %>
+      <p><b><i class="fa fa-folder-o"></i> Pendientes</b></p>
+      <%= render 'admin/dashboard/orders', { orders: @pending_orders, type: 'pendientes' } %>
     </div>
     <div class="col-sm-6">
-      <p><b><i class="fa fa-folder-o text-primary"></i> Nuevos</b></p>
-      <%= render 'admin/dashboard/orders', orders: @new_orders %>
+      <p><b><i class="fa fa-folder-o"></i> Nuevos</b></p>
+      <%= render 'admin/dashboard/orders', { orders: @new_orders, type: 'nuevos' } %>
     </div>
   </div>
   <hr>
   
   <div class="row">
-    <div class="col-sm-3">
-      <p><i class="fa fa-btc"></i> Precio actual</p>
-      <p class="badge badge-primary"><%= number_to_currency Setting.price, separator: '.' %></p>
-    </div>
-    <div class="col-sm-8 offset-sm-1">
+    <div class="col-sm-6">
       <p><i class="fa fa-comment"></i> Mensajes nuevos</p>
       <% if @messages.count == 0 %>
-        <p class="alert alert-info">No hay mensajes nuevos.</p>
+        <p class="alert alert-secondary">No hay mensajes nuevos.</p>
       <% end %>
       <% @messages.reverse.group_by(&:user_id).each do |id, msgs| %>
         <% msg = msgs.first %>

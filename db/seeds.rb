@@ -9,6 +9,14 @@
 # Required Settings
 Setting.destroy_all
 Setting.create(key: 'price', value: 30000)
+Setting.create(key: 'price_range_1', value: '0-500')
+Setting.create(key: 'price_range_2', value: '501-1000')
+Setting.create(key: 'price_range_3', value: '1001-5000')
+Setting.create(key: 'price_range_4', value: '10000')
+Setting.create(key: 'price_range_1_value', value: 120000)
+Setting.create(key: 'price_range_2_value', value: 100000)
+Setting.create(key: 'price_range_3_value', value: 90000)
+Setting.create(key: 'price_range_4_value', value: 80000)
 Setting.create(key: 'packs', value: '0.01, 0.02, 0.05, 0.1')
 Setting.create(key: 'active', value: 1)
 Setting.create(key: 'max', value: 30000)

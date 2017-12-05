@@ -12,9 +12,13 @@ body {
 }
 
 .sidebar {
+  .nav-link {
+    color: rgba(0,0,0,.65);
+  }
+  
   .nav-link.active {
-    color: #000;
     border-right: 3px solid #eee;
+    color: #007bff;
   }
 }
 

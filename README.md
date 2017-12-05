@@ -16,6 +16,8 @@ Ranges
   1001-2000  80000
   2001+      70000
 
+automatic price update?
+
 
 ### DONE:
 

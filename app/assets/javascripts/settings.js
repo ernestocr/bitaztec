@@ -7,27 +7,35 @@
 $(document).ready(function() {
   if ( !$('.settings').length ) { return false; }
 
-  $('.save-all').on('click', function(e) {
-    e.preventDefault();
-    $(this).attr('disabled', 'disabled');
-    $(this).text('Guardando los cambios...');
+  var csrf_token = $('meta[name="csrf-token"').attr('content');
 
-    var forms = $('.settings form');
-    forms.each(function(form) {
-      var id = $(this).attr('id').match(/\d+$/)[0];
-      var data = $(this).serialize();
-      $.ajax({
-        url: '/admin/settings/' + id,
-        data: data,
-        method: 'POST'
-      });
+  $('.save-all').on('click', function() {
+    $(this).prop('disabled', true);
+    $(this).text('Guardando los cambios...');
+    
+    var forms = {};
+    $('form').each(function() {
+      var setting_id = $(this).attr('id').split('_').pop();
+      var form_data = $(this).serializeArray();
+      forms[setting_id] = form_data.pop().value;
+    });
+  
+    $.ajax({
+      url: '/admin/settings/update_all',
+      method: 'POST',
+      data: {
+        settings: forms
+      }
+    }).done(function(data) {
+      $('.save-all').prop('disabled', false);
+      $('.save-all').text('Guardar todos los cambios');
+      
+      if ( data == true ) {
+        alert('Los cambios se han guardados!');
+      }
     });
 
-    // wait two seconds till xhr requests return
-    setTimeout(function() {
-      location.reload();
-    }, 1500);
-
-    return false;
   });
+  
+    
 });

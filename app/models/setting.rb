@@ -26,4 +26,8 @@ class Setting < ApplicationRecord
     system 'bundle exec whenever --update-crontab'
   end
 
+  def self.price
+    return 30000
+  end
+
 end

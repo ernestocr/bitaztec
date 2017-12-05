@@ -20,19 +20,6 @@
   <% end %>
 </nav>
 
-<div class="edit-user">
-  <p>
-    Derechos de administrador:
-    <a href="<%= admin_user_path(@user) %>" data-method="put">
-      <% if @user.admin? %>
-        <i class="fa fa-toggle-on"></i> activo
-      <% else %>
-        <i class="fa fa-toggle-off"></i> inactivo
-      <% end %>
-    </a>
-  </p>
-</div>
-
 <table class="table table-bordered table-sm">
   <thead>
     <tr>
@@ -51,7 +38,7 @@
         <td><%= link_to formatted_date(order.created_at), admin_order_path(order) %></td>
         <td><%= order.amount %></td>
         <td><%= number_to_currency order.price, precision: 0 %></td>
-        <td><%= order.address %></td>
+        <td><code><%= order.address %></code></td>
         <td><%= order.status %></td>
       </tr>
     <% end %>

@@ -1,5 +1,7 @@
 <% page = params[:controller].downcase.split('/')[1] %>
 
+
+<!--
 <div class="nav sidebar flex-column">
   <a href="<%= admin_path %>" class="nav-link <%= 'active' if page == 'dashboard' %>">
     <i class="fa fa-tachometer"></i> Dashboard 
@@ -28,4 +30,34 @@
   <a href="<%= admin_account_holders_path %>" class="nav-link <%= 'active' if page == 'account_holders' %>">
     <i class="fa fa-money"></i> Dueños de cuentas
   </a>
-</div>
+</div> -->
+
+<nav class="nav sidebar flex-column">
+  <a href="<%= admin_path %>" class="nav-link <%= 'active' if page == 'dashboard' and action_name == 'index' %>">
+    Dashboard 
+    <% if @notifications != 0 %>
+      <span class="badge badge-danger float-right"><%= @notifications %></span>
+    <% end %>
+  </a>
+  <a href="<%= admin_orders_path %>" class="nav-link <%= 'active' if page == 'orders' %>">
+    Pedidos
+  </a>
+  <a href="<%= admin_settings_path %>" class="nav-link <%= 'active' if page == 'settings' %>">
+    Configuración
+  </a>
+  <a href="<%= admin_users_path %>" class="nav-link <%= 'active' if page == 'users' %>">
+    Usuarios
+  </a>
+  <a href="<%= admin_admins_path %>" class="nav-link <%= 'active' if page == 'dashboard' and action_name == 'admins' %>">
+    Admins
+  </a>
+  <a href="<%= admin_payment_methods_path %>" class="nav-link <%= 'active' if page == 'payment_methods' %>">
+    Métodos de pago
+  </a>
+  <a href="<%= admin_banks_path %>" class="nav-link <%= 'active' if page == 'banks' %>">
+    Bancos
+  </a>
+  <a href="<%= admin_account_holders_path %>" class="nav-link <%= 'active' if page == 'account_holders' %>">
+    Dueños de cuentas
+  </a>
+</nav>
