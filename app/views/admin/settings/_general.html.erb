@@ -1,0 +1,21 @@
+<tr>
+  <td colspan="3"><center>Configuración fundamental</center></td>
+</tr>
+<tr>
+  <td>
+    Estado del sitio<br/>
+    <small class="text-muted">
+      Si el sitio está inactivo, el usuario solo no podrá hacer pedidos nuevos,
+      pero todas las demás funciones, incluyendo acceso a las páginas de información seguirán activas.
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @active]) do |f| %>
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :value %> Activo
+        </label>
+      </div>
+    <% end %>
+  </td>
+</tr>

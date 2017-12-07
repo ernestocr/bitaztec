@@ -13,6 +13,11 @@ class Admin::SettingsController < Admin::BaseController
     @price_range_2_value = Setting.where(key: 'price_range_2_value').first
     @price_range_3_value = Setting.where(key: 'price_range_3_value').first
     @price_range_4_value = Setting.where(key: 'price_range_4_value').first
+
+    @price_range_1_premium = Setting.where(key: 'price_range_1_premium').first
+    @price_range_2_premium = Setting.where(key: 'price_range_2_premium').first
+    @price_range_3_premium = Setting.where(key: 'price_range_3_premium').first
+    @price_range_4_premium = Setting.where(key: 'price_range_4_premium').first
     
     @packs = Setting.where(key: 'packs').first
     @active = Setting.where(key: 'active').first

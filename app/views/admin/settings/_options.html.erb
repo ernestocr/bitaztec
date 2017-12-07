@@ -1,0 +1,72 @@
+<tr>
+  <td colspan="3"><center>Configuración de compra</center></td>
+</tr>
+<tr>
+  <td>
+    Paquetes de compra<br/>
+    <small class="text-muted">
+      Especifique la cantidad de paquetes y sus valor en bitcoin para que aparezcan
+      a la hora de comprar para que el usuario identifique una compra de forma más
+      intuitiva. Debe ser una lista seperada por comas (hay un limite de 5 paquetes).
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @packs]) do |f| %>
+      <%= f.text_field :value, placeholder: 'e.g. 0.01, 0.02', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td>
+    Tamaño máximo del pedido<br/>
+    <small class="text-muted">
+      El usuario no podrá realizar pedidos mayores a la cantidad especificada.
+      (Si no quiere tener un limite máximo, solo ponga un valor muy alto)
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @max]) do |f| %>
+      <%= f.text_field :value, placeholder: 'e.g. 50000', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td>
+    Tamaño mínimo del pedido<br/>
+    <small class="text-muted">
+      El usuario no podrá realizar pedidos menores a la cantidad especificada.
+      (Si no quiere un limit inferior, ponga 0).
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @min]) do |f| %>
+      <%= f.text_field :value, placeholder: 'e.g. 1000', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td>
+    Tamaño máximo del pedido para <em>usuario nuevo</em><br/>
+    <small class="text-muted">
+      Funciona igual que el máximo anterior, solo que este se aplica para los usuarios nuevos.
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @first_max]) do |f| %>
+      <%= f.text_field :value, placeholder: 'e.g. 50000', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td>
+    Tamaño mínimo del pedido para <em>usuario nuevo</em><br/>
+    <small class="text-muted">
+      Funciona igual que el mínimo anterior, solo que este se aplica para los usuarios nuevos.
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @first_min]) do |f| %>
+      <%= f.text_field :value, placeholder: 'e.g. 1000', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>

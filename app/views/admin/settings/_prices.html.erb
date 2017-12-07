@@ -1,0 +1,118 @@
+<tr>
+  <td colspan="3"><center>Precios</center></td>
+</tr>
+<!--<tr>
+  <td>
+    Precio de <b>1.0</b> Bitcoin<br/>
+    <small class="text-muted">
+      Si tiene activado la <b>actualización automatica</b>,
+      el precio que modifique aquí estará cambiando y sujeto al mercado.
+      Desactive la act. auto. si desea fijar un precio específico.
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @price]) do |f| %>
+      <%= f.text_field :value, placeholder: 'e.g. 25000', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>-->
+
+<!-- price ranges -->
+<tr>
+  <td>
+    Rango de precio <b>1</b><br/>
+    <small class="text-muted">
+      Aqui va el mínimo de compra y a el precio guardado. Este primer rango debe ser 0 y debe llevar el precio más alto. En el siguiente rango se debe poner la cantidad minima al siguiente precio, por ejemplo 500 pesos. Esto indica que el primer precio (el más alto) aplica para los pedidos entre 0-500 pesos, despues de 500 pesos aplica el segundo precio, y así sucesivamente. <br/>
+      <br/>
+      Si se activa la actualización automática, en lugar de poner un precio fijo, de por ejemplo 100,000 pesos en el campo de <b>precio</b>, se debe poner un porcentaje escrito en forma decimal, por ejemplo <b>0.10</b> para indicar una prima de 10% al precio del mercado en el campo de <b>prima</b>.
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @price_range_1]) do |f| %>
+      <label>Rango</label>
+      <%= f.text_field :value, placeholder: 'e.g. 500', class: 'form-control' %>
+    <% end %>
+    <br/>
+    <%= form_for([:admin, @price_range_1_value]) do |f| %>
+      <label>Precio</label>
+      <%= f.text_field :value, placeholder: 'e.g. 100000', class: 'form-control' %>
+    <% end %>
+    <br/>
+    <%= form_for([:admin, @price_range_1_premium]) do |f| %>
+      <label>Prima <small class="text-secondary">actualización automática</small></label>
+      <%= f.text_field :value, placeholder: 'e.g. 0.05', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td>
+    Rango de precio <b>2</b><br/>
+    <small class="text-muted">
+      Las instrucciones son iguales, solo que este es el rango del precio que sigue directamente de la rango 1.
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @price_range_2]) do |f| %>
+      <label>Rango</label>
+      <%= f.text_field :value, placeholder: 'e.g. 1000', class: 'form-control' %>
+    <% end %>
+    <br/>
+    <%= form_for([:admin, @price_range_2_value]) do |f| %>
+      <label>Precio</label>
+      <%= f.text_field :value, placeholder: 'e.g. 100000', class: 'form-control' %>
+    <% end %>
+    <br/>
+    <%= form_for([:admin, @price_range_2_premium]) do |f| %>
+      <label>Prima <small class="text-secondary">actualización automática</small></label>
+      <%= f.text_field :value, placeholder: 'e.g. 0.05', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td>
+    Rango de precio <b>3</b><br/>
+    <small class="text-muted">
+      Las instrucciones son iguales, solo que este es el rango del precio que sigue directamente de la rango 2.
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @price_range_3]) do |f| %>
+      <label>Rango</label>
+      <%= f.text_field :value, placeholder: 'e.g. 5000', class: 'form-control' %>
+    <% end %>
+    <br/>
+    <%= form_for([:admin, @price_range_3_value]) do |f| %>
+      <label>Precio</label>
+      <%= f.text_field :value, placeholder: 'e.g. 100000', class: 'form-control' %>
+    <% end %>
+    <br/>
+    <%= form_for([:admin, @price_range_3_premium]) do |f| %>
+      <label>Prima <small class="text-secondary">actualización automática</small></label>
+      <%= f.text_field :value, placeholder: 'e.g. 0.05', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td>
+    Rango de precio <b>4</b><br/>
+    <small class="text-muted">
+      Este es el último rango lo cual implica que es el valor al que se vende la moneda mayor a cierta cantidad. Solo pon el valor máximo.
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @price_range_4]) do |f| %>
+      <label>Rango</label>
+      <%= f.text_field :value, placeholder: 'e.g. 10000', class: 'form-control' %>
+    <% end %>
+    <br/>
+    <%= form_for([:admin, @price_range_4_value]) do |f| %>
+      <label>Precio</label>
+      <%= f.text_field :value, placeholder: 'e.g. 100000', class: 'form-control' %>
+    <% end %>
+    <br/>
+    <%= form_for([:admin, @price_range_4_premium]) do |f| %>
+      <label>Prima <small class="text-secondary">actualización automática</small></label>
+      <%= f.text_field :value, placeholder: 'e.g. 0.05', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>
