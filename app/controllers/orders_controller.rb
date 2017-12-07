@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  include OrdersHelper
+
   before_action :authenticate_user!
 
   before_action :set_order, only: [:show, :edit, :update, :destroy]
@@ -60,7 +62,7 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.new(order_params)
     # set price from db always
-    @order.price = @btc_price
+    @order.price = get_price(@order.amount)
 
     if @order.save
       AdminMailer.new_order(@order).deliver_later
@@ -134,7 +136,8 @@ class OrdersController < ApplicationController
     end
 
     def set_btc_price
-      @btc_price = Setting.price
+      @btc_display_price = Setting.display_price
+      @btc_prices = Setting.prices
     end
 
     # if he has a pending order, redirect to it

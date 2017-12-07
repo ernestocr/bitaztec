@@ -21,6 +21,7 @@ function confirmBuy() {
   var price = $('#order_price').data('value');
   var amount = $('#order_amount').val();
   amount  = Math.round(Math.pow(10, 8)*amount)/Math.pow(10, 8);
+  
   // round to two decimals
   var total = Math.round(price * amount * 100)/100;
   var method = $('.options div[data-value="' +

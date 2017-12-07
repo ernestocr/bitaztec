@@ -1,0 +1,11 @@
+<div class="price-blocks">
+  <% @packs.take(5).each do |amount| %>
+    <% next if get_price(amount)*amount > @max.to_f %>
+    <div class="price-block" data-amount="<%= amount %>">
+      <div class="head"><%= amount %> BTC</div>
+      <div class="choose">
+        <%= number_to_currency get_price(amount)*amount, separator: '.' %>
+      </div>
+    </div>
+  <% end %>
+</div>

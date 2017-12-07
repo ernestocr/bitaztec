@@ -3,7 +3,6 @@
                     html: { class: 'ui form' }) do |f| %>
 
   <%= f.hidden_field :amount, id: 'other' %>                  
-  <%#= f.input :address %>
   <%= f.association :payment_method %>
 
   <%= f.submit 'Comprar!', class: 'ui blue button' %>

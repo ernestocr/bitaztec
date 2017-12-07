@@ -12,25 +12,33 @@
 function updateFinalCost(price, result, val) {
   var prec = Math.pow(10, 8);
   val = Math.round(val*prec)/prec;
-  var n = price*val;
-  if ( $.isNumeric(n) && n > 0 ) {
-    // round up
-    n = Math.round(n);
 
-    // add commas and stuff
-    var res = n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
-
-    // update dom
-    result.text('$' + res);
+  if ( $.isNumeric(val) && val > 0 ) {
+    $('#order_price').data('value', price);
   } else {
-    result.text('');
+    $('#order_price').data('value', null);
+  }
+}
+
+function getPrice(amount) {
+  for ( var i = PRICE_RANGES.length - 1; i >= 0; i-- ) {
+    if ( amount > PRICE_RANGES[i].minb ) {
+      return PRICE_RANGES[i].price
+    }
+  }
+}
+
+function getPriceFromMoney(amount) {
+  for ( var i = PRICE_RANGES.length - 1; i >= 0; i-- ) {
+    if ( amount > PRICE_RANGES[i].min ) {
+      return PRICE_RANGES[i].price
+    }
   }
 }
 
 $(document).on('ready', function() {
 
   /* Calculator */
-  var price  = $('#order_price').data('value');
   var $input1 = $('#order_amount');
   var $input2 = $('#order_amount_m');
   var result = $('.calculator .money');
@@ -43,6 +51,7 @@ $(document).on('ready', function() {
 
     var val = $input1.val();
     var input = parseFloat(val);
+    var price = getPrice(input);
 
     if ( input*price > LIMIT.size ) {
       if ( LIMIT.reason === 'first' ) {
@@ -112,7 +121,8 @@ $(document).on('ready', function() {
     $this.val( formatted );
 
     if ( $.isNumeric(input) && input >= 0 ) {
-      var amount = input/price;
+      var price = getPriceFromMoney(input);
+      var amount = input / price;
       var precision = 8;
       var factor = Math.pow(10, precision);
       var tmp_amount = amount * factor;
