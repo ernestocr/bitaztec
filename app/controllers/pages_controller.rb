@@ -4,6 +4,13 @@ class PagesController < ApplicationController
 
   def home
     @btc_display_price = Setting.display_price
+
+    # set the current global variables and options
+    @btc_prices = Setting.prices
+    @packs = Setting.packs || '0.01, 0.02, 0.05, 0.1'
+    @packs = @packs.delete(' ').split(',').map(&:to_f)
+    @first_min = Setting.first_min
+    @first_max = Setting.first_max
   end
 
   def howto

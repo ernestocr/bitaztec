@@ -137,4 +137,17 @@ $(document).on('ready', function() {
     updateFinalCost(price, result, amount);
   });
 
+  // Cookie Order?
+  var saved_order = Cookies.getJSON('home-order');
+  if ( saved_order ) {
+    var now = new Date().getTime();
+    if ( now - saved_order.time < 1000*60*5 ) {
+      $('#order_amount_m').val(saved_order.total).trigger('input');
+      $('.next').trigger('click');
+      Cookies.remove('home-order');
+    } else {
+      console.log('order is not valid anymore');
+    }
+  }
+
 });

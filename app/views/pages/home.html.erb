@@ -13,6 +13,53 @@
     </div>
   </div>
 
+  <div class="selector-wrapper">
+    <div class="selector">
+      
+      <input type="hidden" value="<%= @btc_prices.to_json %>">
+
+      <div class="packs">
+        <% @packs.take(5).each do |amount| %>
+          <%# next if get_price(amount)*amount > @first_max.to_f %>
+          <div
+             id="<%= "pack-#{amount}-#{get_price(amount)}" %>" 
+             class="pack" 
+             data-amount="<%= amount %>" 
+             data-price="<%= get_price(amount) %>">
+
+            <div class="head"><%= amount %> bitcoin</div>
+            <div class="content">
+              <span class="price">
+                <%= number_to_currency get_price(amount)*amount, separator: '.', precision: 0 %>
+              </span>
+              <button class="buy-now">Comprar</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!--<div class="slider">
+        <input type="range" step="0.01">
+      </div>-->
+
+      <div class="exchange">
+        <p>Compra una cantidad especifica:</p>
+        <div class="inputs">
+          <div class="bitcoin">
+            <span>Bitcoin</span>
+            <input type="text" name="bitcoin">
+          </div>
+          <div class="peso">
+            <input type="text" name="peso">
+            <span>Pesos</span>
+          </div>
+        </div>
+        <p><button class="buy-right-now">Comprar!</button></p>
+      </div>
+
+    </div>
+  </div>
+
   <div class="container">
     <div class="mentions">
       <div class="grid grid--gutters">
