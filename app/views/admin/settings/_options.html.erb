@@ -16,6 +16,24 @@
     <% end %>
   </td>
 </tr>
+
+<!-- HOME PACKS -->
+<tr>
+  <td>
+    Paquetes de compra <b>Página de Inicio</b><br/>
+    <small class="text-muted">
+      <b>Para la página de inicio</b>. Especifique la cantidad de paquetes y sus valor en bitcoin para que aparezcan
+      a en la página home/inicio, toma en cuenta que no deben rebasar en valor al limite de compras para usuarios nuevos.
+      Debe ser una lista seperada por comas (hay un limite de 5 paquetes).
+    </small>
+  </td>
+  <td>
+    <%= form_for([:admin, @home_packs]) do |f| %>
+      <%= f.text_field :value, placeholder: 'e.g. 0.01, 0.02', class: 'form-control' %>
+    <% end %>
+  </td>
+</tr>
+
 <tr>
   <td>
     Tamaño máximo del pedido<br/>

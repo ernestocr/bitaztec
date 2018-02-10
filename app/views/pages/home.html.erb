@@ -20,7 +20,7 @@
 
       <div class="packs">
         <% @packs.take(5).each do |amount| %>
-          <%# next if get_price(amount)*amount > @first_max.to_f %>
+          <% next if get_price(amount)*amount > @first_max.to_f %>
           <div
              id="<%= "pack-#{amount}-#{get_price(amount)}" %>" 
              class="pack" 

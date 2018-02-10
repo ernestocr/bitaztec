@@ -20,6 +20,7 @@ class Admin::SettingsController < Admin::BaseController
     @price_range_4_premium = Setting.where(key: 'price_range_4_premium').first
     
     @packs = Setting.where(key: 'packs').first
+    @home_packs = Setting.where(key: 'home_packs').first
     @active = Setting.where(key: 'active').first
     @max = Setting.where(key: 'max').first
     @min = Setting.where(key: 'min').first

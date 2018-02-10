@@ -53,6 +53,11 @@ $(document).on('ready', function() {
     var input = parseFloat(val);
     var price = getPrice(input);
 
+    if ( input == 0 || typeof price == 'undefined' ) {
+      $input2.val('');
+      return false;
+    }
+
     if ( input*price > LIMIT.size ) {
       if ( LIMIT.reason === 'first' ) {
         alert('Solo puedes comprar hasta $' + LIMIT.size + ' pesos ya que es tu primera compra.');
@@ -97,6 +102,9 @@ $(document).on('ready', function() {
 
     var $this = $(this);
     var input = $(this).val();
+
+    // for decimal inputs...
+    input = Math.ceil(parseFloat(input)).toString();
 
     // remove unnecessary characters
     var input = input.replace(/[\D\s\._\-]+/g, '');

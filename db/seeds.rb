@@ -16,6 +16,7 @@ Setting.create(key: 'price_range_3_premium', value: 0)
 Setting.create(key: 'price_range_4_premium', value: 0)
 
 Setting.create(key: 'packs', value: '0.01, 0.02, 0.05, 0.1')
+Setting.create(key: 'home_packs', value: '0.005, 0.01, 0.02, 0.05')
 
 Setting.create(key: 'active', value: 1)
 

@@ -121,5 +121,5 @@ $(document).ready(function() {
   });
 
   // initialize some values...
-  $('.bitcoin input').val(0.05).trigger('input');
+  $('.bitcoin input').val(0.01).trigger('input');
 });
