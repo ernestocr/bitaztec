@@ -300,6 +300,26 @@
       }
     }
 
+    .selector-wrapper {
+      .selector {
+        .packs {
+          //display: block;
+          height: auto;
+          flex-wrap: wrap;
+
+          .pack {
+            width: 100%;
+            margin-bottom: 1em;
+            padding-bottom: 1em;
+          
+            .price {
+              margin-top: 0.5em;
+            }
+          }
+        }
+      }
+    }
+
     .info {
       background-size: cover;
     }
