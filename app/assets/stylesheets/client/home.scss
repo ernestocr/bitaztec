@@ -54,6 +54,18 @@
 
   .selector-wrapper {
     background: $white;
+    padding-top: 3em;
+
+    h1 {
+      font-weight: 200;
+      font-size: 2em;
+      margin-bottom: 1em;
+
+      span {
+        color: $yellow;
+        font-weight: 400;
+      }
+    }
     
     .selector {
       max-width: 960px;

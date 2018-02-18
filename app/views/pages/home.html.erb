@@ -1,7 +1,7 @@
 <% title 'Compra Bitcoins' %>
 
 <div class="home">
-  <div class="leader">
+  <!--<div class="leader">
     <div class="container">
       <div class="price">
         <h1>1 BTC: <span><%= number_to_currency @btc_display_price, precision: 2, separator: '.' %></span></h1>
@@ -11,9 +11,11 @@
         <%= link_to 'Comprar', new_order_path %>
       </div>
     </div>
-  </div>
+  </div>-->
 
   <div class="selector-wrapper">
+    <center><h1>Compra <span>Bitcoin</span></h1></center>
+    
     <div class="selector">
       
       <input type="hidden" value="<%= @btc_prices.to_json %>">
